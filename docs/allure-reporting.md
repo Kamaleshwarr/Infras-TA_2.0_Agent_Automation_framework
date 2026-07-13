@@ -21,14 +21,14 @@ npm run report
 
 ## What's Included
 
-| Metadata | Source |
-|----------|--------|
-| Feature name | Cucumber feature |
-| Scenario name | Cucumber scenario |
-| Tags | Cucumber tags |
-| Browser | Environment config |
+| Metadata                      | Source             |
+| ----------------------------- | ------------------ |
+| Feature name                  | Cucumber feature   |
+| Scenario name                 | Cucumber scenario  |
+| Tags                          | Cucumber tags      |
+| Browser                       | Environment config |
 | Environment (DEV/QA/UAT/PROD) | Environment config |
-| Execution time | Allure automatic |
+| Execution time                | Allure automatic   |
 
 ## Failure Artifacts
 
@@ -46,10 +46,10 @@ Automatically attached on scenario failure:
 
 ## Output Paths
 
-| Output | Location |
-|--------|----------|
-| Raw results | `src/reports/allure-results/` |
-| HTML report | `src/reports/allure-report/` |
+| Output        | Location                           |
+| ------------- | ---------------------------------- |
+| Raw results   | `src/reports/allure-results/`      |
+| HTML report   | `src/reports/allure-report/`       |
 | Cucumber JSON | `src/reports/cucumber-report.json` |
 
 ## CI Integration

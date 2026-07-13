@@ -2,85 +2,90 @@
 
 Enterprise-grade UI automation framework built with **Playwright**, **TypeScript**, **Cucumber (BDD)**, and **Allure Report**.
 
-Designed for scalability, maintainability, and multi-engineer collaboration.
+**Version:** 1.1.0 | [Changelog](CHANGELOG.md) | [License](LICENSE)
 
 ## Features
 
 - Page Object Model with separated locators
 - BDD scenarios with Cucumber
-- Allure reporting with failure artifacts
-- Multi-environment support (DEV / QA / UAT / PROD)
-- Headless (default) and headed execution
-- Parallel execution with configurable workers
-- Structured logging for every action
-- Documentation-first development standards
+- Allure reporting with retain-on-failure artifacts
+- Multi-environment support (`.env.dev`, `.env.qa`, `.env.uat`, `.env.prod`)
+- Winston structured logging
+- BrowserFactory (chromium, chrome, firefox, edge, webkit)
+- Headless (default), headed, parallel, and cross-browser execution
+- ESLint + Prettier + Husky quality gates
+- GitHub Actions CI/CD
+- TestDataProvider abstraction for JSON (extensible to CSV/Excel/DB/API)
 
 ## Quick Start
 
 ```bash
 npm install
-cp .env.example .env
-npm test
+cp .env.example .env   # or rely on .env.qa via ENV=QA
+npm test               # Headless, sequential
+npm run report         # Allure HTML report
 ```
 
-## Running Tests
+## Execution Modes
 
-| Command | Mode |
-|---------|------|
-| `npm test` | Headless (default), sequential |
-| `npm run test:headed` | Visible browser |
-| `npm run test:parallel` | Headless, 4 workers |
-| `npm run test:smoke` | `@smoke` tagged scenarios |
-| `npm run report` | Generate & open Allure report |
+| Command                      | Description                 |
+| ---------------------------- | --------------------------- |
+| `npm test`                   | Headless (default)          |
+| `npm run test:headed`        | Visible browser             |
+| `npm run test:parallel`      | 4 parallel workers          |
+| `npm run test:smoke`         | `@smoke` tag                |
+| `npm run test:regression`    | `@regression` tag           |
+| `npm run test:sanity`        | `@sanity` tag               |
+| `npm run test:cross-browser` | chromium → firefox → webkit |
+| `npm run test:retry`         | Suite-level retry           |
+| `npm run test:env:qa`        | Load `.env.qa` config       |
 
-See [docs/running-tests.md](docs/running-tests.md) for full details.
+See [docs/running-tests.md](docs/running-tests.md).
+
+## Quality Gates
+
+```bash
+npm run lint           # ESLint + TypeScript + Prettier
+npm run lint:fix       # Auto-fix lint and format
+npm run format         # Prettier write
+```
+
+Pre-commit hooks (Husky + lint-staged) run ESLint and Prettier automatically.
 
 ## Documentation
 
-| Resource | Description |
-|----------|-------------|
-| [docs/](docs/README.md) | Installation, config, running tests, FAQ |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
-| [.cursor/rules/](.cursor/rules/architecture.md) | AI knowledge base & standards |
-| [src/](src/) | Each folder has its own README |
+| Resource                                     | Description                             |
+| -------------------------------------------- | --------------------------------------- |
+| [docs/](docs/README.md)                      | Installation, config, architecture, FAQ |
+| [docs/architecture.md](docs/architecture.md) | Diagrams and lifecycles                 |
+| [CONTRIBUTING.md](CONTRIBUTING.md)           | Contribution guidelines                 |
+| [.cursor/](.cursor/README.md)                | AI knowledge base & standards           |
+| [CHANGELOG.md](CHANGELOG.md)                 | Version history                         |
 
 ## Architecture
 
 ```
-src/
-├── base/             # Reusable actions & assertions
-├── config/           # Environment & browser config
-├── locators/         # Selectors only
-├── pages/            # Business actions (POM)
-├── stepdefinitions/  # Cucumber glue (no Playwright)
-├── hooks/            # Browser lifecycle & artifacts
-├── features/         # Gherkin scenarios
-├── utils/            # Logger, test data, Allure
-├── testdata/         # JSON test data
-└── reports/          # Generated artifacts
+Feature → Step Definition → Page → Locator → Base Layer → Playwright → Browser
 ```
 
-## Reference Module
-
-The **Login** module demonstrates the complete pattern. See [src/pages/README.md](src/pages/README.md).
+See [docs/architecture.md](docs/architecture.md) for full diagrams.
 
 ## Environment
 
-Configure via `.env` — no code changes required:
-
 ```bash
-ENV=QA
+ENV=QA                 # Loads .env.qa automatically
+BROWSER=chromium       # chromium | chrome | firefox | edge | webkit
 HEADLESS=true
 WORKERS=4
-BROWSER=chromium
+RETRIES=1
 ```
 
 Full reference: [docs/configuration.md](docs/configuration.md)
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). Documentation is mandatory with every change.
+Documentation is mandatory with every change. Read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT
+[MIT](LICENSE)

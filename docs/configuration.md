@@ -1,49 +1,79 @@
 # Configuration
 
-All configuration is externalized — no code changes needed to switch environments or execution modes.
+All configuration is externalized — no code changes needed to switch environments, browsers, or execution modes.
 
-## Environment File
+## Environment Files
 
-Copy `.env.example` to `.env` and customize:
+The framework loads configuration in this order (later overrides earlier):
+
+1. `.env.{env}` — e.g. `.env.qa` when `ENV=QA`
+2. `.env` — local overrides
+3. Process environment variables — highest priority
+
+| File           | Purpose                      |
+| -------------- | ---------------------------- |
+| `.env.dev`     | Development environment      |
+| `.env.qa`      | QA environment (default)     |
+| `.env.uat`     | UAT environment              |
+| `.env.prod`    | Production smoke checks      |
+| `.env.example` | Template for local `.env`    |
+| `.env`         | Local overrides (gitignored) |
+
+## Quick Setup
 
 ```bash
+# Use QA defaults
+ENV=QA npm test
+
+# Use environment-specific file
+npm run test:env:uat
+
+# Local overrides
 cp .env.example .env
 ```
 
 ## Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `ENV` | `QA` | Target environment: `DEV`, `QA`, `UAT`, `PROD` |
-| `BROWSER` | `chromium` | Browser engine: `chromium`, `firefox`, `webkit` |
-| `HEADLESS` | `true` | Headless execution (default) |
-| `BASE_URL` | Per ENV | Override application URL |
-| `TAGS` | — | Cucumber tag filter |
-| `TIMEOUT` | `60000` | Scenario timeout (ms) |
-| `ACTION_TIMEOUT` | `15000` | Element action timeout (ms) |
-| `NAVIGATION_TIMEOUT` | `30000` | Page navigation timeout (ms) |
-| `WORKERS` | `1` | Parallel worker count |
-| `RETRIES` | `0` | Retry count on failure |
-| `SLOW_MO` | `0` | Slow motion delay for debugging (ms) |
-| `ENABLE_TRACING` | `true` | Playwright trace on failure |
-| `RECORD_VIDEO` | `true` | Video recording per scenario |
-| `LOG_LEVEL` | `INFO` | Log verbosity: `DEBUG`, `INFO`, `WARN`, `ERROR` |
+| Variable                | Default    | Description                                       |
+| ----------------------- | ---------- | ------------------------------------------------- |
+| `ENV`                   | `QA`       | Environment: `DEV`, `QA`, `UAT`, `PROD`           |
+| `BROWSER`               | `chromium` | `chromium`, `chrome`, `firefox`, `edge`, `webkit` |
+| `HEADLESS`              | `true`     | Headless execution                                |
+| `BASE_URL`              | Per ENV    | Override application URL                          |
+| `TAGS`                  | —          | Cucumber tag filter                               |
+| `TIMEOUT`               | `60000`    | Scenario timeout (ms)                             |
+| `ACTION_TIMEOUT`        | `15000`    | Element action timeout (ms)                       |
+| `NAVIGATION_TIMEOUT`    | `30000`    | Navigation timeout (ms)                           |
+| `WORKERS`               | `1`        | Parallel worker count                             |
+| `RETRIES`               | `1`        | Retry count for transient failures                |
+| `SLOW_MO`               | `0`        | Debug slow motion (ms)                            |
+| `ENABLE_TRACING`        | `false`    | Playwright trace (retain-on-failure)              |
+| `RECORD_VIDEO`          | `false`    | Video recording (retain-on-failure)               |
+| `SCREENSHOT_ON_FAILURE` | `true`     | Screenshot on failure                             |
+| `LOG_LEVEL`             | `INFO`     | `DEBUG`, `INFO`, `WARN`, `ERROR`                  |
 
-## Environment URLs
+## Browser Selection
 
-Defined in `src/constants/index.ts`:
-
-| Environment | Default URL |
-|-------------|-------------|
-| DEV | `https://www.saucedemo.com` |
-| QA | `https://www.saucedemo.com` |
-| UAT | `https://www.saucedemo.com` |
-| PROD | `https://www.saucedemo.com` |
-
-Override any environment with `BASE_URL`:
+Set `BROWSER` — no code changes required:
 
 ```bash
-BASE_URL=https://staging.example.com npm test
+BROWSER=chrome npm test
+BROWSER=edge npm run test:headed
+BROWSER=firefox npm run test:cross-browser
+```
+
+## Artifact Strategy (Retain-on-Failure)
+
+| Artifact   | Default | Behavior                               |
+| ---------- | ------- | -------------------------------------- |
+| Screenshot | On      | Captured and attached only on failure  |
+| Video      | Off     | Recorded when enabled; deleted on pass |
+| Trace      | Off     | Saved and attached only on failure     |
+
+Enable for debugging or UAT:
+
+```bash
+ENABLE_TRACING=true RECORD_VIDEO=true npm run test:headed
 ```
 
 ## CI/CD Example
@@ -52,12 +82,16 @@ BASE_URL=https://staging.example.com npm test
 env:
   ENV: QA
   HEADLESS: true
-  WORKERS: 4
-  ENABLE_TRACING: false
-  RECORD_VIDEO: false
+  WORKERS: 2
+  RETRIES: 1
+  ENABLE_TRACING: true
+  RECORD_VIDEO: true
 run: npm test
 ```
 
 ## Configuration Source
 
-Runtime config is resolved by `src/config/environment.config.ts` — the single source of truth.
+- `src/config/envLoader.ts` — file loading
+- `src/config/environment.config.ts` — runtime resolution
+- `src/config/browserFactory.ts` — browser selection
+- `src/config/playwright.config.ts` — Playwright options

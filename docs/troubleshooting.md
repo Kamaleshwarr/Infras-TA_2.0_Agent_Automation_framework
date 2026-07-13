@@ -4,16 +4,16 @@ See also [`.cursor/rules/troubleshooting.md`](../.cursor/rules/troubleshooting.m
 
 ## Quick Fixes
 
-| Problem | Solution |
-|---------|----------|
-| Browsers not found | `npx playwright install chromium` |
-| Linux deps missing | `sudo npx playwright install-deps chromium` |
-| Tests timeout | Increase `ACTION_TIMEOUT` in `.env` |
-| Wrong URL | Check `ENV` and `BASE_URL` in `.env` |
-| Headed not working | `npm run test:headed` |
-| Empty Allure report | Run `npm run allure:generate` after tests |
-| Parallel failures | Reduce `WORKERS` or check scenario isolation |
-| TypeScript errors | Run `npm run lint` |
+| Problem             | Solution                                     |
+| ------------------- | -------------------------------------------- |
+| Browsers not found  | `npx playwright install chromium`            |
+| Linux deps missing  | `sudo npx playwright install-deps chromium`  |
+| Tests timeout       | Increase `ACTION_TIMEOUT` in `.env`          |
+| Wrong URL           | Check `ENV` and `BASE_URL` in `.env`         |
+| Headed not working  | `npm run test:headed`                        |
+| Empty Allure report | Run `npm run allure:generate` after tests    |
+| Parallel failures   | Reduce `WORKERS` or check scenario isolation |
+| TypeScript errors   | Run `npm run lint`                           |
 
 ## Debug Workflow
 

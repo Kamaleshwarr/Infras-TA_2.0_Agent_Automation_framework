@@ -31,9 +31,9 @@
 
 ## Browser Management
 
-- Browser is shared per worker via `BrowserManager`.
+- Browser is shared per worker via `BrowserManager` + `BrowserFactory`.
 - Each scenario gets an isolated `BrowserContext`.
-- Never share pages or contexts across scenarios.
+- Set `BROWSER=chromium|chrome|firefox|edge|webkit` — no code changes.
 
 ## Performance
 

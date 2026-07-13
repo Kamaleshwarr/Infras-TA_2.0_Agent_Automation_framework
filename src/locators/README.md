@@ -6,8 +6,8 @@ Page-specific selector definitions. **Selectors only — no business logic.**
 
 ## Current Files
 
-| File | Page |
-|------|------|
+| File               | Page                    |
+| ------------------ | ----------------------- |
 | `LoginLocators.ts` | Login page (Sauce Demo) |
 
 ## Coding Standards

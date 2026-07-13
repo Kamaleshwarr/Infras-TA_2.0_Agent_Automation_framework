@@ -1,4 +1,4 @@
-@login @smoke
+@login @smoke @regression @sanity @critical @ui
 Feature: User Login
   As a registered user
   I want to log in to the application

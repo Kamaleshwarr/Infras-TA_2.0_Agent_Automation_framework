@@ -2,11 +2,11 @@
 
 ## Classes
 
-| Class | Responsibility |
-|-------|----------------|
-| `BaseActions` | Reusable Playwright interactions (click, fill, wait, scroll) |
-| `BaseAssertions` | Reusable verifications (text, URL, visibility, count) |
-| `BasePage` | Composes actions + assertions + logger for page objects |
+| Class            | Responsibility                                               |
+| ---------------- | ------------------------------------------------------------ |
+| `BaseActions`    | Reusable Playwright interactions (click, fill, wait, scroll) |
+| `BaseAssertions` | Reusable verifications (text, URL, visibility, count)        |
+| `BasePage`       | Composes actions + assertions + logger for page objects      |
 
 ## BaseActions
 

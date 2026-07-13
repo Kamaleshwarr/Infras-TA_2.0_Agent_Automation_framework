@@ -8,6 +8,9 @@ import {
   SupportedBrowser,
   SUPPORTED_BROWSERS,
 } from '../constants';
+import { loadEnvironmentFiles } from './envLoader';
+
+let environmentLoaded = false;
 
 /**
  * Resolved runtime configuration built from environment variables.
@@ -27,6 +30,14 @@ export interface EnvironmentConfig {
   slowMo: number;
   enableTracing: boolean;
   recordVideo: boolean;
+  screenshotOnFailure: boolean;
+}
+
+function ensureEnvironmentLoaded(): void {
+  if (!environmentLoaded) {
+    loadEnvironmentFiles();
+    environmentLoaded = true;
+  }
 }
 
 function parseEnvironment(value: string | undefined): Environment {
@@ -49,7 +60,10 @@ function parseBrowser(value: string | undefined): SupportedBrowser {
   return browser;
 }
 
-function parseBoolean(value: string | undefined, defaultValue: boolean): boolean {
+function parseBoolean(
+  value: string | undefined,
+  defaultValue: boolean,
+): boolean {
   if (value === undefined) return defaultValue;
   return value.toLowerCase() === 'true';
 }
@@ -64,9 +78,10 @@ function parseNumber(value: string | undefined, defaultValue: number): number {
 }
 
 export function getEnvironmentConfig(): EnvironmentConfig {
+  ensureEnvironmentLoaded();
+
   const environment = parseEnvironment(process.env.ENV);
-  const baseUrl =
-    process.env.BASE_URL?.trim() || ENVIRONMENT_URLS[environment];
+  const baseUrl = process.env.BASE_URL?.trim() || ENVIRONMENT_URLS[environment];
 
   return {
     environment,
@@ -86,7 +101,8 @@ export function getEnvironmentConfig(): EnvironmentConfig {
     workers: parseNumber(process.env.WORKERS, 1),
     retries: parseNumber(process.env.RETRIES, 0),
     slowMo: parseNumber(process.env.SLOW_MO, 0),
-    enableTracing: parseBoolean(process.env.ENABLE_TRACING, true),
-    recordVideo: parseBoolean(process.env.RECORD_VIDEO, true),
+    enableTracing: parseBoolean(process.env.ENABLE_TRACING, false),
+    recordVideo: parseBoolean(process.env.RECORD_VIDEO, false),
+    screenshotOnFailure: parseBoolean(process.env.SCREENSHOT_ON_FAILURE, true),
   };
 }

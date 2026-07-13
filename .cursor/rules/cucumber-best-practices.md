@@ -22,12 +22,12 @@
 
 ## Tags
 
-| Tag | Purpose |
-|-----|---------|
-| `@smoke` | Critical path, fast feedback |
-| `@regression` | Full coverage |
-| `@negative` | Error/validation paths |
-| `@wip` | Work in progress (exclude in CI) |
+| Tag           | Purpose                          |
+| ------------- | -------------------------------- |
+| `@smoke`      | Critical path, fast feedback     |
+| `@regression` | Full coverage                    |
+| `@negative`   | Error/validation paths           |
+| `@wip`        | Work in progress (exclude in CI) |
 
 Run tagged tests:
 

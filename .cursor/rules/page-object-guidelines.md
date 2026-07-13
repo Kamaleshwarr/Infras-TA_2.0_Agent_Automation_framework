@@ -24,8 +24,16 @@ export class LoginPage extends BasePage {
   }
 
   async login(credentials: LoginCredentials): Promise<void> {
-    await this.actions.fill(this.locators.usernameInput, credentials.username, 'Username');
-    await this.actions.fill(this.locators.passwordInput, credentials.password, 'Password');
+    await this.actions.fill(
+      this.locators.usernameInput,
+      credentials.username,
+      'Username',
+    );
+    await this.actions.fill(
+      this.locators.passwordInput,
+      credentials.password,
+      'Password',
+    );
     await this.actions.click(this.locators.loginButton, 'Login button');
   }
 }

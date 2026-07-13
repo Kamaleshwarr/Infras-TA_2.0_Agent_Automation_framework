@@ -102,20 +102,48 @@ Documentation is mandatory and equal to code. `.cursor/` directory serves as AI 
 
 ---
 
-## ADR-006: Environment Configuration via .env
+## ADR-007: Winston Logging
 
 **Status:** Accepted  
 **Date:** 2026-07-13
 
-### Context
-
-Tests must run against DEV, QA, UAT, PROD without code changes.
-
 ### Decision
 
-Centralize config in `environment.config.ts` reading from `.env` / environment variables.
+Replace console.log with Winston for structured, level-based logging.
 
 ### Consequences
 
-- `.env.example` must stay synchronized.
-- No hardcoded URLs or credentials in source.
+- ESLint `no-console` enforced project-wide.
+- Consistent timestamps and log levels across all components.
+
+---
+
+## ADR-008: BrowserFactory Pattern
+
+**Status:** Accepted  
+**Date:** 2026-07-13
+
+### Decision
+
+Extract browser resolution into `BrowserFactory` supporting chromium, chrome, firefox, edge, webkit via `BROWSER` env var.
+
+### Consequences
+
+- Browser switching requires zero code changes.
+- `BrowserManager` focuses on lifecycle only.
+
+---
+
+## ADR-009: TestDataProvider Abstraction
+
+**Status:** Accepted  
+**Date:** 2026-07-13
+
+### Decision
+
+Introduce `ITestDataProvider` interface with `TestDataProvider` facade. JSON implemented; CSV/Excel/DB/API reserved.
+
+### Consequences
+
+- Single entry point for all test data.
+- Future data sources added without changing step definitions.

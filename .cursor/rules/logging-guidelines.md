@@ -2,26 +2,26 @@
 
 ## Logger Utility
 
-Location: `src/utils/logger.ts`
+Location: `src/utils/logger.ts` — **Winston**-based enterprise logger.
 
 Every framework layer uses `createLogger(context)` for structured output.
 
 ## Log Format
 
 ```
-[2026-07-13T12:00:00.000Z] [INFO] [LoginPage] Clicking Login button
+[2026-07-13T12:00:00.000+00:00] [INFO] [LoginPage] Clicking Login button
 ```
 
 Components: timestamp, level, context, message.
 
 ## Log Levels
 
-| Level | Usage |
-|-------|-------|
+| Level   | Usage                                                  |
+| ------- | ------------------------------------------------------ |
 | `DEBUG` | Verbose internals (config values, selector resolution) |
-| `INFO` | Normal operations (default) |
-| `WARN` | Recoverable issues |
-| `ERROR` | Failures, exceptions |
+| `INFO`  | Normal operations (default)                            |
+| `WARN`  | Recoverable issues                                     |
+| `ERROR` | Failures, exceptions                                   |
 
 Set via environment: `LOG_LEVEL=DEBUG`
 
@@ -48,6 +48,6 @@ Set via environment: `LOG_LEVEL=DEBUG`
 
 ## Anti-Patterns
 
-- `console.log()` scattered in page/step files.
+- `console.log()` scattered in page/step files (ESLint `no-console` enforced).
 - Logging without context (always include class name).
 - Logging credentials or PII.

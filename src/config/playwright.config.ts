@@ -3,7 +3,7 @@ import { getEnvironmentConfig } from './environment.config';
 
 /**
  * Centralized Playwright browser and context configuration.
- * Consumed by hooks to launch browsers consistently across all scenarios.
+ * Artifacts follow retain-on-failure semantics via hooks.
  */
 export interface PlaywrightConfig {
   launchOptions: LaunchOptions;
@@ -12,6 +12,8 @@ export interface PlaywrightConfig {
   videoDir: string;
   screenshotDir: string;
   enableTracing: boolean;
+  recordVideo: boolean;
+  screenshotOnFailure: boolean;
 }
 
 export function getPlaywrightConfig(): PlaywrightConfig {
@@ -40,5 +42,7 @@ export function getPlaywrightConfig(): PlaywrightConfig {
     videoDir: 'src/reports/videos/',
     screenshotDir: 'src/reports/screenshots/',
     enableTracing: env.enableTracing,
+    recordVideo: env.recordVideo,
+    screenshotOnFailure: env.screenshotOnFailure,
   };
 }

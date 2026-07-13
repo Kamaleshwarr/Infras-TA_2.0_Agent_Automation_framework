@@ -17,9 +17,14 @@ src/
 ├── hooks/            # Browser lifecycle & artifacts
 ├── features/         # Gherkin scenarios
 ├── utils/            # Logger, test data, Allure
-├── testdata/         # JSON test data
+├── testdata/         # JSON test data (+ providers/)
 ├── reports/          # Generated artifacts
-└── resources/        # Static test files
+├── resources/        # Static test files
+├── api/              # Future API testing
+├── database/         # Future DB utilities
+├── performance/      # Future perf testing
+├── visual/           # Future visual regression
+└── accessibility/    # Future a11y testing
 ```
 
 ## Documentation Rule

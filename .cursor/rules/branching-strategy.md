@@ -2,9 +2,9 @@
 
 ## Branches
 
-| Branch | Purpose | Lifetime |
-|--------|---------|----------|
-| `main` | Production-ready framework code | Permanent |
+| Branch     | Purpose                              | Lifetime  |
+| ---------- | ------------------------------------ | --------- |
+| `main`     | Production-ready framework code      | Permanent |
 | `cursor/*` | Feature / agent development branches | Temporary |
 
 ## Flow

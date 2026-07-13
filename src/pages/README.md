@@ -6,8 +6,8 @@ Page Object classes containing **business actions only**. Each page imports loca
 
 ## Current Files
 
-| File | Description |
-|------|-------------|
+| File           | Description                                                |
+| -------------- | ---------------------------------------------------------- |
 | `LoginPage.ts` | Login actions and verifications (reference implementation) |
 
 ## Coding Standards

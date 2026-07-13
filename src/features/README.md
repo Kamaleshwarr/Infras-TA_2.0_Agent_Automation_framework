@@ -6,8 +6,8 @@ Gherkin `.feature` files — living documentation and BDD test scenarios.
 
 ## Current Files
 
-| File | Module | Tags |
-|------|--------|------|
+| File            | Module     | Tags                                         |
+| --------------- | ---------- | -------------------------------------------- |
 | `login.feature` | User Login | `@login`, `@smoke`, `@positive`, `@negative` |
 
 ## Coding Standards

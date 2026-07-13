@@ -20,13 +20,19 @@ Given('the user is on the login page', async function (this: CustomWorld) {
   await this.loginPage.verifyLoginPageDisplayed();
 });
 
-When('the user logs in with valid credentials', async function (this: CustomWorld) {
-  await this.loginPage.login(loginData.validUser);
-});
+When(
+  'the user logs in with valid credentials',
+  async function (this: CustomWorld) {
+    await this.loginPage.login(loginData.validUser);
+  },
+);
 
-When('the user logs in with invalid credentials', async function (this: CustomWorld) {
-  await this.loginPage.login(loginData.invalidUser);
-});
+When(
+  'the user logs in with invalid credentials',
+  async function (this: CustomWorld) {
+    await this.loginPage.login(loginData.invalidUser);
+  },
+);
 
 When(
   'the user logs in with username {string} and password {string}',

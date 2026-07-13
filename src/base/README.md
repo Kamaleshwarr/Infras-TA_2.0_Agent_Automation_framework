@@ -6,11 +6,11 @@ Reusable foundation classes that all page objects build upon. Eliminates duplica
 
 ## Contents
 
-| File | Responsibility |
-|------|----------------|
-| `BaseActions.ts` | Generic Playwright interactions (click, fill, wait, scroll) |
-| `BaseAssertions.ts` | Generic verifications (text, URL, visibility, count) |
-| `BasePage.ts` | Composes actions + assertions + logger for page objects |
+| File                | Responsibility                                              |
+| ------------------- | ----------------------------------------------------------- |
+| `BaseActions.ts`    | Generic Playwright interactions (click, fill, wait, scroll) |
+| `BaseAssertions.ts` | Generic verifications (text, URL, visibility, count)        |
+| `BasePage.ts`       | Composes actions + assertions + logger for page objects     |
 
 ## Coding Standards
 

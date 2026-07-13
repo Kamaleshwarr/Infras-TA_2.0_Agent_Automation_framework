@@ -104,10 +104,7 @@ export class BaseActions {
     await locator.selectOption(value, { timeout: this.actionTimeout });
   }
 
-  async scrollIntoView(
-    locator: Locator,
-    elementName: string,
-  ): Promise<void> {
+  async scrollIntoView(locator: Locator, elementName: string): Promise<void> {
     this.logger.info(`Scrolling ${elementName} into view`);
     await locator.scrollIntoViewIfNeeded({ timeout: this.actionTimeout });
   }
@@ -119,9 +116,7 @@ export class BaseActions {
 
   async scrollToBottom(): Promise<void> {
     this.logger.info('Scrolling to bottom of page');
-    await this.page.evaluate(
-      'window.scrollTo(0, document.body.scrollHeight)',
-    );
+    await this.page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
   }
 
   async pressKey(key: string, elementName?: string): Promise<void> {
@@ -130,10 +125,7 @@ export class BaseActions {
     await this.page.keyboard.press(key);
   }
 
-  async waitForVisible(
-    locator: Locator,
-    elementName: string,
-  ): Promise<void> {
+  async waitForVisible(locator: Locator, elementName: string): Promise<void> {
     this.logger.info(`Waiting for ${elementName} to be visible`);
     await locator.waitFor({ state: 'visible', timeout: this.actionTimeout });
   }

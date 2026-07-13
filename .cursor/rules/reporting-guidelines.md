@@ -6,14 +6,14 @@ Primary reporting tool. Configured in `cucumber.js` via `allure-cucumberjs/repor
 
 ## Automatic Metadata
 
-| Field | Source |
-|-------|--------|
-| Feature | Cucumber feature name |
-| Scenario | Cucumber scenario name |
-| Tags | Cucumber tags |
-| Browser | `environment.properties` |
+| Field       | Source                   |
+| ----------- | ------------------------ |
+| Feature     | Cucumber feature name    |
+| Scenario    | Cucumber scenario name   |
+| Tags        | Cucumber tags            |
+| Browser     | `environment.properties` |
 | Environment | `environment.properties` |
-| Base URL | `environment.properties` |
+| Base URL    | `environment.properties` |
 
 ## Failure Artifacts
 
@@ -35,14 +35,14 @@ npm run report            # Generate + open
 
 ## Output Locations
 
-| Artifact | Path |
-|----------|------|
-| Allure results | `src/reports/allure-results/` |
-| Allure HTML report | `src/reports/allure-report/` |
-| Cucumber JSON | `src/reports/cucumber-report.json` |
-| Screenshots | Attached to Allure (on failure) |
-| Videos | `src/reports/videos/` |
-| Traces | `src/reports/traces/` |
+| Artifact           | Path                               |
+| ------------------ | ---------------------------------- |
+| Allure results     | `src/reports/allure-results/`      |
+| Allure HTML report | `src/reports/allure-report/`       |
+| Cucumber JSON      | `src/reports/cucumber-report.json` |
+| Screenshots        | Attached to Allure (on failure)    |
+| Videos             | `src/reports/videos/`              |
+| Traces             | `src/reports/traces/`              |
 
 ## CI/CD
 

@@ -1,0 +1,131 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+  ENV: QA
+  HEADLESS: true
+  WORKERS: 2
+  RETRIES: 1
+  ENABLE_TRACING: true
+  RECORD_VIDEO: true
+  SCREENSHOT_ON_FAILURE: true
+
+jobs:
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint:eslint
+
+      - name: TypeScript
+        run: npm run lint:types
+
+      - name: Prettier
+        run: npm run format:check
+
+  test:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run tests
+        run: npm test
+
+      - name: Generate Allure report
+        if: always()
+        run: npm run allure:generate
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: src/reports/allure-results/
+          retention-days: 30
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: src/reports/allure-report/
+          retention-days: 14
+
+      - name: Upload Cucumber JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: src/reports/cucumber-report.json
+          retention-days: 14
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots
+          path: src/reports/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload failure traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-traces
+          path: src/reports/traces/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload failure videos
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-videos
+          path: src/reports/videos/
+          if-no-files-found: ignore
+          retention-days: 14

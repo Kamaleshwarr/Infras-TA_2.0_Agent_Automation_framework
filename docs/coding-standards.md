@@ -10,21 +10,21 @@ Summary of framework coding standards. Full details in [`.cursor/rules/`](../.cu
 
 ## Waits
 
-| Allowed | Forbidden |
-|---------|-----------|
-| `locator.waitFor()` | `waitForTimeout()` |
-| `expect(locator)` | `setTimeout()` / sleep |
-| `waitForLoadState()` | Arbitrary delays |
-| `waitForURL()` | |
-| `waitForResponse()` | |
+| Allowed              | Forbidden              |
+| -------------------- | ---------------------- |
+| `locator.waitFor()`  | `waitForTimeout()`     |
+| `expect(locator)`    | `setTimeout()` / sleep |
+| `waitForLoadState()` | Arbitrary delays       |
+| `waitForURL()`       |                        |
+| `waitForResponse()`  |                        |
 
 ## Separation of Concerns
 
-| Layer | Contains | Must Not Contain |
-|-------|----------|------------------|
-| Locators | Selectors | Logic, assertions |
-| Pages | Business actions | Inline selectors |
-| Steps | Cucumber mappings | Playwright API |
+| Layer        | Contains                   | Must Not Contain   |
+| ------------ | -------------------------- | ------------------ |
+| Locators     | Selectors                  | Logic, assertions  |
+| Pages        | Business actions           | Inline selectors   |
+| Steps        | Cucumber mappings          | Playwright API     |
 | Base classes | Generic actions/assertions | Page-specific code |
 
 ## Naming

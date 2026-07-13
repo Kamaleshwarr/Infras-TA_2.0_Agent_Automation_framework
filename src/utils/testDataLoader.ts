@@ -1,26 +1,17 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { TestDataProvider } from '../testdata/providers/TestDataProvider';
 
 /**
- * Loads JSON test data from src/testdata/.
- * Keeps credentials and scenario inputs out of source code.
+ * @deprecated Use TestDataProvider.loadJson() instead.
+ * Retained for backward compatibility with existing step definitions.
  */
 export class TestDataLoader {
-  private static readonly basePath = path.resolve(__dirname, '../testdata');
-
   static load<T>(fileName: string): T {
-    const filePath = path.join(this.basePath, fileName);
-
-    if (!fs.existsSync(filePath)) {
-      throw new Error(`Test data file not found: ${filePath}`);
-    }
-
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(raw) as T;
+    return TestDataProvider.loadJson<T>(fileName);
   }
 
   static loadByKey<T, K extends keyof T>(fileName: string, key: K): T[K] {
-    const data = this.load<T>(fileName);
-    return data[key];
+    return TestDataProvider.loadByKey<T, K>(fileName, key);
   }
 }
+
+export { TestDataProvider };

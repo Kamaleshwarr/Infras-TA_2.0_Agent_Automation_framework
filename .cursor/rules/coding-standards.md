@@ -9,13 +9,13 @@
 
 ## File Responsibilities
 
-| File Type | Allowed | Forbidden |
-|-----------|---------|-----------|
-| Locators | Selector definitions | Business logic, assertions |
-| Pages | Business actions, page-level verifications | Inline selectors, direct `expect` in complex flows |
-| Step definitions | Cucumber step mappings | Playwright API calls |
-| Base classes | Reusable actions/assertions | Page-specific logic |
-| Hooks | Lifecycle, artifacts | Business logic |
+| File Type        | Allowed                                    | Forbidden                                          |
+| ---------------- | ------------------------------------------ | -------------------------------------------------- |
+| Locators         | Selector definitions                       | Business logic, assertions                         |
+| Pages            | Business actions, page-level verifications | Inline selectors, direct `expect` in complex flows |
+| Step definitions | Cucumber step mappings                     | Playwright API calls                               |
+| Base classes     | Reusable actions/assertions                | Page-specific logic                                |
+| Hooks            | Lifecycle, artifacts                       | Business logic                                     |
 
 ## Error Handling
 

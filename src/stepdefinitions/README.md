@@ -6,8 +6,8 @@ Cucumber step glue that maps Gherkin steps to page object methods.
 
 ## Current Files
 
-| File | Feature |
-|------|---------|
+| File             | Feature             |
+| ---------------- | ------------------- |
 | `login.steps.ts` | Login feature steps |
 
 ## Coding Standards
@@ -21,9 +21,12 @@ Cucumber step glue that maps Gherkin steps to page object methods.
 ## Example
 
 ```typescript
-When('the user logs in with valid credentials', async function (this: CustomWorld) {
-  await this.loginPage.login(loginData.validUser);
-});
+When(
+  'the user logs in with valid credentials',
+  async function (this: CustomWorld) {
+    await this.loginPage.login(loginData.validUser);
+  },
+);
 ```
 
 ## Adding New Steps

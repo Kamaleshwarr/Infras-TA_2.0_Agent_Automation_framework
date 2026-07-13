@@ -1,44 +1,51 @@
 # Test Data
 
-## Purpose
+JSON-based test inputs separated from source code. Accessed via the **TestDataProvider** abstraction.
 
-JSON-based test inputs separated from source code. No hardcoded credentials.
+## Architecture
+
+```
+TestDataProvider (facade)
+├── JsonDataProvider     ✅ implemented
+├── CsvDataProvider      🔜 reserved
+├── ExcelDataProvider    🔜 reserved
+├── DatabaseDataProvider 🔜 reserved
+└── ApiDataProvider      🔜 reserved
+```
 
 ## Current Files
 
-| File | Module |
-|------|--------|
+| File         | Module                               |
+| ------------ | ------------------------------------ |
 | `login.json` | Login credentials and error messages |
-
-## Coding Standards
-
-- One JSON file per module: `{module}.json`.
-- Load via `TestDataLoader.load<T>('filename.json')`.
-- Never commit real production credentials.
-- Use descriptive keys: `validUser`, `invalidUser`, `errorMessages`.
-
-## Example Structure
-
-```json
-{
-  "validUser": {
-    "username": "standard_user",
-    "password": "secret_sauce"
-  },
-  "invalidUser": {
-    "username": "invalid_user",
-    "password": "wrong_password"
-  }
-}
-```
 
 ## Usage
 
 ```typescript
-const loginData = TestDataLoader.load<LoginTestData>('login.json');
-await this.loginPage.login(loginData.validUser);
+import { TestDataProvider } from '../testdata/providers/TestDataProvider';
+
+const data = TestDataProvider.loadJson<LoginTestData>('login.json');
+const user = TestDataProvider.loadByKey('login.json', 'validUser');
 ```
+
+Legacy wrapper (still supported):
+
+```typescript
+import { TestDataLoader } from '../utils/testDataLoader';
+const data = TestDataLoader.load<LoginTestData>('login.json');
+```
+
+## Coding Standards
+
+- One JSON file per module.
+- No hardcoded credentials in source code.
+- Extend `ITestDataProvider` for new data sources.
+
+## Providers
+
+See [providers/](providers/) for the data provider implementation.
 
 ## Related
 
-- [src/stepdefinitions/README.md](../stepdefinitions/README.md)
+- [Test Data Strategy](../../.cursor/rules/architecture.md)
+- [src/testdata/providers/TestDataProvider.ts](providers/TestDataProvider.ts)

@@ -39,7 +39,10 @@ export class DashboardPage extends BasePage {
   }
 
   async verifyDashboardDisplayed(): Promise<void> {
-    await this.assertions.verifyVisible(this.locators.welcomeMessage, 'Welcome message');
+    await this.assertions.verifyVisible(
+      this.locators.welcomeMessage,
+      'Welcome message',
+    );
   }
 }
 ```

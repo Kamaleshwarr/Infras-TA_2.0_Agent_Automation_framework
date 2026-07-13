@@ -33,7 +33,9 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
   await this.createContext();
   await this.createPage();
 
-  logger.info(`Environment: ${config.environment} | Browser: ${config.browser}`);
+  logger.info(
+    `Environment: ${config.environment} | Browser: ${config.browser}`,
+  );
 });
 
 After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
@@ -47,8 +49,10 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
     if (failed) {
       logger.error(`Scenario failed: ${scenario.pickle.name}`);
 
-      const screenshot = await this.page.screenshot({ fullPage: true });
-      await AllureHelper.attachScreenshot(attach, screenshot);
+      if (pwConfig.screenshotOnFailure) {
+        const screenshot = await this.page.screenshot({ fullPage: true });
+        await AllureHelper.attachScreenshot(attach, screenshot);
+      }
 
       if (pwConfig.enableTracing) {
         this.tracePath = path.join(
@@ -76,6 +80,8 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
     if (failed) {
       const videoPath = await video?.path();
       await AllureHelper.attachVideo(attach, videoPath);
+    } else {
+      await cleanupPassArtifact(video);
     }
 
     if (this.tracePath && !failed && fs.existsSync(this.tracePath)) {
@@ -88,3 +94,19 @@ AfterAll(async function () {
   await browserManager.closeBrowser();
   logger.info('Framework teardown completed');
 });
+
+/** Removes video files for passing scenarios (retain-on-failure). */
+async function cleanupPassArtifact(
+  video: { path: () => Promise<string | null> } | null,
+): Promise<void> {
+  if (!video) return;
+
+  try {
+    const videoPath = await video.path();
+    if (videoPath && fs.existsSync(videoPath)) {
+      fs.unlinkSync(videoPath);
+    }
+  } catch {
+    // Video path may be unavailable if recording was disabled.
+  }
+}

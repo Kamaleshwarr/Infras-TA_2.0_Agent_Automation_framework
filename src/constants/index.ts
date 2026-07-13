@@ -22,10 +22,27 @@ export const ENVIRONMENT_URLS: Record<Environment, string> = {
   [Environment.PROD]: 'https://www.saucedemo.com',
 };
 
-export const SUPPORTED_BROWSERS = ['chromium', 'firefox', 'webkit'] as const;
+export const SUPPORTED_BROWSERS = [
+  'chromium',
+  'chrome',
+  'firefox',
+  'edge',
+  'webkit',
+] as const;
 export type SupportedBrowser = (typeof SUPPORTED_BROWSERS)[number];
 
 export const DEFAULT_BROWSER: SupportedBrowser = 'chromium';
+
+/** Recommended Cucumber tags for suite filtering. */
+export const TEST_TAGS = {
+  SMOKE: '@smoke',
+  REGRESSION: '@regression',
+  SANITY: '@sanity',
+  CRITICAL: '@critical',
+  UI: '@ui',
+  API: '@api',
+  WIP: '@wip',
+} as const;
 
 export const DEFAULT_VIEWPORT = { width: 1280, height: 720 };
 

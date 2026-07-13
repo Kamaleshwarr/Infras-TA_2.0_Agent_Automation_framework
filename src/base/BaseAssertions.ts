@@ -86,9 +86,7 @@ export class BaseAssertions {
     expectedValue: string | RegExp,
     elementName: string,
   ): Promise<void> {
-    this.logger.info(
-      `Verifying attribute "${attribute}" of ${elementName}`,
-    );
+    this.logger.info(`Verifying attribute "${attribute}" of ${elementName}`);
     await expect(locator).toHaveAttribute(attribute, expectedValue, {
       timeout: this.actionTimeout,
     });

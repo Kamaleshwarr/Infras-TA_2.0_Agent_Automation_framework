@@ -13,13 +13,13 @@ Documentation is **mandatory** and has equal importance to code.
 
 ## Required Documentation
 
-| Change | Update |
-|--------|--------|
-| New `src/` folder | Add `README.md` in that folder |
-| New module (Login, Dashboard) | Update module README + `docs/` if user-facing |
-| New env variable | Update `.env.example` + `docs/configuration.md` |
-| Architecture change | Update `.cursor/rules/architecture.md` + ADR |
-| New npm script | Update `README.md` + `docs/running-tests.md` |
+| Change                        | Update                                          |
+| ----------------------------- | ----------------------------------------------- |
+| New `src/` folder             | Add `README.md` in that folder                  |
+| New module (Login, Dashboard) | Update module README + `docs/` if user-facing   |
+| New env variable              | Update `.env.example` + `docs/configuration.md` |
+| Architecture change           | Update `.cursor/rules/architecture.md` + ADR    |
+| New npm script                | Update `README.md` + `docs/running-tests.md`    |
 
 ## README Template (Module Folder)
 
@@ -27,18 +27,23 @@ Documentation is **mandatory** and has equal importance to code.
 # {Folder Name}
 
 ## Purpose
+
 What this folder contains and why it exists.
 
 ## Responsibilities
+
 Bullet list of what belongs here.
 
 ## Coding Standards
+
 Rules specific to this folder.
 
 ## Examples
+
 Code snippets showing correct usage.
 
 ## Related
+
 Links to other folders/docs.
 ```
 
