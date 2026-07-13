@@ -143,32 +143,3 @@ export class AllureReportManager implements IReportManager {
     }
   }
 }
-
-/** @deprecated Use dependencies.getReportManager() or AllureReportManager directly. */
-export class AllureHelper {
-  private static readonly manager = new AllureReportManager();
-
-  static ensureReportDirectories = (): void =>
-    AllureHelper.manager.ensureReportDirectories();
-  static writeEnvironmentProperties = (): void =>
-    AllureHelper.manager.writeEnvironmentProperties();
-  static attachScreenshot = (
-    attach: CucumberAttach,
-    screenshot: Buffer,
-    name?: string,
-  ): Promise<void> =>
-    AllureHelper.manager.attachScreenshot(attach, screenshot, name);
-  static attachText = (
-    attach: CucumberAttach,
-    name: string,
-    content: string,
-  ): Promise<void> => AllureHelper.manager.attachText(attach, name, content);
-  static attachVideo = (
-    attach: CucumberAttach,
-    videoPath: string | null | undefined,
-  ): Promise<void> => AllureHelper.manager.attachVideo(attach, videoPath);
-  static attachTrace = (
-    attach: CucumberAttach,
-    tracePath: string,
-  ): Promise<void> => AllureHelper.manager.attachTrace(attach, tracePath);
-}

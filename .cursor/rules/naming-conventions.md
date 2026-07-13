@@ -12,11 +12,11 @@
 
 ## Classes
 
-| Type      | Pattern           | Example                          |
-| --------- | ----------------- | -------------------------------- |
-| Locators  | `{Page}Locators`  | `LoginLocators`                  |
-| Page      | `{Page}Page`      | `LoginPage`                      |
-| Utilities | `{Purpose}{Type}` | `TestDataLoader`, `AllureHelper` |
+| Type      | Pattern           | Example                                   |
+| --------- | ----------------- | ----------------------------------------- |
+| Locators  | `{Page}Locators`  | `LoginLocators`                           |
+| Page      | `{Page}Page`      | `LoginPage`                               |
+| Utilities | `{Purpose}{Type}` | `JsonDataProvider`, `AllureReportManager` |
 
 ## Methods (Pages)
 

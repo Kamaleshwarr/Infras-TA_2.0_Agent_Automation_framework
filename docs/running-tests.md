@@ -100,7 +100,8 @@ npm run format:check   # Prettier check only
 ```bash
 npm run allure:generate
 npm run allure:open
-npm run report         # Generate + open
+npm run report         # Generate HTML report
+npm run report:open    # Open report in browser (local)
 ```
 
 ## Command Reference

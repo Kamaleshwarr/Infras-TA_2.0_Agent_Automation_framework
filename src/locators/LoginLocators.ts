@@ -24,10 +24,6 @@ export class LoginLocators {
   }
 
   get inventoryContainer() {
-    return this.page.locator('#inventory_container');
-  }
-
-  get pageTitle() {
-    return this.page.locator('.title');
+    return this.page.locator('[data-test="inventory-container"]');
   }
 }

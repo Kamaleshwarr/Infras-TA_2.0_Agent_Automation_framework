@@ -22,17 +22,10 @@ TestDataProvider (facade)
 ## Usage
 
 ```typescript
-import { TestDataProvider } from '../../testdata/providers/TestDataProvider';
+import { TestDataProvider } from './providers/TestDataProvider';
 
 const data = TestDataProvider.loadJson<LoginTestData>('login.json');
 const user = TestDataProvider.loadByKey('login.json', 'validUser');
-```
-
-Legacy wrapper (still supported):
-
-```typescript
-import { TestDataLoader } from '../utils/testDataLoader';
-const data = TestDataLoader.load<LoginTestData>('login.json');
 ```
 
 ## Coding Standards

@@ -14,14 +14,13 @@ utils/
 
 ## Modules
 
-| Path                            | Purpose                            |
-| ------------------------------- | ---------------------------------- |
-| `common/logger.ts`              | Winston ILogger implementation     |
-| `common/retryHelper.ts`         | Transient failure retry            |
-| `json/jsonDataProvider.ts`      | JSON file data provider            |
-| `json/testDataLoader.ts`        | Backward-compatible loader wrapper |
-| `report/allureReportManager.ts` | IReportManager + Allure metadata   |
-| `string/maskHelper.ts`          | Sensitive value masking            |
+| Path                            | Purpose                          |
+| ------------------------------- | -------------------------------- |
+| `common/logger.ts`              | Winston ILogger implementation   |
+| `common/retryHelper.ts`         | Transient failure retry          |
+| `json/jsonDataProvider.ts`      | JSON file data provider          |
+| `report/allureReportManager.ts` | IReportManager + Allure metadata |
+| `string/maskHelper.ts`          | Sensitive value masking          |
 
 ## Security
 

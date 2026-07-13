@@ -102,6 +102,27 @@ Documentation is mandatory and equal to code. `.cursor/` directory serves as AI 
 
 ---
 
+## ADR-006: Multi-Environment Configuration
+
+**Status:** Accepted  
+**Date:** 2026-07-13
+
+### Context
+
+Enterprise QA requires running the same suite against DEV, QA, UAT, and PROD targets without code changes.
+
+### Decision
+
+Use environment-specific files (`.env.dev`, `.env.qa`, `.env.uat`, `.env.prod`) plus an optional local `.env` override. Runtime process environment variables take highest priority over file-based values.
+
+### Consequences
+
+- `ENV` and `BASE_URL` switch targets via npm scripts (`test:env:qa`, etc.).
+- CI and cross-browser runners can override `BROWSER` without `.env` clobbering runtime values.
+- `.env.example` documents all supported variables.
+
+---
+
 ## ADR-007: Winston Logging
 
 **Status:** Accepted  

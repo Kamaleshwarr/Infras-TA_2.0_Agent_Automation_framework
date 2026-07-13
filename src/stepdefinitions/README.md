@@ -15,7 +15,7 @@ Cucumber step glue that maps Gherkin steps to page object methods.
 - **Never** import or use Playwright directly.
 - Access page objects via `CustomWorld` (`this.loginPage`).
 - Keep steps thin — one action or verification per step.
-- Load test data from `testdata/` via `TestDataLoader`.
+- Load test data from `testdata/` via `TestDataProvider`.
 - Reuse steps across features where possible.
 
 ## Example

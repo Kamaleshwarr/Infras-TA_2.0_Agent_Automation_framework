@@ -30,7 +30,8 @@ On scenario failure, hooks automatically attach:
 npm test                  # Run tests (generates allure-results)
 npm run allure:generate   # Build HTML report
 npm run allure:open       # Open report in browser
-npm run report            # Generate + open
+npm run report            # Generate HTML report
+npm run report:open       # Open report in browser (local)
 ```
 
 ## Output Locations

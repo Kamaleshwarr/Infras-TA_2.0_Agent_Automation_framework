@@ -8,10 +8,11 @@ import { ConfigurationException } from '../exceptions';
  * Loads environment-specific configuration files in priority order:
  * 1. `.env.{env}` (e.g. `.env.qa`)
  * 2. `.env` (local overrides)
- * 3. Process environment variables (highest priority)
+ * 3. Process environment variables (highest priority — preserved from before load)
  */
 export function loadEnvironmentFiles(): void {
-  const envName = (process.env.ENV ?? DEFAULT_ENVIRONMENT).toLowerCase();
+  const runtimeEnv = { ...process.env };
+  const envName = (runtimeEnv.ENV ?? DEFAULT_ENVIRONMENT).toLowerCase();
   const rootDir = process.cwd();
 
   const envSpecificFile = path.resolve(rootDir, `.env.${envName}`);
@@ -22,6 +23,12 @@ export function loadEnvironmentFiles(): void {
   const defaultEnvFile = path.resolve(rootDir, '.env');
   if (fs.existsSync(defaultEnvFile)) {
     dotenv.config({ path: defaultEnvFile, override: true });
+  }
+
+  for (const [key, value] of Object.entries(runtimeEnv)) {
+    if (value !== undefined) {
+      process.env[key] = value;
+    }
   }
 }
 

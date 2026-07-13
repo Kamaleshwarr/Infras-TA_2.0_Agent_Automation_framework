@@ -98,7 +98,10 @@ export class BaseActions implements IBaseActions {
     ]);
     const filePath = await download.path();
     if (!filePath) {
-      throw new Error(`Download failed for ${elementName}`);
+      throw new ElementNotFoundException(
+        elementName,
+        'Download path was empty',
+      );
     }
     return filePath;
   }

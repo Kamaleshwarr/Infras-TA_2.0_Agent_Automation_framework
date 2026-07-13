@@ -12,7 +12,7 @@ for (const browser of browsers) {
   process.stdout.write(`\n=== Running tests on ${browser} ===\n\n`);
   const result = spawnSync('npx', ['cucumber-js'], {
     stdio: 'inherit',
-    env: { ...process.env, BROWSER: browser },
+    env: { ...process.env, BROWSER: browser, WORKERS: '1' },
     shell: true,
   });
 

@@ -5,9 +5,11 @@ const dotenv = require('dotenv');
 /**
  * Loads `.env.{env}` then `.env` before Cucumber starts.
  * Mirrors src/config/envLoader.ts for the Node.js bootstrap path.
+ * Process environment variables set before this module loads take highest priority.
  */
 function loadEnvironmentFiles() {
-  const envName = (process.env.ENV || 'QA').toLowerCase();
+  const runtimeEnv = { ...process.env };
+  const envName = (runtimeEnv.ENV || 'QA').toLowerCase();
   const rootDir = process.cwd();
 
   const envSpecificFile = path.resolve(rootDir, `.env.${envName}`);
@@ -18,6 +20,12 @@ function loadEnvironmentFiles() {
   const defaultEnvFile = path.resolve(rootDir, '.env');
   if (fs.existsSync(defaultEnvFile)) {
     dotenv.config({ path: defaultEnvFile, override: true });
+  }
+
+  for (const [key, value] of Object.entries(runtimeEnv)) {
+    if (value !== undefined) {
+      process.env[key] = value;
+    }
   }
 }
 

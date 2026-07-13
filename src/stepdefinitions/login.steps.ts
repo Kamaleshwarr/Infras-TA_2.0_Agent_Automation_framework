@@ -1,5 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { TestDataLoader } from '../utils/json/testDataLoader';
+import { TestDataProvider } from '../testdata/providers/TestDataProvider';
 import { CustomWorld } from '../hooks/world';
 
 interface LoginTestData {
@@ -13,7 +13,7 @@ interface LoginTestData {
   };
 }
 
-const loginData = TestDataLoader.load<LoginTestData>('login.json');
+const loginData = TestDataProvider.loadJson<LoginTestData>('login.json');
 
 Given('the user is on the login page', async function (this: CustomWorld) {
   await this.loginPage.openLoginPage();

@@ -31,13 +31,13 @@ This framework follows **Page Object Model (POM)** with **BDD (Cucumber)** and a
 
 ## Cross-Cutting Concerns
 
-| Concern           | Location                       | Purpose                             |
-| ----------------- | ------------------------------ | ----------------------------------- |
-| Browser lifecycle | `hooks/` + `browserManager.ts` | Launch, context isolation, teardown |
-| Configuration     | `config/`                      | Environment, browser, timeouts      |
-| Logging           | `utils/logger.ts`              | Structured action logging           |
-| Reporting         | `utils/allureHelper.ts`        | Allure artifacts on failure         |
-| Test data         | `testdata/`                    | JSON inputs, no hardcoded secrets   |
+| Concern           | Location                              | Purpose                             |
+| ----------------- | ------------------------------------- | ----------------------------------- |
+| Browser lifecycle | `hooks/` + `browserManager.ts`        | Launch, context isolation, teardown |
+| Configuration     | `config/`                             | Environment, browser, timeouts      |
+| Logging           | `utils/common/logger.ts`              | Structured action logging           |
+| Reporting         | `utils/report/allureReportManager.ts` | Allure artifacts on failure         |
+| Test data         | `testdata/`                           | JSON inputs, no hardcoded secrets   |
 
 ## Design Principles
 
