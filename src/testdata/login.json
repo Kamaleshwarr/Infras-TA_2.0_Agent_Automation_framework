@@ -1,16 +1,15 @@
 {
   "validUser": {
-    "username": "standard_user",
-    "password": "secret_sauce"
+    "username": "agent_user",
+    "password": "agent_pass"
   },
   "invalidUser": {
     "username": "invalid_user",
     "password": "wrong_password"
   },
   "errorMessages": {
-    "invalidCredentials": "Username and password do not match any user in this service",
-    "lockedOut": "Sorry, this user has been locked out.",
-    "usernameRequired": "Epic sadface: Username is required",
-    "passwordRequired": "Epic sadface: Password is required"
+    "invalidCredentials": "Invalid username or password",
+    "usernameRequired": "Invalid username or password",
+    "passwordRequired": "Invalid username or password"
   }
 }

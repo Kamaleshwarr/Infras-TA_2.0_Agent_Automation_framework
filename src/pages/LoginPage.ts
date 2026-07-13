@@ -36,6 +36,7 @@ export class LoginPage extends BasePage {
 
   async clickLoginButton(): Promise<void> {
     await this.actions.click(this.locators.loginButton, 'Login button');
+    await this.actions.waitForPageLoad();
   }
 
   async login(credentials: LoginCredentials): Promise<void> {
@@ -47,6 +48,7 @@ export class LoginPage extends BasePage {
 
   async verifyLoginPageDisplayed(): Promise<void> {
     this.logger.info('Verifying login page is displayed');
+    await this.assertions.verifyVisible(this.locators.loginPage, 'Login page');
     await this.assertions.verifyVisible(
       this.locators.loginButton,
       'Login button',
@@ -55,10 +57,10 @@ export class LoginPage extends BasePage {
 
   async verifySuccessfulLogin(): Promise<void> {
     this.logger.info('Verifying successful login');
-    await this.assertions.verifyURL(/inventory\.html/);
+    await this.assertions.verifyURL(/dashboard\.html/);
     await this.assertions.verifyVisible(
-      this.locators.inventoryContainer,
-      'Inventory container',
+      this.locators.dashboardContainer,
+      'Dashboard container',
     );
   }
 

@@ -42,7 +42,7 @@ When(
 );
 
 Then(
-  'the user should be redirected to the inventory page',
+  'the user should be redirected to the dashboard',
   async function (this: CustomWorld) {
     await this.loginPage.verifySuccessfulLogin();
   },

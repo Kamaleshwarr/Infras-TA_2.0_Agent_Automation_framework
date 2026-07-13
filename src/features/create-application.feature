@@ -1,0 +1,25 @@
+@create-application @dashboard @smoke @regression @sanity @critical @ui
+Feature: Create New Application
+  As a logged-in agent
+  I want to start a new application from the dashboard
+  So that I can begin the application wizard workflow
+
+  Background:
+    Given the user is logged in to the agent portal
+
+  @positive
+  Scenario: Agent navigates to Application Wizard page one from dashboard
+    When the user clicks Create New Application on the dashboard
+    Then the Application Wizard page one should be displayed
+    And the wizard should show step indicator "Step 1 of 5: Licensing and Appointment"
+
+  @positive
+  Scenario: Agent can fill Application Wizard page one fields
+    When the user clicks Create New Application on the dashboard
+    And the user fills Application Wizard page one with valid data
+    Then the Application Wizard page one should be displayed
+
+  @positive
+  Scenario: Application Wizard page one displays prefilled agent details
+    When the user clicks Create New Application on the dashboard
+    Then the Application Wizard page one should display prefilled agent details

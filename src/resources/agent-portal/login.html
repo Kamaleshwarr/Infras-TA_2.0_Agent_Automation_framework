@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+        max-width: 420px;
+      }
+      label {
+        display: block;
+        margin-top: 1rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.25rem;
+      }
+      button {
+        margin-top: 1.5rem;
+        padding: 0.5rem 1rem;
+      }
+      [data-test='error'] {
+        color: #b00020;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body data-test="login-page">
+    <h1>Agent Portal Login</h1>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" class="form-control" />
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        class="form-control"
+      />
+
+      <input name="login-form-type" type="hidden" value="login" />
+
+      <button id="formLogin" type="submit" class="btn btn-primary">
+        Login
+      </button>
+      <p data-test="error" hidden></p>
+    </form>
+
+    <script>
+      const VALID_USER = 'agent_user';
+      const VALID_PASS = 'agent_pass';
+
+      document
+        .getElementById('loginForm')
+        .addEventListener('submit', (event) => {
+          event.preventDefault();
+          const username = document.getElementById('username').value.trim();
+          const password = document.getElementById('password').value;
+          const error = document.querySelector('[data-test="error"]');
+
+          if (username === VALID_USER && password === VALID_PASS) {
+            window.location.href = 'dashboard.html';
+            return;
+          }
+
+          error.hidden = false;
+          error.textContent = 'Invalid username or password';
+        });
+    </script>
+  </body>
+</html>

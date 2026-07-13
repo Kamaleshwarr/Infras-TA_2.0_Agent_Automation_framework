@@ -8,7 +8,7 @@ Playwright, TypeScript, Cucumber (BDD), Node.js, and Allure Report.
 
 ### What demo application is used?
 
-[Sauce Demo](https://www.saucedemo.com) for the Login reference module.
+The **Agent Portal demo** in `src/resources/agent-portal/` for Login, Dashboard, and Application Wizard modules. Override `BASE_URL` with `https://secure.transamerica.com` for live Transamerica Agent Portal execution.
 
 ### Can I use this with my own application?
 

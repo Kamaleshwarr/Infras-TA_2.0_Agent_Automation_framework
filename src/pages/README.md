@@ -6,9 +6,11 @@ Page Object classes containing **business actions only**. Each page imports loca
 
 ## Current Files
 
-| File           | Description                                                |
-| -------------- | ---------------------------------------------------------- |
-| `LoginPage.ts` | Login actions and verifications (reference implementation) |
+| File                       | Description                                                |
+| -------------------------- | ---------------------------------------------------------- |
+| `LoginPage.ts`             | Login actions and verifications (reference implementation) |
+| `DashboardPage.ts`         | Minimal dashboard navigation                               |
+| `ApplicationWizardPage.ts` | Application Wizard page 1 actions                          |
 
 ## Coding Standards
 

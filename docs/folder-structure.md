@@ -49,10 +49,18 @@ Each feature module spans multiple folders:
 
 ```
 locators/LoginLocators.ts
+locators/DashboardLocators.ts
+locators/ApplicationWizardLocators.ts
 pages/LoginPage.ts
+pages/DashboardPage.ts
+pages/ApplicationWizardPage.ts
 features/login.feature
+features/create-application.feature
 stepdefinitions/login.steps.ts
+stepdefinitions/create-application.steps.ts
 testdata/login.json
+testdata/create-application.json
+resources/agent-portal/
 ```
 
 See [`.cursor/prompts/create-new-module.md`](../.cursor/prompts/create-new-module.md) for the full checklist.

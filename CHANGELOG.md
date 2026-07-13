@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-07-13
+
+### Added
+
+- Dashboard module (minimal navigation): `DashboardLocators`, `DashboardPage`
+- Create New Application module: `ApplicationWizardLocators`, `ApplicationWizardPage`
+- `create-application.feature` with smoke scenarios for Login → Dashboard → Wizard flow
+- Agent Portal demo HTML application in `src/resources/agent-portal/`
+- `create-application.json` test data for Application Wizard page 1
+
+### Changed
+
+- Login module migrated from Sauce Demo to Transamerica Agent Portal selectors
+- Post-login verification redirects to dashboard instead of inventory
+- `BaseActions.navigateTo()` supports `file://` URLs for local demo pages
+- Environment files default to agent portal demo via `ApplicationConstants`
+
 ## [1.2.0] - 2026-07-13
 
 ### Added
@@ -77,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation-first `.cursor/` knowledge base
 - Comprehensive docs/ and per-folder README files
 
+[1.3.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/releases/tag/v1.0.0

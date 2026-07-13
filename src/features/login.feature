@@ -1,6 +1,6 @@
 @login @smoke @regression @sanity @critical @ui
 Feature: User Login
-  As a registered user
+  As a registered agent
   I want to log in to the application
   So that I can access my dashboard
 
@@ -10,7 +10,7 @@ Feature: User Login
   @positive
   Scenario: Successful login with valid credentials
     When the user logs in with valid credentials
-    Then the user should be redirected to the inventory page
+    Then the user should be redirected to the dashboard
 
   @negative
   Scenario: Login fails with invalid credentials
@@ -23,7 +23,7 @@ Feature: User Login
     Then the user should see error message "<errorMessage>"
 
     Examples:
-      | username      | password     | errorMessage                                          |
-      | locked_out_user | secret_sauce | Sorry, this user has been locked out.                 |
-      |               | secret_sauce | Epic sadface: Username is required                  |
-      | standard_user |              | Epic sadface: Password is required                  |
+      | username      | password     | errorMessage                  |
+      | invalid_user  | agent_pass   | Invalid username or password  |
+      |               | agent_pass   | Invalid username or password  |
+      | agent_user    |              | Invalid username or password  |
