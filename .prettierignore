@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+src/reports/
+test-results/
+playwright-report/
+package-lock.json
+CHANGELOG.md

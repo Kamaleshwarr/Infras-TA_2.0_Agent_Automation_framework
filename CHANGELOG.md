@@ -1,0 +1,82 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.0] - 2026-07-13
+
+### Added
+
+- Exception layer: `FrameworkException`, `BrowserLaunchException`, `ConfigurationException`, `ElementNotFoundException`, `TestDataException`, `ReportGenerationException`
+- Enum layer: `BrowserType`, `Environment`, `ExecutionMode`, `LogLevel`, `WaitStrategy`, `TagType`, `ReportType`
+- Split constants: `FrameworkConstants`, `TimeoutConstants`, `PathConstants`, `ReportConstants`, `ApplicationConstants`
+- Interface layer: `IBrowserFactory`, `ILogger`, `ITestDataProvider`, `IBaseActions`, `IBaseAssertions`, `IReportManager`
+- `DependencyRegistry` for lightweight dependency access
+- Organized utilities: `common/`, `json/`, `report/`, `string/`
+- Security: sensitive value masking in logs and Allure attachments
+- Enhanced Allure metadata: framework version, git branch/commit, OS, Node, Playwright version
+- `npm run doctor` framework health check command
+- Expanded Architecture Decision Records (ADRs)
+
+### Changed
+
+- **Architecture frozen at v1.2.0** — future work focuses on application modules
+- `BrowserFactory` implements `IBrowserFactory` as instance (not static)
+- `AllureReportManager` implements `IReportManager` with executor.properties
+- Base classes implement interfaces
+- Custom exceptions replace generic `Error` in config and data layers
+- Utilities reorganized from flat structure into categorized folders
+
+### Removed
+
+- Dead code: duplicate providers, flat utility files
+- Unused direct `allure-js-commons` dependency
+
+## [1.1.0] - 2026-07-13
+
+### Added
+
+- ESLint, Prettier, and EditorConfig for unified code style
+- Husky and lint-staged pre-commit quality gates
+- GitHub Actions CI workflow with Allure artifact upload
+- Winston enterprise logging (replaces console.log)
+- BrowserFactory supporting chromium, chrome, firefox, edge, webkit
+- Multi-environment files: `.env.dev`, `.env.qa`, `.env.uat`, `.env.prod`
+- TestDataProvider abstraction for future CSV/Excel/DB/API sources
+- RetryHelper for transient browser and network failures
+- npm scripts: regression, sanity, cross-browser, retry execution modes
+- Recommended test tags: @smoke, @regression, @sanity, @critical, @ui, @api, @wip
+- Architecture diagrams in documentation
+- Future capability placeholders: api, database, performance, visual, accessibility
+- CHANGELOG.md and LICENSE (MIT)
+- Retain-on-failure artifact strategy with configurable toggles
+
+### Changed
+
+- BrowserManager refactored to use BrowserFactory
+- Default artifact settings: tracing and video disabled by default (opt-in)
+- lint script now runs ESLint + TypeScript + Prettier check
+- Login feature tagged with @regression, @sanity, @critical, @ui
+
+### Fixed
+
+- Video files cleaned up on passing scenarios (retain-on-failure)
+- Environment loading order: `.env.{env}` → `.env` → process env
+
+## [1.0.0] - 2026-07-13
+
+### Added
+
+- Initial enterprise Playwright BDD framework
+- BaseActions, BaseAssertions, BasePage layers
+- Login reference module (POM + Cucumber + Allure)
+- BrowserManager with per-worker browser reuse
+- Multi-environment configuration
+- Documentation-first `.cursor/` knowledge base
+- Comprehensive docs/ and per-folder README files
+
+[1.2.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/releases/tag/v1.0.0
