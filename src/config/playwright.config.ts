@@ -2,6 +2,9 @@ import { BrowserContextOptions, LaunchOptions } from 'playwright';
 import { REPORT_PATHS } from '../constants/PathConstants';
 import { getEnvironmentConfig } from './environment.config';
 
+const AGENT_PORTAL_USER_AGENT =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+
 export interface PlaywrightConfig {
   launchOptions: LaunchOptions;
   contextOptions: BrowserContextOptions;
@@ -20,6 +23,7 @@ export function getPlaywrightConfig(): PlaywrightConfig {
     baseURL: env.baseUrl,
     viewport: env.viewport,
     acceptDownloads: true,
+    userAgent: AGENT_PORTAL_USER_AGENT,
   };
 
   if (env.recordVideo) {

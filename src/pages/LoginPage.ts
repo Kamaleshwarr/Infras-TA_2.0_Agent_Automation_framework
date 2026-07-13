@@ -24,6 +24,7 @@ export class LoginPage extends BasePage {
     this.logger.info('Opening login page');
     await this.actions.navigateTo(ROUTES.login);
     await this.actions.waitForPageLoad();
+    await this.dismissBrowserCompatibilityNotice();
   }
 
   async enterUsername(username: string): Promise<void> {
@@ -36,6 +37,7 @@ export class LoginPage extends BasePage {
 
   async clickLoginButton(): Promise<void> {
     await this.actions.click(this.locators.loginButton, 'Login button');
+    await this.actions.waitForPageLoad();
   }
 
   async login(credentials: LoginCredentials): Promise<void> {
@@ -48,17 +50,12 @@ export class LoginPage extends BasePage {
   async verifyLoginPageDisplayed(): Promise<void> {
     this.logger.info('Verifying login page is displayed');
     await this.assertions.verifyVisible(
+      this.locators.usernameInput,
+      'Username field',
+    );
+    await this.assertions.verifyVisible(
       this.locators.loginButton,
       'Login button',
-    );
-  }
-
-  async verifySuccessfulLogin(): Promise<void> {
-    this.logger.info('Verifying successful login');
-    await this.assertions.verifyURL(/inventory\.html/);
-    await this.assertions.verifyVisible(
-      this.locators.inventoryContainer,
-      'Inventory container',
     );
   }
 
@@ -73,5 +70,15 @@ export class LoginPage extends BasePage {
       expectedMessage,
       'Error message',
     );
+  }
+
+  private async dismissBrowserCompatibilityNotice(): Promise<void> {
+    const ignoreButton = this.page.getByRole('button', { name: /ignore/i });
+    if (await ignoreButton.isVisible()) {
+      await this.actions.click(
+        ignoreButton,
+        'Browser compatibility notice dismiss',
+      );
+    }
   }
 }

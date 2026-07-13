@@ -1,6 +1,6 @@
 {
   "name": "playwright-automation-framework",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Enterprise-grade Playwright BDD automation framework with TypeScript, Cucumber, and Allure",
   "main": "index.js",
   "scripts": {

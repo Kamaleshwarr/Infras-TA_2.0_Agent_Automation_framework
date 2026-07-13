@@ -1,0 +1,11 @@
+{
+  "wizardPageOne": {
+    "stepIndicatorText": "Licensing and Appointment",
+    "productType": "Term Life",
+    "applicationState": "California",
+    "agentNumber": "AG789012",
+    "officeNumber": "OFF002",
+    "hasSecondAgent": "No"
+  },
+  "prefilledAgentNumber": "AG123456"
+}

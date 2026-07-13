@@ -2,13 +2,13 @@ import { Page } from 'playwright';
 
 /**
  * Login page locators only — no business logic.
- * Demo target: Sauce Demo (https://www.saucedemo.com)
+ * Target: Transamerica Agent Portal (https://secure.transamerica.com)
  */
 export class LoginLocators {
   constructor(private readonly page: Page) {}
 
   get usernameInput() {
-    return this.page.locator('#user-name');
+    return this.page.locator('#username');
   }
 
   get passwordInput() {
@@ -16,14 +16,10 @@ export class LoginLocators {
   }
 
   get loginButton() {
-    return this.page.locator('#login-button');
+    return this.page.locator('#formLogin');
   }
 
   get errorMessage() {
-    return this.page.locator('[data-test="error"]');
-  }
-
-  get inventoryContainer() {
-    return this.page.locator('[data-test="inventory-container"]');
+    return this.page.locator('#error-list');
   }
 }

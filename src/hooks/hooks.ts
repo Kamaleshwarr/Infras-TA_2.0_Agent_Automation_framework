@@ -14,6 +14,7 @@ import { dependencies } from '../core/DependencyRegistry';
 import { CucumberAttach } from '../interfaces';
 import { browserManager } from './browserManager';
 import { CustomWorld } from './world';
+import { hasAgentCredentials } from '../testdata/providers/agentCredentials';
 
 const logger = dependencies.createLogger('Hooks');
 const reportManager = dependencies.getReportManager();
@@ -22,6 +23,15 @@ BeforeAll(async function () {
   logger.info('Framework initialization started');
   reportManager.ensureReportDirectories();
   reportManager.writeEnvironmentProperties();
+});
+
+Before({ tags: '@requires-credentials' }, function (): 'skipped' | void {
+  if (!hasAgentCredentials()) {
+    logger.warn(
+      'Skipping scenario — AGENT_USERNAME and AGENT_PASSWORD are not configured',
+    );
+    return 'skipped';
+  }
 });
 
 Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {

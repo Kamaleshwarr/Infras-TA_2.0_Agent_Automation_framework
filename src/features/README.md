@@ -6,9 +6,10 @@ Gherkin `.feature` files — living documentation and BDD test scenarios.
 
 ## Current Files
 
-| File            | Module     | Tags                                         |
-| --------------- | ---------- | -------------------------------------------- |
-| `login.feature` | User Login | `@login`, `@smoke`, `@positive`, `@negative` |
+| File                         | Module             | Tags                                                       |
+| ---------------------------- | ------------------ | ---------------------------------------------------------- |
+| `login.feature`              | User Login         | `@login`, `@smoke`, `@positive`, `@negative`               |
+| `create-application.feature` | Create Application | `@create-application`, `@dashboard`, `@smoke`, `@positive` |
 
 ## Coding Standards
 
@@ -26,7 +27,7 @@ Feature: User Login
   Scenario: Successful login with valid credentials
     Given the user is on the login page
     When the user logs in with valid credentials
-    Then the user should be redirected to the inventory page
+    Then the user should be redirected to the dashboard
 ```
 
 ## Running

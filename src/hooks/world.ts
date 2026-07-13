@@ -2,6 +2,8 @@ import { IWorldOptions, setWorldConstructor, World } from '@cucumber/cucumber';
 import { BrowserContext, Page } from 'playwright';
 import { getPlaywrightConfig } from '../config/playwright.config';
 import { dependencies } from '../core/DependencyRegistry';
+import { ApplicationWizardPage } from '../pages/ApplicationWizardPage';
+import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
 import { browserManager } from './browserManager';
 
@@ -14,6 +16,8 @@ export class CustomWorld extends World {
   tracePath?: string;
 
   loginPage!: LoginPage;
+  dashboardPage!: DashboardPage;
+  applicationWizardPage!: ApplicationWizardPage;
 
   private readonly logger = dependencies.createLogger('World');
 
@@ -23,6 +27,8 @@ export class CustomWorld extends World {
 
   initializePages(): void {
     this.loginPage = new LoginPage(this.page);
+    this.dashboardPage = new DashboardPage(this.page);
+    this.applicationWizardPage = new ApplicationWizardPage(this.page);
   }
 
   async createContext(): Promise<void> {
