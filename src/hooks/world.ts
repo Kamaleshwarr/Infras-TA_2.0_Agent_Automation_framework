@@ -1,13 +1,12 @@
 import { IWorldOptions, setWorldConstructor, World } from '@cucumber/cucumber';
 import { BrowserContext, Page } from 'playwright';
 import { getPlaywrightConfig } from '../config/playwright.config';
+import { dependencies } from '../core/DependencyRegistry';
 import { LoginPage } from '../pages/LoginPage';
-import { createLogger } from '../utils/logger';
 import { browserManager } from './browserManager';
 
 /**
  * Cucumber World — shared runtime state for each scenario.
- * Holds browser lifecycle objects and page object instances.
  */
 export class CustomWorld extends World {
   context!: BrowserContext;
@@ -16,13 +15,12 @@ export class CustomWorld extends World {
 
   loginPage!: LoginPage;
 
-  private readonly logger = createLogger('World');
+  private readonly logger = dependencies.createLogger('World');
 
   constructor(options: IWorldOptions) {
     super(options);
   }
 
-  /** Re-initializes page objects after a new Playwright page is created. */
   initializePages(): void {
     this.loginPage = new LoginPage(this.page);
   }

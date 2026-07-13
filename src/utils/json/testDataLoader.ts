@@ -1,8 +1,7 @@
-import { TestDataProvider } from '../testdata/providers/TestDataProvider';
+import { TestDataProvider } from '../../testdata/providers/TestDataProvider';
 
 /**
- * @deprecated Use TestDataProvider.loadJson() instead.
- * Retained for backward compatibility with existing step definitions.
+ * @deprecated Use TestDataProvider.loadJson() directly.
  */
 export class TestDataLoader {
   static load<T>(fileName: string): T {

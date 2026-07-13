@@ -1,65 +1,36 @@
 /**
- * Supported deployment environments.
- * Switch via ENV environment variable without code changes.
+ * @deprecated Import from specific constant modules or enums instead.
+ * Retained as barrel export for backward compatibility.
  */
-export enum Environment {
-  DEV = 'DEV',
-  QA = 'QA',
-  UAT = 'UAT',
-  PROD = 'PROD',
-}
+export {
+  FRAMEWORK_NAME,
+  FRAMEWORK_VERSION,
+  MIN_NODE_VERSION,
+  DEFAULT_VIEWPORT,
+  SENSITIVE_FIELD_PATTERNS,
+} from './FrameworkConstants';
+export { DEFAULT_TIMEOUTS, RETRY_DELAY_MS } from './TimeoutConstants';
+export { REPORT_PATHS, REPORT_FILES } from './PathConstants';
+export { CONFIG_KEYS, ARTIFACT_DEFAULTS } from './ReportConstants';
+export {
+  ENVIRONMENT_URLS,
+  ROUTES,
+  TEST_DATA_FILES,
+} from './ApplicationConstants';
 
-export const DEFAULT_ENVIRONMENT = Environment.QA;
+export {
+  BrowserType,
+  SUPPORTED_BROWSERS,
+  DEFAULT_BROWSER,
+  Environment,
+  DEFAULT_ENVIRONMENT,
+  LogLevel,
+  TEST_TAGS,
+  TagType,
+} from '../enums';
+export type { SupportedBrowser } from '../enums';
 
-/**
- * Per-environment base URLs.
- * Override at runtime with BASE_URL env var when needed.
- */
-export const ENVIRONMENT_URLS: Record<Environment, string> = {
-  [Environment.DEV]: 'https://www.saucedemo.com',
-  [Environment.QA]: 'https://www.saucedemo.com',
-  [Environment.UAT]: 'https://www.saucedemo.com',
-  [Environment.PROD]: 'https://www.saucedemo.com',
-};
-
-export const SUPPORTED_BROWSERS = [
-  'chromium',
-  'chrome',
-  'firefox',
-  'edge',
-  'webkit',
-] as const;
-export type SupportedBrowser = (typeof SUPPORTED_BROWSERS)[number];
-
-export const DEFAULT_BROWSER: SupportedBrowser = 'chromium';
-
-/** Recommended Cucumber tags for suite filtering. */
-export const TEST_TAGS = {
-  SMOKE: '@smoke',
-  REGRESSION: '@regression',
-  SANITY: '@sanity',
-  CRITICAL: '@critical',
-  UI: '@ui',
-  API: '@api',
-  WIP: '@wip',
-} as const;
-
-export const DEFAULT_VIEWPORT = { width: 1280, height: 720 };
-
-export const DEFAULT_TIMEOUTS = {
-  test: 60_000,
-  action: 15_000,
-  navigation: 30_000,
-} as const;
-
-export const REPORT_PATHS = {
-  allureResults: 'src/reports/allure-results',
-  allureReport: 'src/reports/allure-report',
-  screenshots: 'src/reports/screenshots',
-  videos: 'src/reports/videos',
-  traces: 'src/reports/traces',
-} as const;
-
+/** @deprecated Use LogLevel enum */
 export const LOG_LEVELS = {
   DEBUG: 'DEBUG',
   INFO: 'INFO',
@@ -67,9 +38,4 @@ export const LOG_LEVELS = {
   ERROR: 'ERROR',
 } as const;
 
-export type LogLevel = (typeof LOG_LEVELS)[keyof typeof LOG_LEVELS];
-
-export const ROUTES = {
-  login: '/',
-  inventory: '/inventory.html',
-} as const;
+export type LogLevelLegacy = (typeof LOG_LEVELS)[keyof typeof LOG_LEVELS];

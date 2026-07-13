@@ -1,4 +1,5 @@
-import { getEnvironmentConfig } from '../config/environment.config';
+import { getEnvironmentConfig } from '../../config/environment.config';
+import { RETRY_DELAY_MS } from '../../constants/TimeoutConstants';
 import { createLogger } from './logger';
 
 const logger = createLogger('RetryHelper');
@@ -10,8 +11,6 @@ export interface RetryOptions {
   retryOn?: (error: unknown) => boolean;
 }
 
-const DEFAULT_DELAY_MS = 500;
-
 /**
  * Retries transient failures for browser launch and critical actions.
  */
@@ -21,7 +20,7 @@ export async function withRetry<T>(
 ): Promise<T> {
   const config = getEnvironmentConfig();
   const maxAttempts = (options.retries ?? config.retries) + 1;
-  const delayMs = options.delayMs ?? DEFAULT_DELAY_MS;
+  const delayMs = options.delayMs ?? RETRY_DELAY_MS;
   const label = options.label ?? 'operation';
   const shouldRetry = options.retryOn ?? (() => true);
 
@@ -42,13 +41,9 @@ export async function withRetry<T>(
       logger.warn(
         `${label} failed (attempt ${attempt}/${maxAttempts}). Retrying in ${delayMs}ms...`,
       );
-      await delay(delayMs);
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
     }
   }
 
   throw lastError;
-}
-
-async function delay(ms: number): Promise<void> {
-  await new Promise((resolve) => setTimeout(resolve, ms));
 }

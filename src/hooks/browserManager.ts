@@ -1,15 +1,12 @@
 import { Browser } from 'playwright';
-import { BrowserFactory } from '../config/browserFactory';
 import { getEnvironmentConfig } from '../config/environment.config';
 import { getPlaywrightConfig } from '../config/playwright.config';
-import { createLogger } from '../utils/logger';
-import { withRetry } from '../utils/retryHelper';
-
-const logger = createLogger('BrowserManager');
+import { dependencies } from '../core/DependencyRegistry';
+import { BrowserLaunchException } from '../exceptions';
+import { withRetry } from '../utils/common/retryHelper';
 
 /**
  * Reuses one browser instance per Cucumber worker process.
- * Delegates browser resolution to BrowserFactory.
  */
 class BrowserManager {
   private browser: Browser | null = null;
@@ -21,20 +18,26 @@ class BrowserManager {
 
     const config = getEnvironmentConfig();
     const pwConfig = getPlaywrightConfig();
-    const browserType = BrowserFactory.getBrowserType(config.browser);
-    const launchOptions = BrowserFactory.getLaunchOptions(
+    const factory = dependencies.getBrowserFactory();
+    const browserType = factory.getBrowserType(config.browser);
+    const launchOptions = factory.getLaunchOptions(
       config.browser,
       pwConfig.launchOptions,
     );
 
+    const logger = dependencies.createLogger('BrowserManager');
     logger.info(
       `Launching ${config.browser} browser (headless: ${config.headless})`,
     );
 
-    this.browser = await withRetry(() => browserType.launch(launchOptions), {
-      label: `Launch ${config.browser}`,
-      retryOn: (error) => this.isTransientBrowserError(error),
-    });
+    try {
+      this.browser = await withRetry(() => browserType.launch(launchOptions), {
+        label: `Launch ${config.browser}`,
+        retryOn: (error) => this.isTransientBrowserError(error),
+      });
+    } catch (error) {
+      throw new BrowserLaunchException(config.browser, error);
+    }
 
     return this.browser;
   }
@@ -42,7 +45,9 @@ class BrowserManager {
   async closeBrowser(): Promise<void> {
     if (!this.browser) return;
 
-    logger.info('Closing shared browser instance');
+    dependencies
+      .createLogger('BrowserManager')
+      .info('Closing shared browser instance');
     await this.browser.close();
     this.browser = null;
   }

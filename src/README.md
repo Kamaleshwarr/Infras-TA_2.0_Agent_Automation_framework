@@ -8,16 +8,20 @@ Root of all framework source code. Each subfolder has a dedicated responsibility
 
 ```
 src/
-├── base/             # Reusable actions & assertions
-├── config/           # Environment & Playwright config
-├── constants/        # Shared enums, routes, timeouts
+├── base/             # BaseActions, BaseAssertions, BasePage
+├── config/           # Environment, BrowserFactory, Playwright config
+├── constants/        # Split constant files
+├── core/             # DependencyRegistry
+├── enums/            # Typed enums
+├── exceptions/       # Exception hierarchy
+├── interfaces/       # Interface contracts
 ├── locators/         # Selectors only
 ├── pages/            # Business actions (POM)
 ├── stepdefinitions/  # Cucumber step glue
 ├── hooks/            # Browser lifecycle & artifacts
 ├── features/         # Gherkin scenarios
-├── utils/            # Logger, test data, Allure
-├── testdata/         # JSON test data (+ providers/)
+├── utils/            # common/, json/, report/, string/
+├── testdata/         # JSON + TestDataProvider
 ├── reports/          # Generated artifacts
 ├── resources/        # Static test files
 ├── api/              # Future API testing
@@ -40,6 +44,10 @@ features → stepdefinitions → pages → locators
                                 ↓
                            Playwright
 ```
+
+## Architecture Status
+
+**Frozen at v1.2.0** — see [docs/framework-freeze.md](../../docs/framework-freeze.md).
 
 ## Related
 

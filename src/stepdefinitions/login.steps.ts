@@ -1,5 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { TestDataLoader } from '../utils/testDataLoader';
+import { TestDataLoader } from '../utils/json/testDataLoader';
 import { CustomWorld } from '../hooks/world';
 
 interface LoginTestData {

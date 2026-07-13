@@ -8,19 +8,20 @@ import {
 } from '@cucumber/cucumber';
 import * as fs from 'fs';
 import * as path from 'path';
-import { getEnvironmentConfig } from '../config/environment.config';
 import { getPlaywrightConfig } from '../config/playwright.config';
-import { AllureHelper, CucumberAttach } from '../utils/allureHelper';
-import { createLogger } from '../utils/logger';
+import { getEnvironmentConfig } from '../config/environment.config';
+import { dependencies } from '../core/DependencyRegistry';
+import { CucumberAttach } from '../interfaces';
 import { browserManager } from './browserManager';
 import { CustomWorld } from './world';
 
-const logger = createLogger('Hooks');
+const logger = dependencies.createLogger('Hooks');
+const reportManager = dependencies.getReportManager();
 
 BeforeAll(async function () {
   logger.info('Framework initialization started');
-  AllureHelper.ensureReportDirectories();
-  AllureHelper.writeEnvironmentProperties();
+  reportManager.ensureReportDirectories();
+  reportManager.writeEnvironmentProperties();
 });
 
 Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
@@ -51,7 +52,7 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
 
       if (pwConfig.screenshotOnFailure) {
         const screenshot = await this.page.screenshot({ fullPage: true });
-        await AllureHelper.attachScreenshot(attach, screenshot);
+        await reportManager.attachScreenshot(attach, screenshot);
       }
 
       if (pwConfig.enableTracing) {
@@ -60,10 +61,10 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
           `${scenarioName}-${Date.now()}.zip`,
         );
         await this.context.tracing.stop({ path: this.tracePath });
-        await AllureHelper.attachTrace(attach, this.tracePath);
+        await reportManager.attachTrace(attach, this.tracePath);
       }
 
-      await AllureHelper.attachText(
+      await reportManager.attachText(
         attach,
         'Failure Details',
         `Scenario: ${scenario.pickle.name}\nStatus: ${scenario.result?.status}\nMessage: ${scenario.result?.message ?? 'N/A'}`,
@@ -79,7 +80,7 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
 
     if (failed) {
       const videoPath = await video?.path();
-      await AllureHelper.attachVideo(attach, videoPath);
+      await reportManager.attachVideo(attach, videoPath);
     } else {
       await cleanupPassArtifact(video);
     }
@@ -95,7 +96,6 @@ AfterAll(async function () {
   logger.info('Framework teardown completed');
 });
 
-/** Removes video files for passing scenarios (retain-on-failure). */
 async function cleanupPassArtifact(
   video: { path: () => Promise<string | null> } | null,
 ): Promise<void> {
@@ -107,6 +107,6 @@ async function cleanupPassArtifact(
       fs.unlinkSync(videoPath);
     }
   } catch {
-    // Video path may be unavailable if recording was disabled.
+    /* video not recorded */
   }
 }

@@ -1,55 +1,47 @@
 import * as path from 'path';
-import { ITestDataProvider } from './ITestDataProvider';
-import { JsonDataProvider } from './JsonDataProvider';
+import { TestDataException } from '../../exceptions';
+import { ITestDataProvider } from '../../interfaces';
+import { JsonDataProvider } from '../../utils/json/jsonDataProvider';
 
 /**
- * Unified test data access layer.
- * Add CSV, Excel, database, and API providers here as the framework evolves.
+ * Unified test data access layer (facade).
+ * Extend with CSV, Excel, database, and API providers as needed.
  */
 export class TestDataProvider {
   private static readonly basePath = path.resolve(__dirname, '..');
-  private static readonly jsonProvider = new JsonDataProvider(this.basePath);
+  private static readonly jsonProvider: ITestDataProvider =
+    new JsonDataProvider(TestDataProvider.basePath);
 
   static loadJson<T>(fileName: string): T {
-    return this.jsonProvider.load<T>(fileName);
+    return TestDataProvider.jsonProvider.load<T>(fileName);
   }
 
   static loadByKey<T, K extends keyof T>(fileName: string, key: K): T[K] {
-    const data = this.loadJson<T>(fileName);
+    const data = TestDataProvider.loadJson<T>(fileName);
     return data[key];
   }
 
-  /** Reserved for future CSV support. */
   static loadCsv<T>(_fileName: string): T {
-    throw new Error(
+    throw new TestDataException(
       'CSV provider not yet implemented. Use loadJson() or extend CsvDataProvider.',
     );
   }
 
-  /** Reserved for future Excel support. */
   static loadExcel<T>(_fileName: string): T {
-    throw new Error(
+    throw new TestDataException(
       'Excel provider not yet implemented. Use loadJson() or extend ExcelDataProvider.',
     );
   }
 
-  /** Reserved for future database support. */
   static loadFromDatabase<T>(_query: string): T {
-    throw new Error(
+    throw new TestDataException(
       'Database provider not yet implemented. Extend DatabaseDataProvider.',
     );
   }
 
-  /** Reserved for future API-driven test data. */
   static loadFromApi<T>(_endpoint: string): T {
-    throw new Error(
+    throw new TestDataException(
       'API provider not yet implemented. Extend ApiDataProvider.',
-    );
-  }
-
-  static registerProvider(_name: string, _provider: ITestDataProvider): void {
-    throw new Error(
-      'Custom provider registration will be available in a future release.',
     );
   }
 }

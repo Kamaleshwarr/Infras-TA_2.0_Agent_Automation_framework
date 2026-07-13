@@ -1,10 +1,7 @@
 import { BrowserContextOptions, LaunchOptions } from 'playwright';
+import { REPORT_PATHS } from '../constants/PathConstants';
 import { getEnvironmentConfig } from './environment.config';
 
-/**
- * Centralized Playwright browser and context configuration.
- * Artifacts follow retain-on-failure semantics via hooks.
- */
 export interface PlaywrightConfig {
   launchOptions: LaunchOptions;
   contextOptions: BrowserContextOptions;
@@ -27,7 +24,7 @@ export function getPlaywrightConfig(): PlaywrightConfig {
 
   if (env.recordVideo) {
     contextOptions.recordVideo = {
-      dir: 'src/reports/videos/',
+      dir: REPORT_PATHS.videos + '/',
       size: env.viewport,
     };
   }
@@ -38,9 +35,9 @@ export function getPlaywrightConfig(): PlaywrightConfig {
       slowMo: env.slowMo,
     },
     contextOptions,
-    traceDir: 'src/reports/traces/',
-    videoDir: 'src/reports/videos/',
-    screenshotDir: 'src/reports/screenshots/',
+    traceDir: REPORT_PATHS.traces + '/',
+    videoDir: REPORT_PATHS.videos + '/',
+    screenshotDir: REPORT_PATHS.screenshots + '/',
     enableTracing: env.enableTracing,
     recordVideo: env.recordVideo,
     screenshotOnFailure: env.screenshotOnFailure,

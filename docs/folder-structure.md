@@ -23,7 +23,11 @@ Detailed breakdown of the project layout.
 | ------------------ | --------------------------------------- | ------------------------------------------ |
 | `base/`            | Reusable actions, assertions, page base | [README](../src/base/README.md)            |
 | `config/`          | Environment and Playwright config       | [README](../src/config/README.md)          |
-| `constants/`       | Enums, routes, timeouts                 | [README](../src/constants/README.md)       |
+| `constants/`       | Split constant files                    | [README](../src/constants/README.md)       |
+| `core/`            | DependencyRegistry                      | [README](../src/core/README.md)            |
+| `enums/`           | Typed enums                             | [README](../src/enums/README.md)           |
+| `exceptions/`      | Exception hierarchy                     | [README](../src/exceptions/README.md)      |
+| `interfaces/`      | Interface contracts                     | [README](../src/interfaces/README.md)      |
 | `locators/`        | Page selectors only                     | [README](../src/locators/README.md)        |
 | `pages/`           | Business actions (POM)                  | [README](../src/pages/README.md)           |
 | `stepdefinitions/` | Cucumber step glue                      | [README](../src/stepdefinitions/README.md) |

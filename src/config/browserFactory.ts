@@ -1,42 +1,44 @@
 import {
-  BrowserType,
+  BrowserType as PWBrowserType,
   chromium,
   firefox,
   webkit,
   LaunchOptions,
 } from 'playwright';
-import { SupportedBrowser } from '../constants';
+import { BrowserType, SupportedBrowser } from '../enums';
+import { IBrowserFactory } from '../interfaces';
 
 /**
- * Factory for resolving Playwright browser types and launch options.
- * Browser selection is driven entirely by the BROWSER environment variable.
+ * Resolves Playwright browser types and launch options from environment config.
  */
-export class BrowserFactory {
-  static getBrowserType(browser: SupportedBrowser): BrowserType {
+export class BrowserFactory implements IBrowserFactory {
+  getBrowserType(browser: SupportedBrowser): PWBrowserType {
     switch (browser) {
-      case 'firefox':
+      case BrowserType.FIREFOX:
         return firefox;
-      case 'webkit':
+      case BrowserType.WEBKIT:
         return webkit;
-      case 'chrome':
-      case 'edge':
-      case 'chromium':
+      case BrowserType.CHROME:
+      case BrowserType.EDGE:
+      case BrowserType.CHROMIUM:
       default:
         return chromium;
     }
   }
 
-  static getLaunchOptions(
+  getLaunchOptions(
     browser: SupportedBrowser,
     baseOptions: LaunchOptions,
   ): LaunchOptions {
     switch (browser) {
-      case 'chrome':
+      case BrowserType.CHROME:
         return { ...baseOptions, channel: 'chrome' };
-      case 'edge':
+      case BrowserType.EDGE:
         return { ...baseOptions, channel: 'msedge' };
       default:
         return baseOptions;
     }
   }
 }
+
+export const browserFactory = new BrowserFactory();

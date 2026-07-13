@@ -1,7 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
-import { DEFAULT_ENVIRONMENT, Environment } from '../constants';
+import { DEFAULT_ENVIRONMENT, Environment } from '../enums';
+import { ConfigurationException } from '../exceptions';
 
 /**
  * Loads environment-specific configuration files in priority order:
@@ -29,7 +30,7 @@ export function resolveEnvironmentName(): Environment {
   if (Object.values(Environment).includes(normalized as Environment)) {
     return normalized as Environment;
   }
-  throw new Error(
+  throw new ConfigurationException(
     `Invalid ENV "${process.env.ENV}". Supported: ${Object.values(Environment).join(', ')}`,
   );
 }

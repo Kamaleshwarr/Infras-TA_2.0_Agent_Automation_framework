@@ -1,26 +1,27 @@
 # Constants
 
-## Purpose
+Centralized constant values split by domain.
 
-Shared enums, routes, timeouts, and report paths used across the framework.
+## Files
 
-## Contents
+| File                      | Contents                                                    |
+| ------------------------- | ----------------------------------------------------------- |
+| `FrameworkConstants.ts`   | Framework name, version, viewport, sensitive field patterns |
+| `TimeoutConstants.ts`     | Default timeouts, retry delay                               |
+| `PathConstants.ts`        | Report paths and file names                                 |
+| `ReportConstants.ts`      | Config keys, artifact defaults                              |
+| `ApplicationConstants.ts` | URLs, routes, test data file names                          |
+| `index.ts`                | Barrel export (backward compatible)                         |
 
-| Export               | Description                                  |
-| -------------------- | -------------------------------------------- |
-| `Environment`        | DEV, QA, UAT, PROD enum                      |
-| `ENVIRONMENT_URLS`   | Default URL per environment                  |
-| `SUPPORTED_BROWSERS` | chromium, firefox, webkit                    |
-| `DEFAULT_TIMEOUTS`   | Test, action, navigation timeouts            |
-| `REPORT_PATHS`       | Allure, screenshot, video, trace directories |
-| `ROUTES`             | Application route paths                      |
+## Usage
 
-## Coding Standards
+```typescript
+import { ROUTES } from '../constants/ApplicationConstants';
+import { REPORT_PATHS } from '../constants/PathConstants';
+import { CONFIG_KEYS } from '../constants/ReportConstants';
+```
 
-- Constants only — no functions or business logic (except type exports).
-- Update when new environments or routes are added.
-- Document changes in `docs/configuration.md`.
+## Standards
 
-## Related
-
-- [src/config/README.md](../config/README.md)
+- No magic strings in page/hook/step files.
+- Enums live in `src/enums/`; static values live here.

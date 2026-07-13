@@ -1,38 +1,34 @@
 # Utilities
 
-## Purpose
+Organized helper modules by category.
 
-Shared helper classes used across the framework.
+## Structure
 
-## Contents
-
-| File                | Responsibility                                         |
-| ------------------- | ------------------------------------------------------ |
-| `logger.ts`         | Structured console logging with levels                 |
-| `testDataLoader.ts` | Load JSON test data from `testdata/`                   |
-| `allureHelper.ts`   | Allure environment properties and artifact attachments |
-
-## Coding Standards
-
-- Utilities must be stateless or use clear singleton patterns.
-- No page-specific or application-specific logic.
-- Document new utilities in this README.
-
-## Examples
-
-```typescript
-// Logging
-const logger = createLogger('MyComponent');
-logger.info('Action performed');
-
-// Test data
-const data = TestDataLoader.load<LoginTestData>('login.json');
-
-// Allure
-AllureHelper.writeEnvironmentProperties();
 ```
+utils/
+├── common/       # Logger, retry helper
+├── json/         # JSON test data loader
+├── report/       # Allure report manager
+└── string/       # Masking and sanitization (security)
+```
+
+## Modules
+
+| Path                            | Purpose                            |
+| ------------------------------- | ---------------------------------- |
+| `common/logger.ts`              | Winston ILogger implementation     |
+| `common/retryHelper.ts`         | Transient failure retry            |
+| `json/jsonDataProvider.ts`      | JSON file data provider            |
+| `json/testDataLoader.ts`        | Backward-compatible loader wrapper |
+| `report/allureReportManager.ts` | IReportManager + Allure metadata   |
+| `string/maskHelper.ts`          | Sensitive value masking            |
+
+## Security
+
+- `maskHelper.ts` masks passwords/secrets in logs and reports.
+- Never log or attach credential values.
 
 ## Related
 
-- [Logging Guidelines](../../.cursor/rules/logging-guidelines.md)
-- [Reporting Guidelines](../../.cursor/rules/reporting-guidelines.md)
+- [interfaces/README.md](../interfaces/README.md)
+- [exceptions/README.md](../exceptions/README.md)

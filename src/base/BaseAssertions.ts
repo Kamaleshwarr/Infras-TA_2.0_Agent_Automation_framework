@@ -1,17 +1,16 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { getEnvironmentConfig } from '../config/environment.config';
-import { Logger } from '../utils/logger';
+import { IBaseAssertions, ILogger } from '../interfaces';
 
 /**
  * Reusable assertion layer.
- * Keeps verification logic out of page classes and step definitions.
  */
-export class BaseAssertions {
+export class BaseAssertions implements IBaseAssertions {
   protected readonly page: Page;
-  protected readonly logger: Logger;
+  protected readonly logger: ILogger;
   private readonly actionTimeout: number;
 
-  constructor(page: Page, logger: Logger) {
+  constructor(page: Page, logger: ILogger) {
     this.page = page;
     this.logger = logger;
     this.actionTimeout = getEnvironmentConfig().actionTimeout;

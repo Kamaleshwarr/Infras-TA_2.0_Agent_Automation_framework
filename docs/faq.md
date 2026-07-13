@@ -64,6 +64,12 @@ npm run report
 
 Artifacts are captured on failure only to optimize storage and execution speed.
 
+### How do I verify the framework is healthy?
+
+```bash
+npm run doctor
+```
+
 ### Can I disable video/tracing for faster CI?
 
 Yes:

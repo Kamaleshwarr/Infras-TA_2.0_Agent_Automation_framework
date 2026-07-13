@@ -1,6 +1,6 @@
 # Documentation Index
 
-Central documentation for the Playwright BDD Automation Framework (v1.1.0).
+Central documentation for the Playwright BDD Automation Framework (v1.2.0).
 
 ## Getting Started
 
@@ -15,6 +15,7 @@ Central documentation for the Playwright BDD Automation Framework (v1.1.0).
 | Document                                 | Description                                   |
 | ---------------------------------------- | --------------------------------------------- |
 | [Architecture Diagrams](architecture.md) | Framework flow, lifecycles, browser/reporting |
+| [Framework Freeze](framework-freeze.md)  | Architecture freeze policy (v1.2.0)           |
 | [Folder Structure](folder-structure.md)  | Project layout                                |
 | [Coding Standards](coding-standards.md)  | TypeScript and framework rules                |
 
@@ -33,6 +34,12 @@ Central documentation for the Playwright BDD Automation Framework (v1.1.0).
 | [CHANGELOG.md](../CHANGELOG.md)       | Version history         |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Contribution guidelines |
 | [LICENSE](../LICENSE)                 | MIT license             |
+
+## Health Check
+
+```bash
+npm run doctor
+```
 
 ## AI Knowledge Base
 

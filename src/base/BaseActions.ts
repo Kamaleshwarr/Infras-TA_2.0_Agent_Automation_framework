@@ -1,17 +1,18 @@
 import { Locator, Page } from 'playwright';
 import { getEnvironmentConfig } from '../config/environment.config';
-import { Logger } from '../utils/logger';
+import { ElementNotFoundException } from '../exceptions';
+import { IBaseActions, ILogger } from '../interfaces';
+import { isSensitiveField } from '../utils/string/maskHelper';
 
 /**
  * Reusable Playwright interaction layer.
- * All page classes delegate low-level browser actions here to avoid duplication.
  */
-export class BaseActions {
+export class BaseActions implements IBaseActions {
   protected readonly page: Page;
-  protected readonly logger: Logger;
+  protected readonly logger: ILogger;
   private readonly actionTimeout: number;
 
-  constructor(page: Page, logger: Logger) {
+  constructor(page: Page, logger: ILogger) {
     this.page = page;
     this.logger = logger;
     this.actionTimeout = getEnvironmentConfig().actionTimeout;
@@ -28,9 +29,17 @@ export class BaseActions {
     value: string,
     elementName: string,
   ): Promise<void> {
-    this.logger.info(`Entering value into ${elementName}`);
-    await locator.waitFor({ state: 'visible', timeout: this.actionTimeout });
-    await locator.fill(value, { timeout: this.actionTimeout });
+    if (isSensitiveField(elementName)) {
+      this.logger.info(`Entering masked value into ${elementName}`);
+    } else {
+      this.logger.info(`Entering value into ${elementName}`);
+    }
+    try {
+      await locator.waitFor({ state: 'visible', timeout: this.actionTimeout });
+      await locator.fill(value, { timeout: this.actionTimeout });
+    } catch (error) {
+      throw new ElementNotFoundException(elementName, error);
+    }
   }
 
   async clear(locator: Locator, elementName: string): Promise<void> {

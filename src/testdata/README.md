@@ -22,7 +22,7 @@ TestDataProvider (facade)
 ## Usage
 
 ```typescript
-import { TestDataProvider } from '../testdata/providers/TestDataProvider';
+import { TestDataProvider } from '../../testdata/providers/TestDataProvider';
 
 const data = TestDataProvider.loadJson<LoginTestData>('login.json');
 const user = TestDataProvider.loadByKey('login.json', 'validUser');

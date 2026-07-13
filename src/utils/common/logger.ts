@@ -1,8 +1,10 @@
 import winston from 'winston';
-import { LOG_LEVELS, LogLevel } from '../constants';
+import { DEFAULT_LOG_LEVEL, LogLevel } from '../../enums';
+import { ILogger } from '../../interfaces';
+import { maskValue } from '../string/maskHelper';
 
 const logLevel =
-  (process.env.LOG_LEVEL?.toUpperCase() as LogLevel) ?? LOG_LEVELS.INFO;
+  (process.env.LOG_LEVEL?.toUpperCase() as LogLevel) ?? DEFAULT_LOG_LEVEL;
 
 const baseLogger = winston.createLogger({
   level: logLevel.toLowerCase(),
@@ -17,9 +19,9 @@ const baseLogger = winston.createLogger({
 });
 
 /**
- * Enterprise logger wrapping Winston with per-component context.
+ * Winston-based logger with per-component context and sensitive value masking.
  */
-export class Logger {
+export class Logger implements ILogger {
   constructor(private readonly context: string) {}
 
   debug(message: string): void {
@@ -37,8 +39,13 @@ export class Logger {
   error(message: string): void {
     baseLogger.error(message, { context: this.context });
   }
+
+  /** Logs a field value, automatically masking sensitive fields. */
+  infoField(fieldName: string, value: string): void {
+    this.info(`${fieldName}: ${maskValue(value, fieldName)}`);
+  }
 }
 
-export function createLogger(context: string): Logger {
+export function createLogger(context: string): ILogger {
   return new Logger(context);
 }
