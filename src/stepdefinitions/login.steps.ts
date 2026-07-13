@@ -1,15 +1,13 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import { TestDataProvider } from '../testdata/providers/TestDataProvider';
+import { getAgentCredentials } from '../testdata/providers/agentCredentials';
 import { CustomWorld } from '../hooks/world';
 
 interface LoginTestData {
-  validUser: { username: string; password: string };
   invalidUser: { username: string; password: string };
   errorMessages: {
     invalidCredentials: string;
-    lockedOut: string;
-    usernameRequired: string;
-    passwordRequired: string;
+    requiredFields: string;
   };
 }
 
@@ -23,7 +21,7 @@ Given('the user is on the login page', async function (this: CustomWorld) {
 When(
   'the user logs in with valid credentials',
   async function (this: CustomWorld) {
-    await this.loginPage.login(loginData.validUser);
+    await this.loginPage.login(getAgentCredentials());
   },
 );
 
@@ -44,7 +42,7 @@ When(
 Then(
   'the user should be redirected to the dashboard',
   async function (this: CustomWorld) {
-    await this.loginPage.verifySuccessfulLogin();
+    await this.dashboardPage.verifyDashboardLoaded();
   },
 );
 

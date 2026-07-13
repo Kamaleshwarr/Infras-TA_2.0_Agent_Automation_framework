@@ -5,22 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] - 2026-07-13
+## [1.2.1] - 2026-07-13
 
 ### Added
 
 - Dashboard module (minimal navigation): `DashboardLocators`, `DashboardPage`
-- Create New Application module: `ApplicationWizardLocators`, `ApplicationWizardPage`
-- `create-application.feature` with smoke scenarios for Login → Dashboard → Wizard flow
-- Agent Portal demo HTML application in `src/resources/agent-portal/`
-- `create-application.json` test data for Application Wizard page 1
+- Application Wizard page 1 module: `ApplicationWizardLocators`, `ApplicationWizardPage`
+- `create-application.feature` for Login → Dashboard → Application Wizard flow
+- `create-application.json` test data for wizard page 1
+- Agent credential resolution via `AGENT_USERNAME` and `AGENT_PASSWORD` environment variables
+- `@requires-credentials` tag with automatic skip when credentials are not configured
+- Module documentation in `docs/modules/`
+- Improved `npm run doctor` health check (PASS / WARNING / FAILURE classification)
 
 ### Changed
 
-- Login module migrated from Sauce Demo to Transamerica Agent Portal selectors
-- Post-login verification redirects to dashboard instead of inventory
-- `BaseActions.navigateTo()` supports `file://` URLs for local demo pages
-- Environment files default to agent portal demo via `ApplicationConstants`
+- Login module targets Transamerica Agent Portal (`https://secure.transamerica.com`)
+- Post-login verification delegates to `DashboardPage.verifyDashboardLoaded()`
+- Environment files set `BASE_URL` to the live Agent Portal URL
+- Invalid-login scenarios use verified production error messages
 
 ## [1.2.0] - 2026-07-13
 
@@ -94,7 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation-first `.cursor/` knowledge base
 - Comprehensive docs/ and per-folder README files
 
-[1.3.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.2.0...v1.3.0
+[1.2.1]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Kamaleshwarr/Infras-TA_2.0_Agent_Automation_framework/releases/tag/v1.0.0

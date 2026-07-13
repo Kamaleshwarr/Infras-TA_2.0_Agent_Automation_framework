@@ -1,15 +1,10 @@
 {
-  "validUser": {
-    "username": "agent_user",
-    "password": "agent_pass"
-  },
   "invalidUser": {
-    "username": "invalid_user",
-    "password": "wrong_password"
+    "username": "invalid_automation_user",
+    "password": "invalid_automation_password"
   },
   "errorMessages": {
-    "invalidCredentials": "Invalid username or password",
-    "usernameRequired": "Invalid username or password",
-    "passwordRequired": "Invalid username or password"
+    "invalidCredentials": "couldn't be validated",
+    "requiredFields": "Please enter your username and password."
   }
 }

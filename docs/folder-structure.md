@@ -60,7 +60,7 @@ stepdefinitions/login.steps.ts
 stepdefinitions/create-application.steps.ts
 testdata/login.json
 testdata/create-application.json
-resources/agent-portal/
+docs/modules/
 ```
 
 See [`.cursor/prompts/create-new-module.md`](../.cursor/prompts/create-new-module.md) for the full checklist.

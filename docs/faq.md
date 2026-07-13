@@ -6,13 +6,17 @@
 
 Playwright, TypeScript, Cucumber (BDD), Node.js, and Allure Report.
 
+### What application does this framework automate?
+
+The [Transamerica Agent Portal](https://secure.transamerica.com) — Login, Dashboard, and Application Wizard business flows.
+
 ### What demo application is used?
 
-The **Agent Portal demo** in `src/resources/agent-portal/` for Login, Dashboard, and Application Wizard modules. Override `BASE_URL` with `https://secure.transamerica.com` for live Transamerica Agent Portal execution.
+None. This framework automates the real Transamerica Agent Portal only. Authenticated scenarios require `AGENT_USERNAME` and `AGENT_PASSWORD` environment variables.
 
-### Can I use this with my own application?
+### Can I run authenticated scenarios in CI?
 
-Yes. Update environment URLs in `src/constants/index.ts` or override with `BASE_URL` in `.env`.
+Yes. Configure `AGENT_USERNAME` and `AGENT_PASSWORD` as protected environment variables. Scenarios tagged `@requires-credentials` are skipped automatically when credentials are not available.
 
 ## Execution
 

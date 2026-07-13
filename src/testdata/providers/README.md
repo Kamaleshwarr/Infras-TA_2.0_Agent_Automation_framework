@@ -6,11 +6,12 @@ Single abstraction layer for loading test data from multiple sources.
 
 ## Files
 
-| File                   | Status               |
-| ---------------------- | -------------------- |
-| `ITestDataProvider.ts` | Interface            |
-| `JsonDataProvider.ts`  | ✅ Implemented       |
-| `TestDataProvider.ts`  | Facade / entry point |
+| File                   | Status                            |
+| ---------------------- | --------------------------------- |
+| `ITestDataProvider.ts` | Interface                         |
+| `JsonDataProvider.ts`  | ✅ Implemented                    |
+| `TestDataProvider.ts`  | Facade / entry point              |
+| `agentCredentials.ts`  | ✅ Agent env credentials resolver |
 
 ## Extending
 

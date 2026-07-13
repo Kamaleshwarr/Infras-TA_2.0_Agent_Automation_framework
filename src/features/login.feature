@@ -7,7 +7,7 @@ Feature: User Login
   Background:
     Given the user is on the login page
 
-  @positive
+  @positive @requires-credentials
   Scenario: Successful login with valid credentials
     When the user logs in with valid credentials
     Then the user should be redirected to the dashboard
@@ -23,7 +23,7 @@ Feature: User Login
     Then the user should see error message "<errorMessage>"
 
     Examples:
-      | username      | password     | errorMessage                  |
-      | invalid_user  | agent_pass   | Invalid username or password  |
-      |               | agent_pass   | Invalid username or password  |
-      | agent_user    |              | Invalid username or password  |
+      | username                 | password                   | errorMessage                              |
+      | invalid_automation_user  | invalid_automation_password | couldn't be validated                    |
+      |                          | invalid_automation_password | Please enter your username and password. |
+      | invalid_automation_user  |                            | Please enter your username and password. |

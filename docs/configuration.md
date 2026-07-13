@@ -34,23 +34,25 @@ cp .env.example .env
 
 ## Variables
 
-| Variable                | Default    | Description                                       |
-| ----------------------- | ---------- | ------------------------------------------------- |
-| `ENV`                   | `QA`       | Environment: `DEV`, `QA`, `UAT`, `PROD`           |
-| `BROWSER`               | `chromium` | `chromium`, `chrome`, `firefox`, `edge`, `webkit` |
-| `HEADLESS`              | `true`     | Headless execution                                |
-| `BASE_URL`              | Per ENV    | Override application URL                          |
-| `TAGS`                  | —          | Cucumber tag filter                               |
-| `TIMEOUT`               | `60000`    | Scenario timeout (ms)                             |
-| `ACTION_TIMEOUT`        | `15000`    | Element action timeout (ms)                       |
-| `NAVIGATION_TIMEOUT`    | `30000`    | Navigation timeout (ms)                           |
-| `WORKERS`               | `1`        | Parallel worker count                             |
-| `RETRIES`               | `1`        | Retry count for transient failures                |
-| `SLOW_MO`               | `0`        | Debug slow motion (ms)                            |
-| `ENABLE_TRACING`        | `false`    | Playwright trace (retain-on-failure)              |
-| `RECORD_VIDEO`          | `false`    | Video recording (retain-on-failure)               |
-| `SCREENSHOT_ON_FAILURE` | `true`     | Screenshot on failure                             |
-| `LOG_LEVEL`             | `INFO`     | `DEBUG`, `INFO`, `WARN`, `ERROR`                  |
+| Variable                | Default                           | Description                                          |
+| ----------------------- | --------------------------------- | ---------------------------------------------------- |
+| `ENV`                   | `QA`                              | Environment: `DEV`, `QA`, `UAT`, `PROD`              |
+| `BROWSER`               | `chromium`                        | `chromium`, `chrome`, `firefox`, `edge`, `webkit`    |
+| `HEADLESS`              | `true`                            | Headless execution                                   |
+| `BASE_URL`              | `https://secure.transamerica.com` | Transamerica Agent Portal URL                        |
+| `AGENT_USERNAME`        | —                                 | Agent username for `@requires-credentials` scenarios |
+| `AGENT_PASSWORD`        | —                                 | Agent password for `@requires-credentials` scenarios |
+| `TAGS`                  | —                                 | Cucumber tag filter                                  |
+| `TIMEOUT`               | `60000`                           | Scenario timeout (ms)                                |
+| `ACTION_TIMEOUT`        | `15000`                           | Element action timeout (ms)                          |
+| `NAVIGATION_TIMEOUT`    | `30000`                           | Navigation timeout (ms)                              |
+| `WORKERS`               | `1`                               | Parallel worker count                                |
+| `RETRIES`               | `1`                               | Retry count for transient failures                   |
+| `SLOW_MO`               | `0`                               | Debug slow motion (ms)                               |
+| `ENABLE_TRACING`        | `false`                           | Playwright trace (retain-on-failure)                 |
+| `RECORD_VIDEO`          | `false`                           | Video recording (retain-on-failure)                  |
+| `SCREENSHOT_ON_FAILURE` | `true`                            | Screenshot on failure                                |
+| `LOG_LEVEL`             | `INFO`                            | `DEBUG`, `INFO`, `WARN`, `ERROR`                     |
 
 ## Browser Selection
 

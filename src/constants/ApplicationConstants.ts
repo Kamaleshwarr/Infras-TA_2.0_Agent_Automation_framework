@@ -1,33 +1,23 @@
-import * as path from 'path';
-import { pathToFileURL } from 'url';
 import { Environment } from '../enums';
 
-const AGENT_PORTAL_ROOT = path.resolve(__dirname, '../resources/agent-portal');
-
 /**
- * Resolves a demo agent portal page to a file URL for Playwright navigation.
+ * Transamerica Agent Portal base URL.
+ * Override at runtime with BASE_URL env var when needed.
  */
-function portalPageUrl(filename: string): string {
-  return pathToFileURL(path.join(AGENT_PORTAL_ROOT, filename)).href;
-}
-
-const DEMO_LOGIN_URL = portalPageUrl('login.html');
+export const AGENT_PORTAL_BASE_URL = 'https://secure.transamerica.com';
 
 /**
- * Per-environment base URLs.
- * Demo environments use the local agent portal; override at runtime with BASE_URL.
+ * Per-environment base URLs for the Transamerica Agent Portal.
  */
 export const ENVIRONMENT_URLS: Record<Environment, string> = {
-  [Environment.DEV]: DEMO_LOGIN_URL,
-  [Environment.QA]: DEMO_LOGIN_URL,
-  [Environment.UAT]: DEMO_LOGIN_URL,
-  [Environment.PROD]: DEMO_LOGIN_URL,
+  [Environment.DEV]: AGENT_PORTAL_BASE_URL,
+  [Environment.QA]: AGENT_PORTAL_BASE_URL,
+  [Environment.UAT]: AGENT_PORTAL_BASE_URL,
+  [Environment.PROD]: AGENT_PORTAL_BASE_URL,
 };
 
 export const ROUTES = {
-  login: DEMO_LOGIN_URL,
-  dashboard: portalPageUrl('dashboard.html'),
-  applicationWizard: portalPageUrl('application-wizard.html'),
+  login: '/',
 } as const;
 
 export const TEST_DATA_FILES = {

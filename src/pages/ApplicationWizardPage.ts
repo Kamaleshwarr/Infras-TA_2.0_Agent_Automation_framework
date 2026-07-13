@@ -10,11 +10,6 @@ export interface WizardPageOneData {
   hasSecondAgent: string;
 }
 
-export interface WizardPageOneDefaults {
-  agentNumber: string;
-  officeNumber: string;
-}
-
 /**
  * Application Wizard — business actions for wizard page 1.
  */
@@ -28,21 +23,16 @@ export class ApplicationWizardPage extends BasePage {
 
   async verifyWizardPageOneDisplayed(): Promise<void> {
     this.logger.info('Verifying Application Wizard page 1 is displayed');
-    await this.assertions.verifyURL(/application-wizard\.html/);
     await this.assertions.verifyVisible(
-      this.locators.wizardPageOne,
-      'Application Wizard page one',
-    );
-    await this.assertions.verifyVisible(
-      this.locators.wizardStepIndicator,
-      'Wizard step indicator',
+      this.locators.wizardPageOneHeading,
+      'Application Wizard page one heading',
     );
   }
 
   async verifyWizardStepIndicator(expectedText: string): Promise<void> {
     this.logger.info('Verifying wizard step indicator text');
     await this.assertions.verifyContains(
-      this.locators.wizardStepIndicator,
+      this.locators.wizardPageOneHeading,
       expectedText,
       'Wizard step indicator',
     );
@@ -77,21 +67,15 @@ export class ApplicationWizardPage extends BasePage {
     );
   }
 
-  async verifyWizardPageOnePrefilledValues(
-    defaults: WizardPageOneDefaults,
+  async verifyWizardPageOnePrefilledAgentNumber(
+    expectedAgentNumber: string,
   ): Promise<void> {
-    this.logger.info('Verifying Application Wizard page 1 prefilled values');
+    this.logger.info('Verifying Application Wizard agent number is prefilled');
     await this.assertions.verifyAttribute(
       this.locators.agentNumberInput,
       'value',
-      defaults.agentNumber,
+      expectedAgentNumber,
       'Agent number',
-    );
-    await this.assertions.verifyAttribute(
-      this.locators.officeNumberInput,
-      'value',
-      defaults.officeNumber,
-      'Office number',
     );
   }
 }

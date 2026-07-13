@@ -16,8 +16,8 @@ export class DashboardPage extends BasePage {
   async verifyDashboardLoaded(): Promise<void> {
     this.logger.info('Verifying dashboard is loaded');
     await this.assertions.verifyVisible(
-      this.locators.dashboardContainer,
-      'Dashboard container',
+      this.locators.createNewApplicationButton,
+      'Create New Application button',
     );
   }
 

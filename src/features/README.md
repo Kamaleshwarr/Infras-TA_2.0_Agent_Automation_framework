@@ -27,7 +27,7 @@ Feature: User Login
   Scenario: Successful login with valid credentials
     Given the user is on the login page
     When the user logs in with valid credentials
-    Then the user should be redirected to the inventory page
+    Then the user should be redirected to the dashboard
 ```
 
 ## Running

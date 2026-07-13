@@ -1,22 +1,14 @@
 import { Given, Then, When } from '@cucumber/cucumber';
 import { TestDataProvider } from '../testdata/providers/TestDataProvider';
+import { getAgentCredentials } from '../testdata/providers/agentCredentials';
 import { CustomWorld } from '../hooks/world';
-import { LoginCredentials } from '../pages/LoginPage';
-import {
-  WizardPageOneData,
-  WizardPageOneDefaults,
-} from '../pages/ApplicationWizardPage';
-
-interface LoginTestData {
-  validUser: LoginCredentials;
-}
+import { WizardPageOneData } from '../pages/ApplicationWizardPage';
 
 interface CreateApplicationTestData {
   wizardPageOne: WizardPageOneData & { stepIndicatorText: string };
-  prefilledDefaults: WizardPageOneDefaults;
+  prefilledAgentNumber: string;
 }
 
-const loginData = TestDataProvider.loadJson<LoginTestData>('login.json');
 const createApplicationData =
   TestDataProvider.loadJson<CreateApplicationTestData>(
     'create-application.json',
@@ -26,7 +18,7 @@ Given(
   'the user is logged in to the agent portal',
   async function (this: CustomWorld) {
     await this.loginPage.openLoginPage();
-    await this.loginPage.login(loginData.validUser);
+    await this.loginPage.login(getAgentCredentials());
     await this.dashboardPage.verifyDashboardLoaded();
   },
 );
@@ -65,8 +57,8 @@ Then(
   'the Application Wizard page one should display prefilled agent details',
   async function (this: CustomWorld) {
     await this.applicationWizardPage.verifyWizardPageOneDisplayed();
-    await this.applicationWizardPage.verifyWizardPageOnePrefilledValues(
-      createApplicationData.prefilledDefaults,
+    await this.applicationWizardPage.verifyWizardPageOnePrefilledAgentNumber(
+      createApplicationData.prefilledAgentNumber,
     );
   },
 );

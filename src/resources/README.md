@@ -2,13 +2,7 @@
 
 ## Purpose
 
-Static files used during test execution — upload fixtures, sample documents, images, and demo application pages.
-
-## Agent Portal Demo
-
-| Path                                    | Description                                                      |
-| --------------------------------------- | ---------------------------------------------------------------- |
-| [agent-portal/](agent-portal/README.md) | Static HTML demo for Login → Dashboard → Application Wizard flow |
+Static files used during test execution — upload fixtures, sample documents, and supporting files for the Transamerica Agent Portal automation suite.
 
 ## Usage
 
@@ -25,10 +19,13 @@ await this.actions.uploadFile(
 ## Coding Standards
 
 - Keep files small and purpose-specific.
-- Document each resource folder in this README when added.
-- Do not store credentials or secrets here.
+- Document each resource file in this README when added.
+- Do not store credentials, mock applications, or secrets here.
+
+## Current Contents
+
+No upload fixtures added yet. This folder is reserved for future document upload scenarios in the Application Wizard flow.
 
 ## Related
 
 - [BaseActions — uploadFile](../base/BaseActions.ts)
-- [ApplicationConstants](../constants/ApplicationConstants.ts)

@@ -1,6 +1,6 @@
 # Documentation Index
 
-Central documentation for the Playwright BDD Automation Framework (v1.2.0).
+Central documentation for the Playwright BDD Automation Framework (v1.2.1).
 
 ## Getting Started
 
@@ -18,6 +18,14 @@ Central documentation for the Playwright BDD Automation Framework (v1.2.0).
 | [Framework Freeze](framework-freeze.md)  | Architecture freeze policy (v1.2.0)           |
 | [Folder Structure](folder-structure.md)  | Project layout                                |
 | [Coding Standards](coding-standards.md)  | TypeScript and framework rules                |
+
+## Application Modules
+
+| Module                                              | Description                      |
+| --------------------------------------------------- | -------------------------------- |
+| [Login](modules/login.md)                           | Agent Portal authentication      |
+| [Dashboard](modules/dashboard.md)                   | Navigation to Create Application |
+| [Application Wizard](modules/application-wizard.md) | Wizard page 1 automation         |
 
 ## Operations
 

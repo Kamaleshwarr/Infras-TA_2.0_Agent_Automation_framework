@@ -2,7 +2,7 @@
 
 Enterprise-grade UI automation framework built with **Playwright**, **TypeScript**, **Cucumber (BDD)**, and **Allure Report**.
 
-**Version:** 1.3.0 (Architecture Frozen) | [Changelog](CHANGELOG.md) | [License](LICENSE)
+**Version:** 1.2.1 (Architecture Frozen) | [Changelog](CHANGELOG.md) | [License](LICENSE)
 
 > The framework architecture is **frozen at v1.2.0**. Future work focuses on application modules. See [docs/framework-freeze.md](docs/framework-freeze.md).
 

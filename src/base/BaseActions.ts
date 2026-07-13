@@ -200,9 +200,7 @@ export class BaseActions implements IBaseActions {
 
   async navigateTo(path: string): Promise<void> {
     const config = getEnvironmentConfig();
-    const url = /^(https?|file):/.test(path)
-      ? path
-      : `${config.baseUrl}${path}`;
+    const url = path.startsWith('http') ? path : `${config.baseUrl}${path}`;
     this.logger.info(`Navigating to URL: ${url}`);
     await this.page.goto(url, {
       waitUntil: 'load',

@@ -2,7 +2,7 @@ import { Page } from 'playwright';
 
 /**
  * Login page locators only — no business logic.
- * Target: Transamerica Agent Portal (secure.transamerica.com selectors)
+ * Target: Transamerica Agent Portal (https://secure.transamerica.com)
  */
 export class LoginLocators {
   constructor(private readonly page: Page) {}
@@ -20,14 +20,6 @@ export class LoginLocators {
   }
 
   get errorMessage() {
-    return this.page.locator('[data-test="error"]');
-  }
-
-  get loginPage() {
-    return this.page.locator('[data-test="login-page"]');
-  }
-
-  get dashboardContainer() {
-    return this.page.locator('[data-test="dashboard-container"]');
+    return this.page.locator('#error-list');
   }
 }
