@@ -8,10 +8,11 @@ import {
 } from '@cucumber/cucumber';
 import * as fs from 'fs';
 import * as path from 'path';
-import { getPlaywrightConfig } from '../config/playwright.config';
 import { getEnvironmentConfig } from '../config/environment.config';
+import { getPlaywrightConfig } from '../config/playwright.config';
 import { AllureHelper, CucumberAttach } from '../utils/allureHelper';
 import { createLogger } from '../utils/logger';
+import { browserManager } from './browserManager';
 import { CustomWorld } from './world';
 
 const logger = createLogger('Hooks');
@@ -29,7 +30,6 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
     `Starting scenario: ${scenario.pickle.name} [${scenario.pickle.tags.map((t) => t.name).join(', ')}]`,
   );
 
-  await this.launchBrowser();
   await this.createContext();
   await this.createPage();
 
@@ -50,24 +50,28 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
       const screenshot = await this.page.screenshot({ fullPage: true });
       await AllureHelper.attachScreenshot(attach, screenshot);
 
-      this.tracePath = path.join(
-        pwConfig.traceDir,
-        `${scenarioName}-${Date.now()}.zip`,
-      );
-      await this.context.tracing.stop({ path: this.tracePath });
-      await AllureHelper.attachTrace(attach, this.tracePath);
+      if (pwConfig.enableTracing) {
+        this.tracePath = path.join(
+          pwConfig.traceDir,
+          `${scenarioName}-${Date.now()}.zip`,
+        );
+        await this.context.tracing.stop({ path: this.tracePath });
+        await AllureHelper.attachTrace(attach, this.tracePath);
+      }
 
       await AllureHelper.attachText(
         attach,
         'Failure Details',
         `Scenario: ${scenario.pickle.name}\nStatus: ${scenario.result?.status}\nMessage: ${scenario.result?.message ?? 'N/A'}`,
       );
-    } else {
+    } else if (pwConfig.enableTracing) {
       await this.context.tracing.stop();
+      logger.info(`Scenario passed: ${scenario.pickle.name}`);
+    } else {
       logger.info(`Scenario passed: ${scenario.pickle.name}`);
     }
   } finally {
-    await this.closeBrowser();
+    await this.closeContext();
 
     if (failed) {
       const videoPath = await video?.path();
@@ -81,5 +85,6 @@ After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
 });
 
 AfterAll(async function () {
+  await browserManager.closeBrowser();
   logger.info('Framework teardown completed');
 });

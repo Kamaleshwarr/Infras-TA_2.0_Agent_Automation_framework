@@ -2,75 +2,85 @@
 
 Enterprise-grade UI automation framework built with **Playwright**, **TypeScript**, **Cucumber (BDD)**, and **Allure Report**.
 
-## Architecture Overview
+Designed for scalability, maintainability, and multi-engineer collaboration.
 
-```
-src/
-├── base/           # Reusable action & assertion layers (SOLID foundation)
-├── config/         # Environment & browser configuration
-├── constants/      # Shared enums, routes, timeouts
-├── locators/       # Page locators only (no logic)
-├── pages/          # Business actions only (Page Object Model)
-├── stepdefinitions/# Cucumber step mappings (no Playwright code)
-├── hooks/          # Browser lifecycle & failure artifacts
-├── features/       # Gherkin feature files
-├── utils/          # Logger, test data loader, Allure helpers
-├── testdata/       # JSON test data (no hardcoded credentials)
-├── reports/        # Allure results, screenshots, traces, videos
-└── resources/      # Static test resources (uploads, fixtures)
-```
+## Features
+
+- Page Object Model with separated locators
+- BDD scenarios with Cucumber
+- Allure reporting with failure artifacts
+- Multi-environment support (DEV / QA / UAT / PROD)
+- Headless (default) and headed execution
+- Parallel execution with configurable workers
+- Structured logging for every action
+- Documentation-first development standards
 
 ## Quick Start
 
 ```bash
-# Install dependencies & browsers
 npm install
-
-# Copy environment config
 cp .env.example .env
-
-# Run all tests
 npm test
-
-# Run with visible browser
-npm run test:headed
-
-# Run by tag
-npm run test:tags "@smoke"
-
-# Generate Allure report
-npm run allure:generate
-npm run allure:open
 ```
 
-## Environment Configuration
+## Running Tests
 
-Set `ENV` to `DEV`, `QA`, `UAT`, or `PROD`. Override URLs via `BASE_URL` without code changes.
+| Command | Mode |
+|---------|------|
+| `npm test` | Headless (default), sequential |
+| `npm run test:headed` | Visible browser |
+| `npm run test:parallel` | Headless, 4 workers |
+| `npm run test:smoke` | `@smoke` tagged scenarios |
+| `npm run report` | Generate & open Allure report |
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `ENV` | `QA` | Target environment |
-| `BROWSER` | `chromium` | Browser engine |
-| `HEADLESS` | `true` | Headless mode |
-| `TAGS` | — | Cucumber tag filter |
+See [docs/running-tests.md](docs/running-tests.md) for full details.
+
+## Documentation
+
+| Resource | Description |
+|----------|-------------|
+| [docs/](docs/README.md) | Installation, config, running tests, FAQ |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
+| [.cursor/rules/](.cursor/rules/architecture.md) | AI knowledge base & standards |
+| [src/](src/) | Each folder has its own README |
+
+## Architecture
+
+```
+src/
+├── base/             # Reusable actions & assertions
+├── config/           # Environment & browser config
+├── locators/         # Selectors only
+├── pages/            # Business actions (POM)
+├── stepdefinitions/  # Cucumber glue (no Playwright)
+├── hooks/            # Browser lifecycle & artifacts
+├── features/         # Gherkin scenarios
+├── utils/            # Logger, test data, Allure
+├── testdata/         # JSON test data
+└── reports/          # Generated artifacts
+```
 
 ## Reference Module
 
-The **Login** module demonstrates the full pattern:
+The **Login** module demonstrates the complete pattern. See [src/pages/README.md](src/pages/README.md).
 
-- `LoginLocators.ts` — selectors only
-- `LoginPage.ts` — business actions & verifications via base classes
-- `login.feature` — BDD scenarios
-- `login.steps.ts` — step mappings delegating to `LoginPage`
-- `login.json` — externalized credentials
+## Environment
 
-## Design Principles
+Configure via `.env` — no code changes required:
 
-- **Strict TypeScript** with async/await only
-- **No hardcoded waits** — explicit waits via Playwright APIs
-- **Separation of concerns** — locators, pages, steps, and hooks are isolated
-- **Failure artifacts** — screenshot, video, and trace attached to Allure on failure
+```bash
+ENV=QA
+HEADLESS=true
+WORKERS=4
+BROWSER=chromium
+```
 
-## Demo Application
+Full reference: [docs/configuration.md](docs/configuration.md)
 
-Login scenarios target [Sauce Demo](https://www.saucedemo.com) as the reference application.
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Documentation is mandatory with every change.
+
+## License
+
+MIT

@@ -25,6 +25,8 @@ export interface EnvironmentConfig {
   workers: number;
   retries: number;
   slowMo: number;
+  enableTracing: boolean;
+  recordVideo: boolean;
 }
 
 function parseEnvironment(value: string | undefined): Environment {
@@ -84,5 +86,7 @@ export function getEnvironmentConfig(): EnvironmentConfig {
     workers: parseNumber(process.env.WORKERS, 1),
     retries: parseNumber(process.env.RETRIES, 0),
     slowMo: parseNumber(process.env.SLOW_MO, 0),
+    enableTracing: parseBoolean(process.env.ENABLE_TRACING, true),
+    recordVideo: parseBoolean(process.env.RECORD_VIDEO, true),
   };
 }

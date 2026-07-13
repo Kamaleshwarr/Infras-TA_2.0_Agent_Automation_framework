@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const workers = parseInt(process.env.WORKERS || '1', 10);
+
 module.exports = {
   default: {
     requireModule: ['ts-node/register'],
@@ -18,5 +20,6 @@ module.exports = {
       resultsDir: 'src/reports/allure-results',
     },
     tags: process.env.TAGS || '',
+    parallel: workers > 1 ? workers : undefined,
   },
 };

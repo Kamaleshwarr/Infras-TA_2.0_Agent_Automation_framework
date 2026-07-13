@@ -11,27 +11,34 @@ export interface PlaywrightConfig {
   traceDir: string;
   videoDir: string;
   screenshotDir: string;
+  enableTracing: boolean;
 }
 
 export function getPlaywrightConfig(): PlaywrightConfig {
   const env = getEnvironmentConfig();
+
+  const contextOptions: BrowserContextOptions = {
+    baseURL: env.baseUrl,
+    viewport: env.viewport,
+    acceptDownloads: true,
+  };
+
+  if (env.recordVideo) {
+    contextOptions.recordVideo = {
+      dir: 'src/reports/videos/',
+      size: env.viewport,
+    };
+  }
 
   return {
     launchOptions: {
       headless: env.headless,
       slowMo: env.slowMo,
     },
-    contextOptions: {
-      baseURL: env.baseUrl,
-      viewport: env.viewport,
-      recordVideo: {
-        dir: 'src/reports/videos/',
-        size: env.viewport,
-      },
-      acceptDownloads: true,
-    },
+    contextOptions,
     traceDir: 'src/reports/traces/',
     videoDir: 'src/reports/videos/',
     screenshotDir: 'src/reports/screenshots/',
+    enableTracing: env.enableTracing,
   };
 }

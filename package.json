@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "test:headed": "HEADLESS=false cucumber-js",
+    "test:headed": "cross-env HEADLESS=false cucumber-js",
+    "test:parallel": "cross-env WORKERS=4 cucumber-js",
+    "test:parallel:headed": "cross-env HEADLESS=false WORKERS=4 cucumber-js",
     "test:tags": "cucumber-js --tags",
+    "test:smoke": "cross-env TAGS=@smoke cucumber-js",
     "test:env": "cross-env ENV=$ENV cucumber-js",
     "allure:generate": "allure generate src/reports/allure-results --clean -o src/reports/allure-report",
     "allure:open": "allure open src/reports/allure-report",
