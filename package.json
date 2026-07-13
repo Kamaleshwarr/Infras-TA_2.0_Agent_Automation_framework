@@ -1,0 +1,40 @@
+{
+  "name": "playwright-automation-framework",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Playwright BDD automation framework with TypeScript, Cucumber, and Allure",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:headed": "HEADLESS=false cucumber-js",
+    "test:tags": "cucumber-js --tags",
+    "test:env": "cross-env ENV=$ENV cucumber-js",
+    "allure:generate": "allure generate src/reports/allure-results --clean -o src/reports/allure-report",
+    "allure:open": "allure open src/reports/allure-report",
+    "report": "npm run allure:generate && npm run allure:open",
+    "lint": "tsc --noEmit",
+    "postinstall": "playwright install chromium firefox webkit"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "typescript",
+    "bdd",
+    "allure",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^22.10.2",
+    "allure-commandline": "^2.32.0",
+    "allure-cucumberjs": "^3.0.7",
+    "allure-js-commons": "^3.0.7",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "playwright": "^1.49.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

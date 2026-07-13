@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.env
+*.log
+
+# Playwright artifacts
+test-results/
+playwright-report/
+blob-report/
+
+# Reports
+src/reports/allure-results/
+src/reports/allure-report/
+src/reports/cucumber-report.json
+src/reports/screenshots/
+src/reports/traces/
+src/reports/videos/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
