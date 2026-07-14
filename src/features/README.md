@@ -6,10 +6,10 @@ Gherkin `.feature` files — living documentation and BDD test scenarios.
 
 ## Current Files
 
-| File                         | Module             | Tags                                                       |
-| ---------------------------- | ------------------ | ---------------------------------------------------------- |
-| `login.feature`              | User Login         | `@login`, `@smoke`, `@positive`, `@negative`               |
-| `create-application.feature` | Create Application | `@create-application`, `@dashboard`, `@smoke`, `@positive` |
+| File                         | Module             | Tags                                                                         |
+| ---------------------------- | ------------------ | ---------------------------------------------------------------------------- |
+| `login.feature`              | User Login         | `@login`, `@login-positive`, `@login-negative`, `@smoke`                     |
+| `create-application.feature` | Create Application | `@create-application`, `@createApplication-positive`, `@dashboard`, `@smoke` |
 
 ## Coding Standards
 

@@ -18,9 +18,10 @@ See also [`.cursor/rules/troubleshooting.md`](../.cursor/rules/troubleshooting.m
 ## Debug Workflow
 
 1. Run headed: `npm run test:headed`
-2. Run single tag: `npm run test:tags "@positive"`
-3. Enable debug logs: `LOG_LEVEL=DEBUG npm test`
-4. On failure, open Playwright trace at [trace.playwright.dev](https://trace.playwright.dev)
+2. Run a module-specific tag: `npx cucumber-js --tags "@login-positive"`
+3. Use `WORKERS=1` when debugging a single scenario to avoid parallel browser windows
+4. Enable debug logs: `LOG_LEVEL=DEBUG npm test`
+5. On failure, open Playwright trace at [trace.playwright.dev](https://trace.playwright.dev)
 
 ## Flaky Tests
 

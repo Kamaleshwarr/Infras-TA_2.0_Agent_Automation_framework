@@ -7,19 +7,19 @@ Feature: Create New Application
   Background:
     Given the user is logged in to the agent portal
 
-  @positive
+  @createApplication-positive
   Scenario: Agent navigates to Application Wizard page one from dashboard
     When the user clicks Create New Application on the dashboard
     Then the Application Wizard page one should be displayed
     And the wizard should show step indicator "Licensing and Appointment"
 
-  @positive
+  @createApplication-positive
   Scenario: Agent can fill Application Wizard page one fields
     When the user clicks Create New Application on the dashboard
     And the user fills Application Wizard page one with valid data
     Then the Application Wizard page one should be displayed
 
-  @positive
+  @createApplication-positive
   Scenario: Application Wizard page one displays prefilled agent number
     When the user clicks Create New Application on the dashboard
     Then the Application Wizard page one should display prefilled agent details
