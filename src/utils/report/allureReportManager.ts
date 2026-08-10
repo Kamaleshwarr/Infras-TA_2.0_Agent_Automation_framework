@@ -8,7 +8,11 @@ import {
 } from '../../constants/FrameworkConstants';
 import { REPORT_FILES, REPORT_PATHS } from '../../constants/PathConstants';
 import { ReportGenerationException } from '../../exceptions';
-import { IReportManager, CucumberAttach } from '../../interfaces';
+import {
+  AssertionReportPayload,
+  IReportManager,
+  CucumberAttach,
+} from '../../interfaces';
 import { sanitizeForReport } from '../string/maskHelper';
 
 export { CucumberAttach };
@@ -79,6 +83,46 @@ export class AllureReportManager implements IReportManager {
     content: string,
   ): Promise<void> {
     await attach(sanitizeForReport(`${name}\n${content}`), 'text/plain');
+  }
+
+  async attachAssertionResult(
+    attach: CucumberAttach,
+    payload: AssertionReportPayload,
+  ): Promise<void> {
+    const lines = [
+      '--------------------------------',
+      payload.assertionName,
+      '--------------------------------',
+      '',
+      'Expected:',
+      payload.expected,
+      '',
+      'Actual:',
+      payload.actual,
+      '',
+      'Result:',
+      payload.result,
+      '--------------------------------',
+    ];
+
+    if (payload.scenarioName) {
+      lines.splice(4, 0, `Scenario: ${payload.scenarioName}`, '');
+    }
+
+    if (payload.stepName) {
+      lines.splice(
+        payload.scenarioName ? 6 : 4,
+        0,
+        `Step: ${payload.stepName}`,
+        '',
+      );
+    }
+
+    if (payload.context) {
+      lines.splice(lines.length - 1, 0, '', `Context: ${payload.context}`);
+    }
+
+    await attach(sanitizeForReport(lines.join('\n')), 'text/plain');
   }
 
   async attachVideo(

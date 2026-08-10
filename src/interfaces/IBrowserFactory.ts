@@ -1,4 +1,8 @@
-import { BrowserType as PWBrowserType, LaunchOptions } from 'playwright';
+import {
+  BrowserType as PWBrowserType,
+  LaunchOptions,
+  BrowserContextOptions,
+} from 'playwright';
 import { SupportedBrowser } from '../enums';
 
 /**
@@ -10,4 +14,8 @@ export interface IBrowserFactory {
     browser: SupportedBrowser,
     baseOptions: LaunchOptions,
   ): LaunchOptions;
+  getContextOptions(
+    baseOptions: BrowserContextOptions,
+    headless: boolean,
+  ): BrowserContextOptions;
 }

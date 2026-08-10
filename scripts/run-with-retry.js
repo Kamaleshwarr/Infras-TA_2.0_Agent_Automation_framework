@@ -4,8 +4,11 @@
  * Usage: npm run test:retry
  */
 const { spawnSync } = require('child_process');
+const { cleanAllureResults } = require('./clean-allure-results');
 
 const maxAttempts = parseInt(process.env.RETRIES || '2', 10) + 1;
+
+cleanAllureResults();
 
 for (let attempt = 1; attempt <= maxAttempts; attempt++) {
   process.stdout.write(`\n=== Test attempt ${attempt}/${maxAttempts} ===\n\n`);

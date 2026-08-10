@@ -1,5 +1,6 @@
 import { BrowserContextOptions, LaunchOptions } from 'playwright';
 import { REPORT_PATHS } from '../constants/PathConstants';
+import { browserFactory } from './browserFactory';
 import { getEnvironmentConfig } from './environment.config';
 
 const AGENT_PORTAL_USER_AGENT =
@@ -19,19 +20,24 @@ export interface PlaywrightConfig {
 export function getPlaywrightConfig(): PlaywrightConfig {
   const env = getEnvironmentConfig();
 
-  const contextOptions: BrowserContextOptions = {
-    baseURL: env.baseUrl,
-    viewport: env.viewport,
-    acceptDownloads: true,
-    userAgent: AGENT_PORTAL_USER_AGENT,
-  };
-
-  if (env.recordVideo) {
-    contextOptions.recordVideo = {
-      dir: REPORT_PATHS.videos + '/',
-      size: env.viewport,
-    };
-  }
+  const contextOptions: BrowserContextOptions =
+    browserFactory.getContextOptions(
+      {
+        baseURL: env.baseUrl,
+        viewport: env.viewport,
+        acceptDownloads: true,
+        userAgent: AGENT_PORTAL_USER_AGENT,
+        ...(env.recordVideo
+          ? {
+              recordVideo: {
+                dir: REPORT_PATHS.videos + '/',
+                size: env.viewport,
+              },
+            }
+          : {}),
+      },
+      env.headless,
+    );
 
   return {
     launchOptions: {

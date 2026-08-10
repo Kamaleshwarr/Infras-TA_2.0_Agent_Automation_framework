@@ -4,9 +4,12 @@
  * Usage: npm run test:cross-browser
  */
 const { spawnSync } = require('child_process');
+const { cleanAllureResults } = require('./clean-allure-results');
 
 const browsers = ['chromium', 'firefox', 'webkit'];
 let failed = false;
+
+cleanAllureResults();
 
 for (const browser of browsers) {
   process.stdout.write(`\n=== Running tests on ${browser} ===\n\n`);

@@ -1,29 +1,45 @@
-@login @smoke @regression @sanity @critical @ui
+@login @smoke @regression
 Feature: User Login
   As a registered agent
-  I want to log in to the application
+  I want to log in to the Transamerica Agent Portal
   So that I can access my dashboard
 
   Background:
-    Given the user is on the login page
+    Given the login page is loaded
 
-  @positive @requires-credentials
+  @login @positive @requires-credentials @smoke @regression
   Scenario: Successful login with valid credentials
     When the user logs in with valid credentials
-    Then the user should be redirected to the dashboard
+    Then the user should be successfully logged in
 
-  @negative
-  Scenario: Login fails with invalid credentials
-    When the user logs in with invalid credentials
-    Then the user should see a login error message
-
-  @negative
-  Scenario Outline: Login fails with invalid username and password combinations
-    When the user logs in with username "<username>" and password "<password>"
-    Then the user should see error message "<errorMessage>"
+  @login @negative @validation @regression
+  Scenario Outline: Login validation rejects invalid input
+    When the user submits login for validation case "<caseId>"
+    Then login validation case "<caseId>" should display expected messages
 
     Examples:
-      | username                 | password                   | errorMessage                              |
-      | invalid_automation_user  | invalid_automation_password | couldn't be validated                    |
-      |                          | invalid_automation_password | Please enter your username and password. |
-      | invalid_automation_user  |                            | Please enter your username and password. |
+      | caseId |
+      | invalid-email-and-password |
+      | empty-email |
+      | empty-password |
+      | empty-email-and-password |
+      | invalid-email-format-with-password |
+      | invalid-email-format-with-empty-password |
+      | valid-email-with-invalid-password |
+
+  @login @positive @regression
+  Scenario: User can open the forgot password dialog
+    When the user opens the forgot password dialog
+    Then the forgot password dialog should be displayed
+
+  @login @positive @regression
+  Scenario: User can close the forgot password dialog using Cancel
+    When the user opens the forgot password dialog
+    And the user closes the forgot password dialog with Cancel
+    Then the login page should be displayed
+
+  @login @positive @regression
+  Scenario: User can close the forgot password dialog using Close
+    When the user opens the forgot password dialog
+    And the user closes the forgot password dialog with Close
+    Then the login page should be displayed

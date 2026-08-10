@@ -37,6 +37,8 @@ Before({ tags: '@requires-credentials' }, function (): 'skipped' | void {
 Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
   const config = getEnvironmentConfig();
 
+  this.scenarioName = scenario.pickle.name;
+
   logger.info(
     `Starting scenario: ${scenario.pickle.name} [${scenario.pickle.tags.map((t) => t.name).join(', ')}]`,
   );

@@ -1,6 +1,5 @@
-import { Given, Then, When } from '@cucumber/cucumber';
+import { Then, When } from '@cucumber/cucumber';
 import { TestDataProvider } from '../testdata/providers/TestDataProvider';
-import { getAgentCredentials } from '../testdata/providers/agentCredentials';
 import { CustomWorld } from '../hooks/world';
 import { WizardPageOneData } from '../pages/ApplicationWizardPage';
 
@@ -13,15 +12,6 @@ const createApplicationData =
   TestDataProvider.loadJson<CreateApplicationTestData>(
     'create-application.json',
   );
-
-Given(
-  'the user is logged in to the agent portal',
-  async function (this: CustomWorld) {
-    await this.loginPage.openLoginPage();
-    await this.loginPage.login(getAgentCredentials());
-    await this.dashboardPage.verifyDashboardLoaded();
-  },
-);
 
 When(
   'the user clicks Create New Application on the dashboard',

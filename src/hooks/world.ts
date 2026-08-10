@@ -1,7 +1,9 @@
 import { IWorldOptions, setWorldConstructor, World } from '@cucumber/cucumber';
 import { BrowserContext, Page } from 'playwright';
+import { LoginAssertions } from '../assertions/LoginAssertions';
 import { getPlaywrightConfig } from '../config/playwright.config';
 import { dependencies } from '../core/DependencyRegistry';
+import { CucumberAttach } from '../interfaces';
 import { ApplicationWizardPage } from '../pages/ApplicationWizardPage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
@@ -14,8 +16,10 @@ export class CustomWorld extends World {
   context!: BrowserContext;
   page!: Page;
   tracePath?: string;
+  scenarioName?: string;
 
   loginPage!: LoginPage;
+  loginAssertions!: LoginAssertions;
   dashboardPage!: DashboardPage;
   applicationWizardPage!: ApplicationWizardPage;
 
@@ -26,7 +30,9 @@ export class CustomWorld extends World {
   }
 
   initializePages(): void {
+    const attach = this.attach.bind(this) as CucumberAttach;
     this.loginPage = new LoginPage(this.page);
+    this.loginAssertions = new LoginAssertions(this.page, attach);
     this.dashboardPage = new DashboardPage(this.page);
     this.applicationWizardPage = new ApplicationWizardPage(this.page);
   }

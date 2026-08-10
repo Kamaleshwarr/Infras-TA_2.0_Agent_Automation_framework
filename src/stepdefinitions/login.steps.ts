@@ -1,22 +1,42 @@
-import { Given, Then, When } from '@cucumber/cucumber';
-import { TestDataProvider } from '../testdata/providers/TestDataProvider';
-import { getAgentCredentials } from '../testdata/providers/agentCredentials';
+import {
+  BeforeStep,
+  Given,
+  Then,
+  When,
+  setDefaultTimeout,
+} from '@cucumber/cucumber';
+import { getEnvironmentConfig } from '../config/environment.config';
+import { CucumberAttach } from '../interfaces';
 import { CustomWorld } from '../hooks/world';
+import { getAgentCredentials } from '../testdata/providers/agentCredentials';
 
-interface LoginTestData {
-  invalidUser: { username: string; password: string };
-  errorMessages: {
-    invalidCredentials: string;
-    requiredFields: string;
-  };
-}
+setDefaultTimeout(getEnvironmentConfig().timeout);
 
-const loginData = TestDataProvider.loadJson<LoginTestData>('login.json');
+BeforeStep(function (this: CustomWorld, step) {
+  if (!this.loginAssertions) {
+    return;
+  }
 
-Given('the user is on the login page', async function (this: CustomWorld) {
-  await this.loginPage.openLoginPage();
-  await this.loginPage.verifyLoginPageDisplayed();
+  this.loginAssertions.setReportContext({
+    attach: this.attach.bind(this) as CucumberAttach,
+    scenarioName: this.scenarioName,
+    stepName: step.pickleStep.text,
+  });
 });
+
+Given('the login page is loaded', async function (this: CustomWorld) {
+  await this.loginPage.openLoginPage();
+  await this.loginAssertions.verifyLoginPageLoaded();
+});
+
+Given(
+  'the user is logged in to the agent portal',
+  async function (this: CustomWorld) {
+    await this.loginPage.openLoginPage();
+    await this.loginPage.login(getAgentCredentials());
+    await this.loginAssertions.verifySuccessfulLogin();
+  },
+);
 
 When(
   'the user logs in with valid credentials',
@@ -26,38 +46,58 @@ When(
 );
 
 When(
-  'the user logs in with invalid credentials',
-  async function (this: CustomWorld) {
-    await this.loginPage.login(loginData.invalidUser);
-  },
-);
-
-When(
-  'the user logs in with username {string} and password {string}',
-  async function (this: CustomWorld, username: string, password: string) {
-    await this.loginPage.login({ username, password });
-  },
-);
-
-Then(
-  'the user should be redirected to the dashboard',
-  async function (this: CustomWorld) {
-    await this.dashboardPage.verifyDashboardLoaded();
-  },
-);
-
-Then(
-  'the user should see a login error message',
-  async function (this: CustomWorld) {
-    await this.loginPage.verifyLoginError(
-      loginData.errorMessages.invalidCredentials,
+  'the user submits login for validation case {string}',
+  async function (this: CustomWorld, caseId: string) {
+    const validationCase = this.loginAssertions.getValidationCase(caseId);
+    await this.loginPage.loginWith(
+      validationCase.email,
+      validationCase.password,
     );
   },
 );
 
-Then(
-  'the user should see error message {string}',
-  async function (this: CustomWorld, errorMessage: string) {
-    await this.loginPage.verifyLoginError(errorMessage);
+When(
+  'the user opens the forgot password dialog',
+  async function (this: CustomWorld) {
+    await this.loginPage.navigateToForgotPassword();
   },
 );
+
+When(
+  'the user closes the forgot password dialog with Cancel',
+  async function (this: CustomWorld) {
+    await this.loginPage.closeForgotPasswordWithCancel();
+  },
+);
+
+When(
+  'the user closes the forgot password dialog with Close',
+  async function (this: CustomWorld) {
+    await this.loginPage.closeForgotPasswordWithClose();
+  },
+);
+
+Then(
+  'the user should be successfully logged in',
+  async function (this: CustomWorld) {
+    await this.loginAssertions.verifySuccessfulLogin();
+  },
+);
+
+Then(
+  'login validation case {string} should display expected messages',
+  async function (this: CustomWorld, caseId: string) {
+    await this.loginAssertions.verifyValidationCase(caseId);
+  },
+);
+
+Then(
+  'the forgot password dialog should be displayed',
+  async function (this: CustomWorld) {
+    await this.loginAssertions.verifyForgotPasswordDialog();
+  },
+);
+
+Then('the login page should be displayed', async function (this: CustomWorld) {
+  await this.loginAssertions.verifyLoginPageLoaded();
+});

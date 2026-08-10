@@ -4,6 +4,23 @@
 
 Allure Report provides rich HTML reports with scenario details, tags, environment info, and failure artifacts.
 
+## Execution Lifecycle
+
+Each test execution starts with a **clean Allure raw results directory**:
+
+1. `scripts/run-cucumber.js` (or cross-browser/retry runners) deletes and recreates `src/reports/allure-results/`
+2. Cucumber + `allure-cucumberjs` write **only the current run** into that folder
+3. `npm run allure:generate` builds HTML from those fresh raw results
+
+| Directory / file                     | Behavior                                                               |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| `allure-results/`                    | **Ephemeral per execution** — cleaned before each new test run         |
+| `allure-report/`                     | Regenerated from current `allure-results/` (`--clean` on generate)     |
+| `cucumber-report.json`               | Overwritten independently by Cucumber each run                         |
+| `screenshots/`, `videos/`, `traces/` | Not cleaned by the Allure lifecycle; separate Playwright artifact dirs |
+
+Historical Allure raw results are **not** preserved in `allure-results/`.
+
 ## Generate Report
 
 After running tests:

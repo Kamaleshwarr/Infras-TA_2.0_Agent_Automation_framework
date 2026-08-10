@@ -1,10 +1,9 @@
 import { Page } from 'playwright';
 import { BasePage } from '../base/BasePage';
-import { ROUTES } from '../constants';
 import { LoginLocators } from '../locators/LoginLocators';
 
 export interface LoginCredentials {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -22,61 +21,88 @@ export class LoginPage extends BasePage {
 
   async openLoginPage(): Promise<void> {
     this.logger.info('Opening login page');
-    await this.actions.navigateTo(ROUTES.login);
+    await this.actions.navigateTo('');
     await this.actions.waitForPageLoad();
+    await this.actions.waitForVisible(this.locators.emailInput, 'Email field');
     await this.dismissBrowserCompatibilityNotice();
   }
 
-  async enterUsername(username: string): Promise<void> {
-    await this.actions.fill(this.locators.usernameInput, username, 'Username');
+  async enterEmail(email: string): Promise<void> {
+    await this.actions.fill(this.locators.emailInput, email, 'Email');
   }
 
   async enterPassword(password: string): Promise<void> {
     await this.actions.fill(this.locators.passwordInput, password, 'Password');
   }
 
-  async clickLoginButton(): Promise<void> {
-    await this.actions.click(this.locators.loginButton, 'Login button');
-    await this.actions.waitForPageLoad();
+  async clearEmail(): Promise<void> {
+    await this.actions.clear(this.locators.emailInput, 'Email');
+  }
+
+  async clearPassword(): Promise<void> {
+    await this.actions.clear(this.locators.passwordInput, 'Password');
+  }
+
+  async clickSignIn(): Promise<void> {
+    await this.actions.click(this.locators.signInButton, 'Sign in button');
+  }
+
+  async submitLogin(): Promise<void> {
+    await this.clickSignIn();
   }
 
   async login(credentials: LoginCredentials): Promise<void> {
-    this.logger.info(`Logging in as ${credentials.username}`);
-    await this.enterUsername(credentials.username);
+    this.logger.info(`Logging in as ${credentials.email}`);
+    await this.enterEmail(credentials.email);
     await this.enterPassword(credentials.password);
-    await this.clickLoginButton();
+    await this.submitLogin();
   }
 
-  async verifyLoginPageDisplayed(): Promise<void> {
-    this.logger.info('Verifying login page is displayed');
-    await this.assertions.verifyVisible(
-      this.locators.usernameInput,
-      'Username field',
-    );
-    await this.assertions.verifyVisible(
-      this.locators.loginButton,
-      'Login button',
+  async loginWith(email: string, password: string): Promise<void> {
+    await this.login({ email, password });
+  }
+
+  async navigateToForgotPassword(): Promise<void> {
+    this.logger.info('Opening forgot password dialog');
+    await this.actions.click(
+      this.locators.forgotPasswordButton,
+      'Forgot password button',
     );
   }
 
-  async verifyLoginError(expectedMessage: string): Promise<void> {
-    this.logger.info('Verifying login error message');
-    await this.assertions.verifyVisible(
-      this.locators.errorMessage,
-      'Error message',
+  async closeForgotPasswordWithCancel(): Promise<void> {
+    await this.actions.click(
+      this.locators.forgotPasswordCancelButton,
+      'Forgot password Cancel button',
     );
-    await this.assertions.verifyContains(
-      this.locators.errorMessage,
-      expectedMessage,
-      'Error message',
+  }
+
+  async closeForgotPasswordWithClose(): Promise<void> {
+    await this.actions.click(
+      this.locators.forgotPasswordCloseButton,
+      'Forgot password Close button',
+    );
+  }
+
+  async isLoginPageLoaded(): Promise<boolean> {
+    return (
+      (await this.actions.isVisible(this.locators.emailInput, 'Email field')) &&
+      (await this.actions.isVisible(
+        this.locators.passwordInput,
+        'Password field',
+      )) &&
+      (await this.actions.isVisible(
+        this.locators.signInButton,
+        'Sign in button',
+      ))
     );
   }
 
   private async dismissBrowserCompatibilityNotice(): Promise<void> {
-    const ignoreButton = this.page.getByRole('button', { name: /ignore/i });
-    if (await ignoreButton.isVisible()) {
+    const dismissButton = this.locators.browserCompatibilityDismissButton;
+    if (await dismissButton.isVisible()) {
       await this.actions.click(
-        ignoreButton,
+        dismissButton,
         'Browser compatibility notice dismiss',
       );
     }

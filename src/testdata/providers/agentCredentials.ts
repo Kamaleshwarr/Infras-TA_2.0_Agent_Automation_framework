@@ -15,7 +15,7 @@ export function getAgentCredentials(): LoginCredentials {
     );
   }
 
-  return { username, password };
+  return { email: username, password };
 }
 
 export function hasAgentCredentials(): boolean {

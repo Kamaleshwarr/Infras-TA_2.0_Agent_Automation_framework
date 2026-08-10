@@ -8,9 +8,9 @@ Output directory for generated test artifacts. Contents are gitignored except `.
 
 | Path | Description |
 |------|-------------|
-| `allure-results/` | Raw Allure result JSON |
-| `allure-report/` | Generated HTML report |
-| `cucumber-report.json` | Cucumber JSON output |
+| `allure-results/` | Raw Allure result JSON (**cleaned before each test execution**) |
+| `allure-report/` | Generated HTML report (regenerated from current `allure-results/`) |
+| `cucumber-report.json` | Cucumber JSON output (overwritten each run) |
 | `screenshots/` | Failure screenshots |
 | `videos/` | Scenario video recordings |
 | `traces/` | Playwright trace files |
@@ -18,8 +18,8 @@ Output directory for generated test artifacts. Contents are gitignored except `.
 ## Commands
 
 ```bash
-npm test                  # Generates allure-results
-npm run allure:generate   # Builds HTML report
+npm test                  # Cleans allure-results, then runs Cucumber
+npm run allure:generate   # Builds HTML report from current allure-results
 npm run allure:open       # Opens report
 ```
 

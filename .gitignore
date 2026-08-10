@@ -1,6 +1,12 @@
 node_modules/
 dist/
+
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# Logs
 *.log
 
 # Playwright artifacts
@@ -21,3 +27,8 @@ src/reports/videos/
 .idea/
 .vscode/
 *.swp
+
+# Ad-hoc Login exploration / debug artifacts
+src/reports/login-ui-*
+src/reports/login-debug.png
+src/reports/login-after-submit.png

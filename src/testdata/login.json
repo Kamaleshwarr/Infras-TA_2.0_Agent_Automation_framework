@@ -1,10 +1,59 @@
 {
-  "invalidUser": {
-    "username": "invalid_automation_user",
-    "password": "invalid_automation_password"
+  "page": {
+    "titlePattern": "Transamerica | Agent",
+    "urlPath": "/login",
+    "heading": "Login to Transamerica Agent Portal"
   },
-  "errorMessages": {
-    "invalidCredentials": "couldn't be validated",
-    "requiredFields": "Please enter your username and password."
-  }
+  "messages": {
+    "invalidCredentials": "Invalid credentials",
+    "emailRequired": "Email is a required field",
+    "passwordRequired": "Password is a required field",
+    "invalidEmailFormat": "Please enter a valid email address"
+  },
+  "validationCases": [
+    {
+      "caseId": "invalid-email-and-password",
+      "email": "invalid@automation.test",
+      "password": "invalid_automation_password",
+      "authErrorMessage": "invalidCredentials"
+    },
+    {
+      "caseId": "empty-email",
+      "email": "",
+      "password": "SomePassword123",
+      "emailErrorMessage": "emailRequired"
+    },
+    {
+      "caseId": "empty-password",
+      "email": "invalid@automation.test",
+      "password": "",
+      "passwordErrorMessage": "passwordRequired"
+    },
+    {
+      "caseId": "empty-email-and-password",
+      "email": "",
+      "password": "",
+      "emailErrorMessage": "emailRequired",
+      "passwordErrorMessage": "passwordRequired"
+    },
+    {
+      "caseId": "invalid-email-format-with-password",
+      "email": "not-an-email",
+      "password": "SomePassword123",
+      "emailErrorMessage": "invalidEmailFormat"
+    },
+    {
+      "caseId": "invalid-email-format-with-empty-password",
+      "email": "not-an-email",
+      "password": "",
+      "emailErrorMessage": "invalidEmailFormat",
+      "passwordErrorMessage": "passwordRequired"
+    },
+    {
+      "caseId": "valid-email-with-invalid-password",
+      "email": "invalid@automation.test",
+      "password": "wrong_password_value",
+      "authErrorMessage": "invalidCredentials"
+    }
+  ]
 }

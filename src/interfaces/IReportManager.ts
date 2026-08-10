@@ -1,3 +1,5 @@
+import { AssertionReportPayload } from './IAssertionReporter';
+
 export type CucumberAttach = (
   data: Buffer | string,
   mediaType?: string,
@@ -19,6 +21,10 @@ export interface IReportManager {
     attach: CucumberAttach,
     name: string,
     content: string,
+  ): Promise<void>;
+  attachAssertionResult(
+    attach: CucumberAttach,
+    payload: AssertionReportPayload,
   ): Promise<void>;
   attachVideo(
     attach: CucumberAttach,

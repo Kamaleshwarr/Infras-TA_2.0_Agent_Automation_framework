@@ -2,48 +2,48 @@
 
 ## Purpose
 
-Authenticates agents against the **Transamerica Agent Portal** at `https://secure.transamerica.com`.
-
-## Responsibilities
-
-| Method                       | Description                                |
-| ---------------------------- | ------------------------------------------ |
-| `openLoginPage()`            | Navigates to the Agent Portal login screen |
-| `login()`                    | Submits agent credentials                  |
-| `verifyLoginPageDisplayed()` | Confirms the login form is visible         |
-| `verifyLoginError()`         | Validates authentication error messages    |
+Authenticates agents against the **Transamerica Agent Portal QA SPA** at `https://agent-portal-qa-20.ilifeta.com/`.
 
 ## Files
 
-| File               | Location                             |
-| ------------------ | ------------------------------------ |
-| `LoginLocators.ts` | `src/locators/LoginLocators.ts`      |
-| `LoginPage.ts`     | `src/pages/LoginPage.ts`             |
-| Test data          | `src/testdata/login.json`            |
-| Feature            | `src/features/login.feature`         |
-| Steps              | `src/stepdefinitions/login.steps.ts` |
+| File                 | Location                             |
+| -------------------- | ------------------------------------ |
+| `LoginLocators.ts`   | `src/locators/LoginLocators.ts`      |
+| `LoginPage.ts`       | `src/pages/LoginPage.ts`             |
+| `LoginAssertions.ts` | `src/assertions/LoginAssertions.ts`  |
+| Test data            | `src/testdata/login.json`            |
+| Feature              | `src/features/login.feature`         |
+| Steps                | `src/stepdefinitions/login.steps.ts` |
 
 ## Locators
 
-Production login selectors verified against `secure.transamerica.com`:
-
-| Element       | Selector      |
-| ------------- | ------------- |
-| Username      | `#username`   |
-| Password      | `#password`   |
-| Login button  | `#formLogin`  |
-| Error message | `#error-list` |
+| Element               | Selector                                           |
+| --------------------- | -------------------------------------------------- |
+| Email                 | `#field-email`                                     |
+| Password              | `#field-password`                                  |
+| Sign in               | role button `/sign in/i`                           |
+| Forgot password       | role button `/forgot password/i`                   |
+| Email field error     | `#field-email-error`                               |
+| Password field error  | `#field-password-error`                            |
+| Authentication banner | `[role="alert"]` filtered by `Invalid credentials` |
 
 ## Credentials
 
-Never hardcode agent credentials in source code.
+| Variable         | Purpose                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `AGENT_USERNAME` | Valid agent email for `@requires-credentials` scenarios    |
+| `AGENT_PASSWORD` | Valid agent password for `@requires-credentials` scenarios |
 
-| Variable         | Purpose                                          |
-| ---------------- | ------------------------------------------------ |
-| `AGENT_USERNAME` | Valid agent username for authenticated scenarios |
-| `AGENT_PASSWORD` | Valid agent password for authenticated scenarios |
+Invalid-login data and expected messages live in `src/testdata/login.json`.
 
-Scenarios tagged `@requires-credentials` are skipped when these variables are not set. Invalid-login scenarios use disposable values from `login.json`.
+## Execution
+
+```bash
+npm run test:tags "@login"
+npm run test:tags "@login and @positive"
+npm run test:tags "@login and @validation"
+npm run test:tags "@login and @negative"
+```
 
 ## Related
 
