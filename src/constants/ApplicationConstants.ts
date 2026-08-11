@@ -18,9 +18,10 @@ export const ENVIRONMENT_URLS: Record<Environment, string> = {
 
 export const ROUTES = {
   login: '/',
+  applicationNew: '/application/new',
 } as const;
 
 export const TEST_DATA_FILES = {
   login: 'login.json',
-  createApplication: 'create-application.json',
+  applicationCreation: 'application-creation.json',
 } as const;

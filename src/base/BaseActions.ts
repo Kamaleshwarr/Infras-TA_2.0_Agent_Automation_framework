@@ -142,6 +142,15 @@ export class BaseActions implements IBaseActions {
     await locator.waitFor({ state: 'visible', timeout: this.actionTimeout });
   }
 
+  async waitForVisibleWithTimeout(
+    locator: Locator,
+    elementName: string,
+    timeout: number,
+  ): Promise<void> {
+    this.logger.info(`Waiting for ${elementName} to be visible`);
+    await locator.waitFor({ state: 'visible', timeout });
+  }
+
   async waitForHidden(locator: Locator, elementName: string): Promise<void> {
     this.logger.info(`Waiting for ${elementName} to be hidden`);
     await locator.waitFor({ state: 'hidden', timeout: this.actionTimeout });

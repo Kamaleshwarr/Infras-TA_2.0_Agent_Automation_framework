@@ -6,10 +6,10 @@ Cucumber step glue that maps Gherkin steps to page object methods.
 
 ## Current Files
 
-| File                          | Feature                  |
-| ----------------------------- | ------------------------ |
-| `login.steps.ts`              | Login feature steps      |
-| `create-application.steps.ts` | Create Application steps |
+| File                            | Feature                    |
+| ------------------------------- | -------------------------- |
+| `login.steps.ts`                | Login feature steps        |
+| `application-creation.steps.ts` | Application Creation steps |
 
 ## Coding Standards
 

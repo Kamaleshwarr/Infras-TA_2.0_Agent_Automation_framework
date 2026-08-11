@@ -6,11 +6,11 @@ Page-specific selector definitions. **Selectors only — no business logic.**
 
 ## Current Files
 
-| File                           | Page                   |
-| ------------------------------ | ---------------------- |
-| `LoginLocators.ts`             | Agent Portal login     |
-| `DashboardLocators.ts`         | Agent dashboard        |
-| `ApplicationWizardLocators.ts` | Application Wizard p.1 |
+| File                             | Page                        |
+| -------------------------------- | --------------------------- |
+| `LoginLocators.ts`               | Agent Portal login          |
+| `DashboardLocators.ts`           | Agent dashboard             |
+| `ApplicationCreationLocators.ts` | Application Creation dialog |
 
 ## Coding Standards
 

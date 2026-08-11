@@ -16,6 +16,7 @@ Each module assertions class:
 
 ## Current Modules
 
-| Module | File                 |
-| ------ | -------------------- |
-| Login  | `LoginAssertions.ts` |
+| Module               | File                               |
+| -------------------- | ---------------------------------- |
+| Login                | `LoginAssertions.ts`               |
+| Application Creation | `ApplicationCreationAssertions.ts` |

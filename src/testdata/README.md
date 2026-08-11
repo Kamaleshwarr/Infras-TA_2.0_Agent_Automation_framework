@@ -15,10 +15,10 @@ TestDataProvider (facade)
 
 ## Current Files
 
-| File                      | Module                               |
-| ------------------------- | ------------------------------------ |
-| `login.json`              | Login credentials and error messages |
-| `create-application.json` | Application Wizard page 1 test data  |
+| File                        | Module                                |
+| --------------------------- | ------------------------------------- |
+| `login.json`                | Login credentials and error messages  |
+| `application-creation.json` | Application Creation dialog test data |
 
 ## Usage
 

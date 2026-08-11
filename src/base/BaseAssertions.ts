@@ -225,6 +225,26 @@ export class BaseAssertions implements IBaseAssertions {
     });
   }
 
+  async reportAssertionOutcome(
+    assertionName: string,
+    expected: string,
+    actual: string,
+    passed: boolean,
+    context?: string,
+  ): Promise<void> {
+    await this.recordAssertion(
+      assertionName,
+      expected,
+      actual,
+      passed ? 'PASS' : 'FAIL',
+      context,
+    );
+
+    if (!passed) {
+      throw new Error(`${assertionName} failed`);
+    }
+  }
+
   async verifyCount(
     locator: Locator,
     expectedCount: number,

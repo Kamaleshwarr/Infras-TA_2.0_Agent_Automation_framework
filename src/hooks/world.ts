@@ -1,10 +1,11 @@
 import { IWorldOptions, setWorldConstructor, World } from '@cucumber/cucumber';
 import { BrowserContext, Page } from 'playwright';
+import { ApplicationCreationAssertions } from '../assertions/ApplicationCreationAssertions';
 import { LoginAssertions } from '../assertions/LoginAssertions';
 import { getPlaywrightConfig } from '../config/playwright.config';
 import { dependencies } from '../core/DependencyRegistry';
 import { CucumberAttach } from '../interfaces';
-import { ApplicationWizardPage } from '../pages/ApplicationWizardPage';
+import { ApplicationCreationPage } from '../pages/ApplicationCreationPage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
 import { browserManager } from './browserManager';
@@ -21,7 +22,10 @@ export class CustomWorld extends World {
   loginPage!: LoginPage;
   loginAssertions!: LoginAssertions;
   dashboardPage!: DashboardPage;
-  applicationWizardPage!: ApplicationWizardPage;
+  applicationCreationPage!: ApplicationCreationPage;
+  applicationCreationAssertions!: ApplicationCreationAssertions;
+  dashboardApplicationIdsBefore?: string[];
+  capturedStateDropdownOptions?: string[];
 
   private readonly logger = dependencies.createLogger('World');
 
@@ -34,7 +38,11 @@ export class CustomWorld extends World {
     this.loginPage = new LoginPage(this.page);
     this.loginAssertions = new LoginAssertions(this.page, attach);
     this.dashboardPage = new DashboardPage(this.page);
-    this.applicationWizardPage = new ApplicationWizardPage(this.page);
+    this.applicationCreationPage = new ApplicationCreationPage(this.page);
+    this.applicationCreationAssertions = new ApplicationCreationAssertions(
+      this.page,
+      attach,
+    );
   }
 
   async createContext(): Promise<void> {

@@ -1,0 +1,1194 @@
+{
+  "exploredAt": "2026-08-10T12:24:02.498Z",
+  "baseUrl": "https://agent-portal-qa-20.ilifeta.com/",
+  "criticalFinding": "Application Creation is a dashboard modal dialog; URL does not change.",
+  "dashboard": {
+    "url": "https://agent-portal-qa-20.ilifeta.com/",
+    "title": "Transamerica | Agent",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "Applications",
+        "id": null
+      }
+    ],
+    "dialogText": null,
+    "alerts": []
+  },
+  "dialogInitial": {
+    "url": "https://agent-portal-qa-20.ilifeta.com/",
+    "title": "Transamerica | Agent",
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "Applications",
+        "id": null
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAEAQUXEJ9NFUU",
+        "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAVGYSOFO9ZRO6",
+        "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAOH5BY1REC5VV",
+        "id": "application-TRANSAMERICAOH5BY1REC5VV"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAL4PLXIRRIJY9",
+        "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICATKXTI8H2BU2W",
+        "id": "application-TRANSAMERICATKXTI8H2BU2W"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAGT804IGO22VP",
+        "id": "application-TRANSAMERICAGT804IGO22VP"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICABJWRDGP43DIX",
+        "id": "application-TRANSAMERICABJWRDGP43DIX"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAR614Q8E8HNLH",
+        "id": "application-TRANSAMERICAR614Q8E8HNLH"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICADH6IIY40B0YU",
+        "id": "application-TRANSAMERICADH6IIY40B0YU"
+      },
+      {
+        "tag": "H3",
+        "text": "TRANSAMERICAMIUEGFY8KK1X",
+        "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+      },
+      {
+        "tag": "H2",
+        "text": "Create New Application",
+        "id": ":r3:"
+      }
+    ],
+    "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+    "alerts": [],
+    "fields": {
+      "state": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-state-trigger",
+        "id": "state",
+        "placeholder": "Select a state",
+        "required": true,
+        "disabled": false,
+        "value": "",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "STATE *\n(REQUIRED)"
+      },
+      "product": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-product-trigger",
+        "id": "product",
+        "placeholder": "Select a state first",
+        "required": true,
+        "disabled": true,
+        "value": "",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "PRODUCT *\n(REQUIRED)"
+      },
+      "template": {
+        "found": false,
+        "testId": "agp-dashboard-dialog-create-field-template-trigger"
+      }
+    },
+    "startApplication": {
+      "found": true,
+      "visible": true,
+      "enabled": false,
+      "text": "Start Application",
+      "ariaLabel": "Start new application",
+      "testId": "agp-dashboard-dialog-create-button-submit"
+    },
+    "cancelButton": {
+      "testId": "agp-dashboard-dialog-create-button-cancel",
+      "visible": true
+    },
+    "dialogHeading": {
+      "role": "heading",
+      "name": "Create New Application",
+      "selector": "role=heading[name=/^Create New Application$/i]"
+    },
+    "helperText": "After creating an application, you will be directed to the application form."
+  },
+  "dropdowns": {
+    "state": {
+      "found": true,
+      "options": [
+        {
+          "text": "Alabama",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-al"
+        },
+        {
+          "text": "Alaska",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ak"
+        },
+        {
+          "text": "Arizona",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-az"
+        },
+        {
+          "text": "Arkansas",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ar"
+        },
+        {
+          "text": "California",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ca"
+        },
+        {
+          "text": "Colorado",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-co"
+        },
+        {
+          "text": "Connecticut",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ct"
+        },
+        {
+          "text": "Delaware",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-de"
+        },
+        {
+          "text": "District of Columbia",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-dc"
+        },
+        {
+          "text": "Florida",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-fl"
+        },
+        {
+          "text": "Georgia",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ga"
+        },
+        {
+          "text": "Guam",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-gu"
+        },
+        {
+          "text": "Hawaii",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-hi"
+        },
+        {
+          "text": "Idaho",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-id"
+        },
+        {
+          "text": "Illinois",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-il"
+        },
+        {
+          "text": "Indiana",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-in"
+        },
+        {
+          "text": "Iowa",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ia"
+        },
+        {
+          "text": "Kansas",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ks"
+        },
+        {
+          "text": "Kentucky",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ky"
+        },
+        {
+          "text": "Louisiana",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-la"
+        },
+        {
+          "text": "Maine",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-me"
+        },
+        {
+          "text": "Maryland",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-md"
+        },
+        {
+          "text": "Massachusetts",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ma"
+        },
+        {
+          "text": "Michigan",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-mi"
+        },
+        {
+          "text": "Minnesota",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-mn"
+        },
+        {
+          "text": "Mississippi",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ms"
+        },
+        {
+          "text": "Missouri",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-mo"
+        },
+        {
+          "text": "Montana",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-mt"
+        },
+        {
+          "text": "Nebraska",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ne"
+        },
+        {
+          "text": "Nevada",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nv"
+        },
+        {
+          "text": "New Hampshire",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nh"
+        },
+        {
+          "text": "New Jersey",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nj"
+        },
+        {
+          "text": "New Mexico",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nm"
+        },
+        {
+          "text": "North Carolina",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nc"
+        },
+        {
+          "text": "North Dakota",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-nd"
+        },
+        {
+          "text": "Ohio",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-oh"
+        },
+        {
+          "text": "Oklahoma",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ok"
+        },
+        {
+          "text": "Oregon",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-or"
+        },
+        {
+          "text": "Pennsylvania",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-pa"
+        },
+        {
+          "text": "Puerto Rico",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-pr"
+        },
+        {
+          "text": "Rhode Island",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ri"
+        },
+        {
+          "text": "South Carolina",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-sc"
+        },
+        {
+          "text": "South Dakota",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-sd"
+        },
+        {
+          "text": "Tennessee",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-tn"
+        },
+        {
+          "text": "Texas",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-tx"
+        },
+        {
+          "text": "Utah",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-ut"
+        },
+        {
+          "text": "Vermont",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-vt"
+        },
+        {
+          "text": "Virginia",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-va"
+        },
+        {
+          "text": "Washington",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-wa"
+        },
+        {
+          "text": "West Virginia",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-wv"
+        },
+        {
+          "text": "Wisconsin",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-wi"
+        },
+        {
+          "text": "Wyoming",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-state-option-wy"
+        }
+      ]
+    },
+    "product": {
+      "found": true,
+      "options": [
+        {
+          "text": "Indexed Universal Life",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-product-option-indexed-universal-life"
+        },
+        {
+          "text": "Term Life",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-product-option-term-life"
+        }
+      ]
+    },
+    "template": {
+      "found": true,
+      "options": [
+        {
+          "text": "Life",
+          "value": null,
+          "role": "option",
+          "testId": "agp-dashboard-dialog-create-field-template-option-3107"
+        }
+      ]
+    }
+  },
+  "validation": {
+    "noSelections": {
+      "startApplication": {
+        "found": true,
+        "visible": true,
+        "enabled": false,
+        "text": "Start Application",
+        "ariaLabel": "Start new application",
+        "testId": "agp-dashboard-dialog-create-button-submit"
+      },
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAMIUEGFY8KK1X",
+            "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+          },
+          {
+            "tag": "H2",
+            "text": "Create New Application",
+            "id": ":r3:"
+          }
+        ],
+        "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+        "alerts": []
+      }
+    },
+    "stateOnly": {
+      "selectedState": "Alabama",
+      "fields": {
+        "state": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-state-trigger",
+          "id": "state",
+          "placeholder": "Select a state",
+          "required": true,
+          "disabled": false,
+          "value": "Alabama",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "STATE *\n(REQUIRED)"
+        },
+        "product": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-product-trigger",
+          "id": "product",
+          "placeholder": "Select a product",
+          "required": true,
+          "disabled": false,
+          "value": "",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "PRODUCT *\n(REQUIRED)"
+        },
+        "template": {
+          "found": false,
+          "testId": "agp-dashboard-dialog-create-field-template-trigger"
+        }
+      },
+      "startApplication": {
+        "found": true,
+        "visible": true,
+        "enabled": false,
+        "text": "Start Application",
+        "ariaLabel": "Start new application",
+        "testId": "agp-dashboard-dialog-create-button-submit"
+      },
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAMIUEGFY8KK1X",
+            "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+          },
+          {
+            "tag": "H2",
+            "text": "Create New Application",
+            "id": ":r3:"
+          }
+        ],
+        "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+        "alerts": []
+      }
+    },
+    "stateAndProduct": {
+      "selectedState": "Alabama",
+      "selectedProduct": "Term Life",
+      "fields": {
+        "state": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-state-trigger",
+          "id": "state",
+          "placeholder": "Select a state",
+          "required": true,
+          "disabled": false,
+          "value": "Alabama",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "STATE *\n(REQUIRED)"
+        },
+        "product": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-product-trigger",
+          "id": "product",
+          "placeholder": "Select a product",
+          "required": true,
+          "disabled": false,
+          "value": "Term Life",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "PRODUCT *\n(REQUIRED)"
+        },
+        "template": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-template-trigger",
+          "id": "template",
+          "placeholder": "Select a template",
+          "required": true,
+          "disabled": false,
+          "value": "Life",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "TEMPLATE *\n(REQUIRED)"
+        }
+      },
+      "startApplication": {
+        "found": true,
+        "visible": true,
+        "enabled": true,
+        "text": "Start Application",
+        "ariaLabel": "Start new application",
+        "testId": "agp-dashboard-dialog-create-button-submit"
+      },
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAMIUEGFY8KK1X",
+            "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+          },
+          {
+            "tag": "H2",
+            "text": "Create New Application",
+            "id": ":r3:"
+          }
+        ],
+        "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\nTEMPLATE *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+        "alerts": []
+      }
+    },
+    "stateProductOnly": {
+      "selectedState": "Alabama",
+      "selectedProduct": "Term Life",
+      "templateField": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-template-trigger",
+        "id": "template",
+        "placeholder": "Select a template",
+        "required": true,
+        "disabled": false,
+        "value": "Life",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "TEMPLATE *\n(REQUIRED)"
+      },
+      "startApplication": {
+        "found": true,
+        "visible": true,
+        "enabled": true,
+        "text": "Start Application",
+        "ariaLabel": "Start new application",
+        "testId": "agp-dashboard-dialog-create-button-submit"
+      },
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAMIUEGFY8KK1X",
+            "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+          },
+          {
+            "tag": "H2",
+            "text": "Create New Application",
+            "id": ":r3:"
+          }
+        ],
+        "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\nTEMPLATE *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+        "alerts": []
+      }
+    }
+  },
+  "validFlow": {
+    "selections": {
+      "state": "Alabama",
+      "product": "Term Life",
+      "template": "Life"
+    },
+    "beforeSubmit": {
+      "fields": {
+        "state": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-state-trigger",
+          "id": "state",
+          "placeholder": "Select a state",
+          "required": true,
+          "disabled": false,
+          "value": "Alabama",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "STATE *\n(REQUIRED)"
+        },
+        "product": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-product-trigger",
+          "id": "product",
+          "placeholder": "Select a product",
+          "required": true,
+          "disabled": false,
+          "value": "Term Life",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "PRODUCT *\n(REQUIRED)"
+        },
+        "template": {
+          "found": true,
+          "testId": "agp-dashboard-dialog-create-field-template-trigger",
+          "id": "template",
+          "placeholder": "Select a template",
+          "required": true,
+          "disabled": false,
+          "value": "Life",
+          "ariaExpanded": "false",
+          "ariaControls": null,
+          "labelText": "TEMPLATE *\n(REQUIRED)"
+        }
+      },
+      "startApplication": {
+        "found": true,
+        "visible": true,
+        "enabled": true,
+        "text": "Start Application",
+        "ariaLabel": "Start new application",
+        "testId": "agp-dashboard-dialog-create-button-submit"
+      },
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAMIUEGFY8KK1X",
+            "id": "application-TRANSAMERICAMIUEGFY8KK1X"
+          },
+          {
+            "tag": "H2",
+            "text": "Create New Application",
+            "id": ":r3:"
+          }
+        ],
+        "dialogText": "Create New Application\nSTATE *\n(REQUIRED)\nPRODUCT *\n(REQUIRED)\nTEMPLATE *\n(REQUIRED)\n\nAfter creating an application, you will be directed to the application form.\n\nStart Application\nCancel\nClose",
+        "alerts": []
+      }
+    },
+    "afterSubmit": {
+      "urlBefore": "https://agent-portal-qa-20.ilifeta.com/",
+      "urlAfter": "https://agent-portal-qa-20.ilifeta.com/application/new",
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/application/new",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H3",
+            "text": "Application Sections",
+            "id": null
+          }
+        ],
+        "dialogText": null,
+        "alerts": []
+      },
+      "newApplicationInTable": []
+    }
+  },
+  "navigation": {
+    "browserBack": {
+      "url": "https://agent-portal-qa-20.ilifeta.com/",
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICA4J07OO03FPNL",
+            "id": "application-TRANSAMERICA4J07OO03FPNL"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          }
+        ],
+        "dialogText": null,
+        "alerts": []
+      }
+    },
+    "selectionsBeforeRefresh": {
+      "state": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-state-trigger",
+        "id": "state",
+        "placeholder": "Select a state",
+        "required": true,
+        "disabled": false,
+        "value": "Alabama",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "STATE *\n(REQUIRED)"
+      },
+      "product": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-product-trigger",
+        "id": "product",
+        "placeholder": "Select a product",
+        "required": true,
+        "disabled": false,
+        "value": "Term Life",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "PRODUCT *\n(REQUIRED)"
+      },
+      "template": {
+        "found": true,
+        "testId": "agp-dashboard-dialog-create-field-template-trigger",
+        "id": "template",
+        "placeholder": "Select a template",
+        "required": true,
+        "disabled": false,
+        "value": "Life",
+        "ariaExpanded": "false",
+        "ariaControls": null,
+        "labelText": "TEMPLATE *\n(REQUIRED)"
+      }
+    },
+    "pageRefreshOnDashboard": {
+      "url": "https://agent-portal-qa-20.ilifeta.com/",
+      "dialogOpen": false,
+      "snapshot": {
+        "url": "https://agent-portal-qa-20.ilifeta.com/",
+        "title": "Transamerica | Agent",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Applications",
+            "id": null
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICA4J07OO03FPNL",
+            "id": "application-TRANSAMERICA4J07OO03FPNL"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAEAQUXEJ9NFUU",
+            "id": "application-TRANSAMERICAEAQUXEJ9NFUU"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAVGYSOFO9ZRO6",
+            "id": "application-TRANSAMERICAVGYSOFO9ZRO6"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAOH5BY1REC5VV",
+            "id": "application-TRANSAMERICAOH5BY1REC5VV"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAL4PLXIRRIJY9",
+            "id": "application-TRANSAMERICAL4PLXIRRIJY9"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICATKXTI8H2BU2W",
+            "id": "application-TRANSAMERICATKXTI8H2BU2W"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAGT804IGO22VP",
+            "id": "application-TRANSAMERICAGT804IGO22VP"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICABJWRDGP43DIX",
+            "id": "application-TRANSAMERICABJWRDGP43DIX"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICAR614Q8E8HNLH",
+            "id": "application-TRANSAMERICAR614Q8E8HNLH"
+          },
+          {
+            "tag": "H3",
+            "text": "TRANSAMERICADH6IIY40B0YU",
+            "id": "application-TRANSAMERICADH6IIY40B0YU"
+          }
+        ],
+        "dialogText": null,
+        "alerts": []
+      }
+    }
+  }
+}

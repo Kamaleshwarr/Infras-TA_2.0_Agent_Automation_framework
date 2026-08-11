@@ -1,0 +1,116 @@
+{
+  "page": {
+    "dashboardUrlPath": "/",
+    "applicationFormUrlPath": "/application/new",
+    "dialogHeading": "Create New Application",
+    "applicationSectionsHeading": "Application Sections",
+    "returnToApplicationsText": "Return to Applications"
+  },
+  "validApplication": {
+    "state": "Alabama",
+    "stateCode": "al",
+    "product": "Term Life",
+    "productCode": "term-life",
+    "template": "Life",
+    "templateCode": "3107",
+    "dashboardStatus": "New"
+  },
+  "termLife": {
+    "state": "Alabama",
+    "stateCode": "al",
+    "product": "Term Life",
+    "productCode": "term-life",
+    "template": "Life",
+    "templateCode": "3107",
+    "dashboardStatus": "New"
+  },
+  "iul": {
+    "regularState": {
+      "state": "Alabama",
+      "stateCode": "al"
+    },
+    "puertoRico": {
+      "state": "Puerto Rico",
+      "stateCode": "pr"
+    },
+    "guam": {
+      "state": "Guam",
+      "stateCode": "gu"
+    },
+    "product": "Indexed Universal Life",
+    "productCode": "indexed-universal-life",
+    "template": "Life",
+    "templateCode": "3107",
+    "dashboardStatus": "New"
+  },
+  "availability": {
+    "iulOnlyLocations": ["Puerto Rico", "Guam"],
+    "excludedStates": [
+      {
+        "state": "New York",
+        "stateCode": "ny"
+      },
+      {
+        "state": "U.S. Virgin Islands",
+        "stateCode": "vi"
+      }
+    ]
+  },
+  "stateDropdown": {
+    "expectedCount": 52,
+    "expectedLocations": [
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "District of Columbia",
+      "Florida",
+      "Georgia",
+      "Guam",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Puerto Rico",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming"
+    ]
+  }
+}
