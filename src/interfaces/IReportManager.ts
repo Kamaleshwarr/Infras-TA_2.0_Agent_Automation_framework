@@ -1,4 +1,5 @@
 import { AssertionReportPayload } from './IAssertionReporter';
+import type { ValidationMatrixCollector } from '../utils/report/validationMatrixCollector';
 
 export type CucumberAttach = (
   data: Buffer | string,
@@ -26,6 +27,10 @@ export interface IReportManager {
     attach: CucumberAttach,
     payload: AssertionReportPayload,
   ): Promise<void>;
+  setValidationMatrixCollector(
+    collector: ValidationMatrixCollector | null,
+  ): void;
+  attachHtml(attach: CucumberAttach, name: string, html: string): Promise<void>;
   attachVideo(
     attach: CucumberAttach,
     videoPath: string | null | undefined,

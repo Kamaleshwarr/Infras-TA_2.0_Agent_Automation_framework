@@ -1,0 +1,352 @@
+{
+  "module": "Licensing",
+  "validationMessages": {
+    "requiredField": "Please fill the required field",
+    "licenseNumberRequired": "License Number is required.",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidNumeric": "Please enter a valid numeric value.",
+    "totalPercentMustEqual100": "Total Percent must equal 100%. Please update Split Agent Percentages"
+  },
+  "validSamples": {
+    "writingAgentFirstName": "Auto",
+    "writingAgentLastName": "Agent",
+    "agentNumber": "AG123",
+    "officeId": "12345",
+    "agentEmail": "auto.agent@example.com",
+    "phoneNumber": "5551234567",
+    "licenseNumber": "LIC123456"
+  },
+  "splitAgentSamples": {
+    "agent1": {
+      "firstName": "Split",
+      "lastName": "One",
+      "agentNumber": "S001",
+      "percent": "20",
+      "licenseNumber": "SLIC001"
+    },
+    "agent2": {
+      "firstName": "Split",
+      "lastName": "Two",
+      "agentNumber": "S002",
+      "percent": "30",
+      "licenseNumber": "SLIC002"
+    },
+    "agent3": {
+      "firstName": "Split",
+      "lastName": "Three",
+      "agentNumber": "S003",
+      "percent": "10",
+      "licenseNumber": "SLIC003"
+    },
+    "editedAgent1Percent": "40",
+    "invalidOverflowPercent": "50",
+    "minimumPercent": "1",
+    "zeroPercent": "0",
+    "exact100SplitPercent": "25"
+  },
+  "splitAgentFields": {
+    "firstName": {
+      "suffix": "-text-667-input",
+      "label": "Split Agent First Name"
+    },
+    "lastName": {
+      "suffix": "-text-668-input",
+      "label": "Split Agent Last Name"
+    },
+    "agentNumber": {
+      "suffix": "-text-669-input",
+      "label": "Split Agent Number"
+    },
+    "percent": {
+      "suffix": "-number-670-input",
+      "label": "Split Agent Percent"
+    },
+    "licenseNumber": {
+      "suffix": "-text-eeb8a20c-30fa-11f0-aaf6-91f375bfd3d4-input",
+      "label": "Split Agent License Number"
+    },
+    "profile": {
+      "suffix": "-text-671-input",
+      "label": "Split Agent Profile",
+      "defaultValue": "001"
+    }
+  },
+  "maxSplitAgents": 3,
+  "agentAddressFields": {
+    "country": {
+      "fieldId": "5e5de756-5771-11f0-9dcb-6bb3daa0ff3d",
+      "type": "dropdown",
+      "label": "Country (Residential Country)"
+    },
+    "addressLine1": {
+      "fieldId": "12e6a118-4d36-11f0-9e2e-fdbaeea93e96",
+      "type": "text",
+      "label": "Address Line 1"
+    },
+    "apartmentUnit": {
+      "fieldId": "1e0c678a-4d36-11f0-90c7-130958ca4116",
+      "type": "text",
+      "label": "Apartment / Unit"
+    },
+    "city": {
+      "fieldId": "774bd294-4d37-11f0-80b5-65374f4c16b6",
+      "type": "text",
+      "label": "City"
+    },
+    "stateTerritory": {
+      "fieldId": "73b195f2-4d36-11f0-b0e1-9714f05f1a87",
+      "type": "dropdown",
+      "label": "U.S. State/Territory"
+    },
+    "zipCode": {
+      "fieldId": "8d8f9b0e-4d36-11f0-90c7-130958ca4116",
+      "type": "text",
+      "label": "Zip Code"
+    }
+  },
+  "validAddressSamples": {
+    "country": "United States",
+    "addressLine1": "123 Main Street",
+    "apartmentUnit": "Apt 1",
+    "city": "Los Angeles",
+    "stateTerritory": "California",
+    "zipCode": "90001"
+  },
+  "validAddressSamplesByState": {
+    "California": {
+      "country": "United States",
+      "addressLine1": "123 Main Street",
+      "apartmentUnit": "Apt 1",
+      "city": "Los Angeles",
+      "stateTerritory": "California",
+      "zipCode": "90001"
+    },
+    "Delaware": {
+      "country": "United States",
+      "addressLine1": "100 Market Street",
+      "apartmentUnit": "Suite 1",
+      "city": "Wilmington",
+      "stateTerritory": "Delaware",
+      "zipCode": "19801"
+    }
+  },
+  "invalidSamples": {
+    "email": "not-an-email",
+    "officeIdNonNumeric": "OFFICE"
+  },
+  "termLifeProduct": {
+    "product": "Term Life",
+    "productCode": "term-life",
+    "template": "Life",
+    "templateCode": "3107",
+    "dashboardStatus": "New"
+  },
+  "termLifeUnavailableStates": ["Guam", "Puerto Rico"],
+  "agentAddressLabels": [
+    "Country (Residential Country)",
+    "Address Line 1",
+    "Apartment / Unit",
+    "City",
+    "U.S. State/Territory",
+    "Zip Code"
+  ],
+  "fields": {
+    "writingAgentFirstName": {
+      "fieldId": "40127",
+      "type": "text",
+      "label": "Writing Agent First Name",
+      "required": true
+    },
+    "writingAgentLastName": {
+      "fieldId": "40128",
+      "type": "text",
+      "label": "Writing Agent Last Name",
+      "required": true
+    },
+    "agentNumber": {
+      "fieldId": "40129",
+      "type": "text",
+      "label": "Agent Number",
+      "required": false
+    },
+    "officeId": {
+      "fieldId": "41053",
+      "type": "text",
+      "label": "Office Id",
+      "required": true,
+      "numeric": true
+    },
+    "agentProfile": {
+      "fieldId": "41052",
+      "type": "text",
+      "label": "Agent Profile",
+      "required": false,
+      "defaultValue": "001",
+      "disabled": true
+    },
+    "agentEmail": {
+      "fieldId": "41018",
+      "type": "email",
+      "label": "Agent Email",
+      "required": true
+    },
+    "phoneNumber": {
+      "fieldId": "40130",
+      "type": "phonenumber",
+      "label": "Phone Number",
+      "required": true
+    },
+    "agentPercent": {
+      "fieldId": "41084",
+      "type": "number",
+      "label": "Agent Percent",
+      "required": true,
+      "defaultValue": "100",
+      "disabled": true
+    },
+    "anyAdditionalAgents": {
+      "fieldId": "41021",
+      "type": "radioswitch",
+      "label": "Any Additional Agents?",
+      "required": true
+    },
+    "licenseNumber": {
+      "fieldId": "45242",
+      "type": "text",
+      "label": "License Number",
+      "required": true
+    },
+    "additionalAgentsCardList": {
+      "fieldId": "41022",
+      "type": "cardlist",
+      "label": "Additional Agents Card List"
+    }
+  },
+  "flows": {
+    "FLOW_A": {
+      "representativeState": "Alabama",
+      "agentAddressPresent": false,
+      "licenseNumberPresent": false
+    },
+    "FLOW_B": {
+      "representativeState": "California",
+      "agentAddressPresent": true,
+      "licenseNumberPresent": true
+    },
+    "FLOW_C": {
+      "representativeState": "Delaware",
+      "agentAddressPresent": true,
+      "licenseNumberPresent": false
+    },
+    "FLOW_D": {
+      "representativeState": "Missouri",
+      "agentAddressPresent": false,
+      "licenseNumberPresent": true
+    }
+  },
+  "stateCodes": {
+    "Alabama": "al",
+    "Alaska": "ak",
+    "Arizona": "az",
+    "Arkansas": "ar",
+    "California": "ca",
+    "Colorado": "co",
+    "Connecticut": "ct",
+    "Delaware": "de",
+    "District of Columbia": "dc",
+    "Florida": "fl",
+    "Georgia": "ga",
+    "Hawaii": "hi",
+    "Idaho": "id",
+    "Illinois": "il",
+    "Indiana": "in",
+    "Iowa": "ia",
+    "Kansas": "ks",
+    "Kentucky": "ky",
+    "Louisiana": "la",
+    "Maine": "me",
+    "Maryland": "md",
+    "Massachusetts": "ma",
+    "Michigan": "mi",
+    "Minnesota": "mn",
+    "Mississippi": "ms",
+    "Missouri": "mo",
+    "Montana": "mt",
+    "Nebraska": "ne",
+    "Nevada": "nv",
+    "New Hampshire": "nh",
+    "New Jersey": "nj",
+    "New Mexico": "nm",
+    "North Carolina": "nc",
+    "North Dakota": "nd",
+    "Ohio": "oh",
+    "Oklahoma": "ok",
+    "Oregon": "or",
+    "Pennsylvania": "pa",
+    "Rhode Island": "ri",
+    "South Carolina": "sc",
+    "South Dakota": "sd",
+    "Tennessee": "tn",
+    "Texas": "tx",
+    "Utah": "ut",
+    "Vermont": "vt",
+    "Virginia": "va",
+    "Washington": "wa",
+    "West Virginia": "wv",
+    "Wisconsin": "wi",
+    "Wyoming": "wy"
+  },
+  "stateFlowMapping": {
+    "Alabama": "FLOW_A",
+    "Alaska": "FLOW_A",
+    "Arizona": "FLOW_A",
+    "Arkansas": "FLOW_A",
+    "California": "FLOW_B",
+    "Colorado": "FLOW_A",
+    "Connecticut": "FLOW_A",
+    "Delaware": "FLOW_C",
+    "District of Columbia": "FLOW_A",
+    "Florida": "FLOW_B",
+    "Georgia": "FLOW_B",
+    "Hawaii": "FLOW_A",
+    "Idaho": "FLOW_A",
+    "Illinois": "FLOW_A",
+    "Indiana": "FLOW_B",
+    "Iowa": "FLOW_A",
+    "Kansas": "FLOW_A",
+    "Kentucky": "FLOW_A",
+    "Louisiana": "FLOW_A",
+    "Maine": "FLOW_A",
+    "Maryland": "FLOW_A",
+    "Massachusetts": "FLOW_A",
+    "Michigan": "FLOW_C",
+    "Minnesota": "FLOW_C",
+    "Mississippi": "FLOW_A",
+    "Missouri": "FLOW_D",
+    "Montana": "FLOW_A",
+    "Nebraska": "FLOW_A",
+    "Nevada": "FLOW_A",
+    "New Hampshire": "FLOW_A",
+    "New Jersey": "FLOW_A",
+    "New Mexico": "FLOW_A",
+    "North Carolina": "FLOW_A",
+    "North Dakota": "FLOW_A",
+    "Ohio": "FLOW_A",
+    "Oklahoma": "FLOW_D",
+    "Oregon": "FLOW_A",
+    "Pennsylvania": "FLOW_C",
+    "Rhode Island": "FLOW_A",
+    "South Carolina": "FLOW_A",
+    "South Dakota": "FLOW_A",
+    "Tennessee": "FLOW_A",
+    "Texas": "FLOW_A",
+    "Utah": "FLOW_A",
+    "Vermont": "FLOW_A",
+    "Virginia": "FLOW_A",
+    "Washington": "FLOW_C",
+    "West Virginia": "FLOW_A",
+    "Wisconsin": "FLOW_A",
+    "Wyoming": "FLOW_B"
+  },
+  "tapdTraceabilityNote": "No TAPD export file is present in this repository. Rules below are mapped from QA Licensing exploration and live QA probe evidence. Replace QA-REF IDs when TAPD export is attached."
+}

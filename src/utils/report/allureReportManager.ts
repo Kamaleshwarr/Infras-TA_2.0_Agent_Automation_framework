@@ -14,6 +14,11 @@ import {
   CucumberAttach,
 } from '../../interfaces';
 import { sanitizeForReport } from '../string/maskHelper';
+import {
+  ValidationMatrixCollector,
+  buildAssertionAttachmentTitle,
+} from './validationMatrixCollector';
+import { attachment, ContentType } from 'allure-js-commons';
 
 export { CucumberAttach };
 
@@ -21,6 +26,7 @@ export { CucumberAttach };
  * Allure report manager — handles metadata, directories, and artifact attachments.
  */
 export class AllureReportManager implements IReportManager {
+  private validationMatrixCollector: ValidationMatrixCollector | null = null;
   ensureReportDirectories(): void {
     Object.values(REPORT_PATHS).forEach((dir) => {
       const resolved = path.resolve(process.cwd(), dir);
@@ -85,10 +91,27 @@ export class AllureReportManager implements IReportManager {
     await attach(sanitizeForReport(`${name}\n${content}`), 'text/plain');
   }
 
-  async attachAssertionResult(
+  setValidationMatrixCollector(
+    collector: ValidationMatrixCollector | null,
+  ): void {
+    this.validationMatrixCollector = collector;
+  }
+
+  async attachHtml(
     attach: CucumberAttach,
+    name: string,
+    html: string,
+  ): Promise<void> {
+    await attach(html, 'text/html');
+    await attach(sanitizeForReport(name), 'text/plain');
+  }
+
+  async attachAssertionResult(
+    _attach: CucumberAttach,
     payload: AssertionReportPayload,
   ): Promise<void> {
+    this.validationMatrixCollector?.record(payload);
+
     const lines = [
       '--------------------------------',
       payload.assertionName,
@@ -122,7 +145,12 @@ export class AllureReportManager implements IReportManager {
       lines.splice(lines.length - 1, 0, '', `Context: ${payload.context}`);
     }
 
-    await attach(sanitizeForReport(lines.join('\n')), 'text/plain');
+    const attachmentTitle = buildAssertionAttachmentTitle(payload);
+    await attachment(
+      attachmentTitle,
+      sanitizeForReport(lines.join('\n')),
+      ContentType.TEXT,
+    );
   }
 
   async attachVideo(

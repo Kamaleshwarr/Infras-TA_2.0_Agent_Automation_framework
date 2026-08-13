@@ -1,11 +1,13 @@
 import { IWorldOptions, setWorldConstructor, World } from '@cucumber/cucumber';
 import { BrowserContext, Page } from 'playwright';
 import { ApplicationCreationAssertions } from '../assertions/ApplicationCreationAssertions';
+import { LicensingAssertions } from '../assertions/LicensingAssertions';
 import { LoginAssertions } from '../assertions/LoginAssertions';
 import { getPlaywrightConfig } from '../config/playwright.config';
 import { dependencies } from '../core/DependencyRegistry';
 import { CucumberAttach } from '../interfaces';
 import { ApplicationCreationPage } from '../pages/ApplicationCreationPage';
+import { LicensingPage } from '../pages/LicensingPage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
 import { browserManager } from './browserManager';
@@ -24,6 +26,8 @@ export class CustomWorld extends World {
   dashboardPage!: DashboardPage;
   applicationCreationPage!: ApplicationCreationPage;
   applicationCreationAssertions!: ApplicationCreationAssertions;
+  licensingPage!: LicensingPage;
+  licensingAssertions!: LicensingAssertions;
   dashboardApplicationIdsBefore?: string[];
   capturedStateDropdownOptions?: string[];
 
@@ -42,6 +46,12 @@ export class CustomWorld extends World {
     this.applicationCreationAssertions = new ApplicationCreationAssertions(
       this.page,
       attach,
+    );
+    this.licensingPage = new LicensingPage(this.page);
+    this.licensingAssertions = new LicensingAssertions(
+      this.page,
+      attach,
+      this.licensingPage,
     );
   }
 
