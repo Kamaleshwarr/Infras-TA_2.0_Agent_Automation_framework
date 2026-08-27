@@ -3,13 +3,17 @@ import { BrowserContext, Page } from 'playwright';
 import { ApplicationCreationAssertions } from '../assertions/ApplicationCreationAssertions';
 import { LicensingAssertions } from '../assertions/LicensingAssertions';
 import { LoginAssertions } from '../assertions/LoginAssertions';
+import { ProposedPrimaryInsuredPage1Assertions } from '../assertions/ProposedPrimaryInsuredPage1Assertions';
 import { getPlaywrightConfig } from '../config/playwright.config';
 import { dependencies } from '../core/DependencyRegistry';
 import { CucumberAttach } from '../interfaces';
 import { ApplicationCreationPage } from '../pages/ApplicationCreationPage';
 import { LicensingPage } from '../pages/LicensingPage';
+import { ProposedPrimaryInsuredPage1Page } from '../pages/ProposedPrimaryInsuredPage1Page';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
+import { PiPage1ExecutionContext } from '../utils/proposed-primary-insured/PiPage1ExecutionContext';
+import { applyPendingAllureHierarchyOnce } from '../utils/report/allureHierarchy';
 import { browserManager } from './browserManager';
 
 /**
@@ -28,17 +32,33 @@ export class CustomWorld extends World {
   applicationCreationAssertions!: ApplicationCreationAssertions;
   licensingPage!: LicensingPage;
   licensingAssertions!: LicensingAssertions;
+  proposedPrimaryInsuredPage1Page!: ProposedPrimaryInsuredPage1Page;
+  proposedPrimaryInsuredPage1Assertions!: ProposedPrimaryInsuredPage1Assertions;
   dashboardApplicationIdsBefore?: string[];
   capturedStateDropdownOptions?: string[];
+  piPage1ExecutionContext?: PiPage1ExecutionContext;
 
   private readonly logger = dependencies.createLogger('World');
+
+  requirePiPage1ApplicationState(): string {
+    if (!this.piPage1ExecutionContext?.stateName) {
+      throw new Error(
+        'Proposed Primary Insured Page 1 application state is not set. Start the scenario with the Given step that selects the application state.',
+      );
+    }
+    return this.piPage1ExecutionContext.stateName;
+  }
 
   constructor(options: IWorldOptions) {
     super(options);
   }
 
   initializePages(): void {
-    const attach = this.attach.bind(this) as CucumberAttach;
+    const baseAttach = this.attach.bind(this) as CucumberAttach;
+    const attach: CucumberAttach = async (data, mediaType) => {
+      await applyPendingAllureHierarchyOnce();
+      return baseAttach(data, mediaType);
+    };
     this.loginPage = new LoginPage(this.page);
     this.loginAssertions = new LoginAssertions(this.page, attach);
     this.dashboardPage = new DashboardPage(this.page);
@@ -53,6 +73,15 @@ export class CustomWorld extends World {
       attach,
       this.licensingPage,
     );
+    this.proposedPrimaryInsuredPage1Page = new ProposedPrimaryInsuredPage1Page(
+      this.page,
+    );
+    this.proposedPrimaryInsuredPage1Assertions =
+      new ProposedPrimaryInsuredPage1Assertions(
+        this.page,
+        attach,
+        this.proposedPrimaryInsuredPage1Page,
+      );
   }
 
   async createContext(): Promise<void> {

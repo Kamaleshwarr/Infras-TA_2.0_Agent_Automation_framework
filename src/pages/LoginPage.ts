@@ -1,5 +1,6 @@
 import { Page } from 'playwright';
 import { BasePage } from '../base/BasePage';
+import { getEnvironmentConfig } from '../config/environment.config';
 import { LoginLocators } from '../locators/LoginLocators';
 
 export interface LoginCredentials {
@@ -23,8 +24,12 @@ export class LoginPage extends BasePage {
     this.logger.info('Opening login page');
     await this.actions.navigateTo('');
     await this.actions.waitForPageLoad();
-    await this.actions.waitForVisible(this.locators.emailInput, 'Email field');
     await this.dismissBrowserCompatibilityNotice();
+    await this.actions.waitForVisibleWithTimeout(
+      this.locators.emailInput,
+      'Email field',
+      getEnvironmentConfig().navigationTimeout,
+    );
   }
 
   async enterEmail(email: string): Promise<void> {
@@ -100,11 +105,29 @@ export class LoginPage extends BasePage {
 
   private async dismissBrowserCompatibilityNotice(): Promise<void> {
     const dismissButton = this.locators.browserCompatibilityDismissButton;
-    if (await dismissButton.isVisible()) {
-      await this.actions.click(
-        dismissButton,
-        'Browser compatibility notice dismiss',
-      );
+    const navigationTimeout = getEnvironmentConfig().navigationTimeout;
+
+    if (await this.locators.emailInput.isVisible()) {
+      return;
     }
+
+    await Promise.race([
+      dismissButton
+        .waitFor({ state: 'visible', timeout: navigationTimeout })
+        .then(async () => {
+          if (await dismissButton.isVisible()) {
+            await this.actions.click(
+              dismissButton,
+              'Browser compatibility notice dismiss',
+            );
+          }
+        }),
+      this.locators.emailInput.waitFor({
+        state: 'visible',
+        timeout: navigationTimeout,
+      }),
+    ]).catch(() => {
+      this.logger.info('Browser compatibility notice was not displayed');
+    });
   }
 }
