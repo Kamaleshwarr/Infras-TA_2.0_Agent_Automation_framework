@@ -1,0 +1,157 @@
+{
+  "fields": {
+    "legalFirstName": {
+      "fieldId": "40358",
+      "type": "text",
+      "label": "Legal First Name"
+    },
+    "middleName": {
+      "fieldId": "40359",
+      "type": "text",
+      "label": "Middle Name"
+    },
+    "legalLastName": {
+      "fieldId": "40360",
+      "type": "text",
+      "label": "Legal Last Name"
+    },
+    "suffix": { "fieldId": "40361", "type": "dropdown", "label": "Suffix" },
+    "dateOfBirth": {
+      "fieldId": "40362",
+      "type": "date",
+      "label": "Date of Birth"
+    },
+    "age": { "fieldId": "40363", "type": "number", "label": "Age" },
+    "country": { "fieldId": "40364", "type": "dropdown", "label": "Country" },
+    "otherCountry": {
+      "fieldId": "40365",
+      "type": "text",
+      "label": "Other Country"
+    },
+    "physicalAddress": {
+      "fieldId": "40366",
+      "type": "text",
+      "label": "Physical Residential Address"
+    },
+    "apartmentUnit": {
+      "fieldId": "40367",
+      "type": "text",
+      "label": "Apartment / Unit"
+    },
+    "city": { "fieldId": "40368", "type": "text", "label": "City" },
+    "usStateTerritory": {
+      "fieldId": "40369",
+      "type": "dropdown",
+      "label": "U.S. State / Territory"
+    },
+    "zipCode": { "fieldId": "40371", "type": "text", "label": "Zip Code" },
+    "mailingSameAsPhysical": {
+      "fieldId": "41054",
+      "type": "radiobutton",
+      "label": "Mailing same as physical"
+    },
+    "mailingAddress": {
+      "fieldId": "40381",
+      "type": "text",
+      "label": "U.S. Mailing Address"
+    },
+    "mailingCity": {
+      "fieldId": "40382",
+      "type": "text",
+      "label": "Mailing City"
+    },
+    "mailingStateTerritory": {
+      "fieldId": "40383",
+      "type": "dropdown",
+      "label": "Mailing U.S. State / Territory"
+    },
+    "mailingZipCode": {
+      "fieldId": "40384",
+      "type": "text",
+      "label": "Mailing Zip Code"
+    }
+  },
+  "country": {
+    "usa": "United States of America",
+    "canada": "Canada",
+    "other": "Other"
+  },
+  "suffixOptions": ["Jr", "Sr", "I", "II", "III", "IV"],
+  "validSamplesByState": {
+    "Alabama": {
+      "legalFirstName": "John",
+      "middleName": "Q",
+      "legalLastName": "Doe",
+      "dateOfBirth": "01/15/1985",
+      "physicalAddress": "123 Main Street",
+      "apartmentUnit": "Unit 2",
+      "city": "Montgomery",
+      "state": "Alabama",
+      "zipCode": "36104",
+      "mailingAddress": "456 Commerce Street",
+      "mailingCity": "Montgomery",
+      "mailingState": "Alabama",
+      "mailingZipCode": "36104"
+    },
+    "California": {
+      "legalFirstName": "John",
+      "middleName": "Q",
+      "legalLastName": "Doe",
+      "dateOfBirth": "01/15/1985",
+      "physicalAddress": "123 Main Street",
+      "apartmentUnit": "Apt 1",
+      "city": "Los Angeles",
+      "state": "California",
+      "zipCode": "90001",
+      "mailingAddress": "456 Commerce Street",
+      "mailingCity": "Los Angeles",
+      "mailingState": "California",
+      "mailingZipCode": "90001"
+    },
+    "Delaware": {
+      "legalFirstName": "John",
+      "middleName": "Q",
+      "legalLastName": "Doe",
+      "dateOfBirth": "01/15/1985",
+      "physicalAddress": "100 Market Street",
+      "apartmentUnit": "Suite 1",
+      "city": "Wilmington",
+      "state": "Delaware",
+      "zipCode": "19801",
+      "mailingAddress": "200 Market Street",
+      "mailingCity": "Wilmington",
+      "mailingState": "Delaware",
+      "mailingZipCode": "19801"
+    },
+    "Missouri": {
+      "legalFirstName": "John",
+      "middleName": "Q",
+      "legalLastName": "Doe",
+      "dateOfBirth": "01/15/1985",
+      "physicalAddress": "123 Main Street",
+      "apartmentUnit": "Unit 2",
+      "city": "Jefferson City",
+      "state": "Missouri",
+      "zipCode": "65101",
+      "mailingAddress": "456 Capitol Avenue",
+      "mailingCity": "Jefferson City",
+      "mailingState": "Missouri",
+      "mailingZipCode": "65101"
+    },
+    "Texas": {
+      "legalFirstName": "John",
+      "middleName": "Q",
+      "legalLastName": "Doe",
+      "dateOfBirth": "01/15/1985",
+      "physicalAddress": "123 Main Street",
+      "apartmentUnit": "Unit 2",
+      "city": "Austin",
+      "state": "Texas",
+      "zipCode": "73301",
+      "mailingAddress": "456 Congress Avenue",
+      "mailingCity": "Austin",
+      "mailingState": "Texas",
+      "mailingZipCode": "73301"
+    }
+  }
+}

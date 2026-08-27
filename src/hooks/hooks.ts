@@ -15,6 +15,11 @@ import { CucumberAttach } from '../interfaces';
 import { browserManager } from './browserManager';
 import { CustomWorld } from './world';
 import { hasAgentCredentials } from '../testdata/providers/agentCredentials';
+import {
+  clearPendingAllureHierarchy,
+  resolveAllureSuiteHierarchy,
+  setPendingAllureHierarchy,
+} from '../utils/report/allureHierarchy';
 
 const logger = dependencies.createLogger('Hooks');
 const reportManager = dependencies.getReportManager();
@@ -38,6 +43,9 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
   const config = getEnvironmentConfig();
 
   this.scenarioName = scenario.pickle.name;
+  setPendingAllureHierarchy(
+    resolveAllureSuiteHierarchy(scenario.pickle.name, scenario.pickle.tags),
+  );
 
   logger.info(
     `Starting scenario: ${scenario.pickle.name} [${scenario.pickle.tags.map((t) => t.name).join(', ')}]`,
@@ -52,6 +60,7 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
 });
 
 After(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
+  clearPendingAllureHierarchy();
   const pwConfig = getPlaywrightConfig();
   const scenarioName = scenario.pickle.name.replace(/\W+/g, '_');
   const failed = scenario.result?.status === Status.FAILED;

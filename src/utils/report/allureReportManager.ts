@@ -19,6 +19,7 @@ import {
   buildAssertionAttachmentTitle,
 } from './validationMatrixCollector';
 import { attachment, ContentType } from 'allure-js-commons';
+import { applyPendingAllureHierarchyOnce } from './allureHierarchy';
 
 export { CucumberAttach };
 
@@ -110,6 +111,7 @@ export class AllureReportManager implements IReportManager {
     _attach: CucumberAttach,
     payload: AssertionReportPayload,
   ): Promise<void> {
+    await applyPendingAllureHierarchyOnce();
     this.validationMatrixCollector?.record(payload);
 
     const lines = [
