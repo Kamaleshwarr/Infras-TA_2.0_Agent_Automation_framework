@@ -13,6 +13,7 @@ concurrency:
 env:
   CI: true
   ENV: QA
+  BASE_URL: https://agent-portal-qa-20.ilifeta.com/
   HEADLESS: true
   WORKERS: 2
   RETRIES: 1
@@ -72,7 +73,13 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Verify CI target environment
+        run: echo "Running E2E against ENV=${ENV} BASE_URL=${BASE_URL}"
+
       - name: Run tests
+        env:
+          AGENT_USERNAME: ${{ secrets.AGENT_USERNAME }}
+          AGENT_PASSWORD: ${{ secrets.AGENT_PASSWORD }}
         run: npm test
 
       - name: Generate Allure report
